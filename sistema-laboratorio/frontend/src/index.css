@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-lab-950: #0a192f;
+  --color-lab-900: #102a43;
+  --color-lab-800: #164e63;
+  --color-lab-700: #0f766e;
+  --color-lab-600: #0d9488;
+  --color-lab-500: #14b8a6;
+  --color-lab-300: #81e6d9;
+  --color-lab-100: #dff7f4;
+  --color-lab-50: #f0fdfa;
+  --color-canvas: #f5f7fb;
+  --font-sans: 'Inter', 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply m-0 min-w-80 bg-canvas text-slate-800 antialiased;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-lab-600 focus:ring-4 focus:ring-lab-100 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500;
+  }
+
+  select {
+    @apply cursor-pointer;
+  }
+
+  textarea {
+    @apply resize-y;
+  }
+
+  input[type='checkbox'] {
+    @apply size-4 rounded border-slate-300 p-0 text-lab-700 shadow-none focus:ring-2 focus:ring-lab-100;
+  }
+
+  label {
+    @apply text-sm font-semibold text-slate-700;
+  }
+}
