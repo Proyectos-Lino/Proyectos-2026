@@ -1,0 +1,2083 @@
+[
+  {
+    "id": "28dc03e4-4dd7-4ad1-99f9-310d70799b5d",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: no me funciona la impresora..",
+        "fecha": "2026-09-02T04:17:21.896Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si la impresora no responde, verifique la conexion de red y que la cola de impresion local este limpia.",
+        "fecha": "2026-09-02T04:17:21.896Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:17:21.896Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:17:21.894Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "27cd2034-0aab-4c01-9a7c-ca334ef3b493",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: una señorita dice que su tramite aparece cargando pero nada",
+        "fecha": "2026-09-02T04:17:21.909Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.\n\nTe sugiero revisar estos casos similares cerrados:\n- Ticket 28dc03e4: Solucion: \"Resuelto automaticamente por KB\" (Tiempo invertido: 0m, Duración total del caso: 0m)\n",
+        "fecha": "2026-09-02T04:17:21.909Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:17:21.909Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "3da9c13d-3ff6-4451-ab44-c321d2ca46b5",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: cuanto cuesta una copia literal",
+        "fecha": "2026-09-02T04:28:51.390Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:28:51.390Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:28:51.390Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:28:51.390Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "a0751e3e-82f6-4721-a749-24af6a86c9ec",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: quiero ver el costo de una compraventa",
+        "fecha": "2026-09-02T04:28:51.399Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique el valor de venta del inmueble (en soles).",
+        "fecha": "2026-09-02T04:28:51.399Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "fecha": "2026-09-02T04:28:51.414Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "fecha": "2026-09-02T04:28:51.422Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:28:51.399Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": {
+      "flowId": "costo_compraventa",
+      "step": 1,
+      "answers": {}
+    }
+  },
+  {
+    "id": "fa402045-a76f-46b3-8a62-de9bbd57a318",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: cuanto cuesta una copia literal",
+        "fecha": "2026-09-02T04:29:34.370Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:29:34.370Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:29:34.370Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:29:34.370Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "2bfe911d-9d50-4999-b003-fa0dcb7979ba",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: quiero ver el costo de una compraventa",
+        "fecha": "2026-09-02T04:29:34.378Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique el valor de venta del inmueble (en soles).",
+        "fecha": "2026-09-02T04:29:34.378Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: 100000",
+        "fecha": "2026-09-02T04:29:34.395Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique la tasa a aplicar (para compraventa es 0.3%). Escriba solo 0.3",
+        "fecha": "2026-09-02T04:29:34.395Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: 0.3",
+        "fecha": "2026-09-02T04:29:34.404Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): El monto a pagar incluye S/ 92.00 fijos por derecho de calificacion. El costo variable por derecho de inscripcion (3/1000) es S/ 300",
+        "fecha": "2026-09-02T04:29:34.405Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:29:34.378Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "6cf11f2a-39dc-4143-8aa6-9e98cafb90e8",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_flow",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: quiero ver el costo de una compraventa",
+        "fecha": "2026-09-02T04:41:01.656Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique el valor de venta del inmueble (en soles).",
+        "fecha": "2026-09-02T04:41:01.656Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: 100000",
+        "fecha": "2026-09-02T04:41:01.755Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique la tasa a aplicar (para compraventa es 0.3%). Escriba solo 0.3",
+        "fecha": "2026-09-02T04:41:01.756Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: 0.3",
+        "fecha": "2026-09-02T04:41:01.766Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El monto a pagar incluye S/ 92.00 fijos por derecho de calificacion. El costo variable por derecho de inscripcion (3/1000) es S/ 300",
+        "fecha": "2026-09-02T04:41:01.766Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB tras interaccion",
+        "fecha": "2026-09-02T04:41:01.766Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:41:01.654Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "4bf1912e-1add-4899-8d68-185f71771291",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_esc",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_esc",
+        "texto": "Consulta: cuanto cuesta una copia literal",
+        "fecha": "2026-09-02T04:41:01.803Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:41:01.803Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:41:01.803Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:41:01.803Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "870a2734-a5fb-447d-b20b-4aa71fcbeb56",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_flow",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: quiero ver el costo de una compraventa",
+        "fecha": "2026-09-02T04:41:50.656Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique el valor de venta del inmueble (en soles).",
+        "fecha": "2026-09-02T04:41:50.656Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: 100000",
+        "fecha": "2026-09-02T04:41:50.737Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Indique la tasa a aplicar (para compraventa es 0.3%). Escriba solo 0.3",
+        "fecha": "2026-09-02T04:41:50.737Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_flow",
+        "texto": "Consulta: 0.3",
+        "fecha": "2026-09-02T04:41:50.746Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El monto a pagar incluye S/ 92.00 fijos por derecho de calificacion. El costo variable por derecho de inscripcion (3/1000) es S/ 300",
+        "fecha": "2026-09-02T04:41:50.746Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB tras interaccion",
+        "fecha": "2026-09-02T04:41:50.747Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:41:50.655Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "bf8c00f0-d38d-43d7-8260-950c6faf1266",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_esc",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_esc",
+        "texto": "Consulta: cuanto cuesta una copia literal",
+        "fecha": "2026-09-02T04:41:50.791Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:41:50.791Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:41:50.791Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "El usuario solicito hablar con un asesor explicitamente",
+        "fecha": "2026-09-02T04:41:50.798Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:41:50.791Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "8b400516-56dc-4076-98e7-1bfa247dca4f",
+    "categoria": "estado",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_817",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_817",
+        "texto": "Consulta: Estado de titulo",
+        "fecha": "2026-09-02T04:44:20.024Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El estado de su titulo puede ser: Recibido, Tacha (observado sin subsanar), Observacion (requiere subsanar defecto), Liquidacion (pago pendiente), o Inscrito.",
+        "fecha": "2026-09-02T04:44:20.024Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:44:20.024Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:44:20.024Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "8dd4afc9-652c-4b70-b5a6-de4b66317680",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_435",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_435",
+        "texto": "Consulta: Copia literal",
+        "fecha": "2026-09-02T04:44:31.603Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:44:31.603Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Resuelto automaticamente por KB",
+        "fecha": "2026-09-02T04:44:31.603Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:44:31.603Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "0ee8b352-1221-4447-b214-de18b5e53947",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_301",
+    "atendidoPor": "ciudadano",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_301",
+        "texto": "Consulta: hola",
+        "fecha": "2026-09-02T04:44:38.699Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T04:44:38.699Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "tengo un problema",
+        "fecha": "2026-09-02T04:44:47.356Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "El usuario solicito hablar con un asesor explicitamente",
+        "fecha": "2026-09-02T04:44:53.093Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "no",
+        "fecha": "2026-09-02T04:45:32.504Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:44:38.699Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "a8221804-ea1f-45cd-bd48-6724f9858c42",
+    "categoria": "costos",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_test",
+    "atendidoPor": "usuario_anonimo",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_test",
+        "texto": "Consulta: cuanto cuesta una copia literal",
+        "fecha": "2026-09-02T04:54:47.274Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El costo de la copia literal de partida registral es: Predios S/14, Vehicular/Personas Juridicas S/5 por pagina. La busqueda tiene un costo de S/7 (Vehicular) o S/5 (Predios).",
+        "fecha": "2026-09-02T04:54:47.274Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_test",
+        "texto": "Consulta: como veo el estado de mi titulo",
+        "fecha": "2026-09-02T04:54:47.390Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.\n\nTe sugiero revisar estos casos similares cerrados:\n- Ticket 8b400516: Solucion: \"Resuelto automaticamente por KB\" (Tiempo invertido: 0m, Duración total del caso: 0m)\n",
+        "fecha": "2026-09-02T04:54:47.395Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Conversacion finalizada por el usuario",
+        "fecha": "2026-09-02T04:54:47.407Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T04:54:47.273Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "b4ab0deb-bfdb-4bbc-86f9-1719fa452283",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_287",
+    "atendidoPor": "ciudadano",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_287",
+        "texto": "Consulta: hola que tal",
+        "fecha": "2026-09-02T05:06:50.438Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.\n\nTe sugiero revisar estos casos similares cerrados:\n- Ticket 28dc03e4: Solucion: \"Resuelto automaticamente por KB\" (Tiempo invertido: 0m, Duración total del caso: 0m)\n- Ticket 3da9c13d: Solucion: \"Resuelto automaticamente por KB\" (Tiempo invertido: 0m, Duración total del caso: 0m)\n- Ticket fa402045: Solucion: \"Resuelto automaticamente por KB\" (Tiempo invertido: 0m, Duración total del caso: 0m)\n",
+        "fecha": "2026-09-02T05:06:50.438Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "??",
+        "fecha": "2026-09-02T05:07:02.495Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "tenia una consulta",
+        "fecha": "2026-09-02T05:07:08.954Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "holaa??",
+        "fecha": "2026-09-02T05:07:17.035Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:06:50.438Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "358e11cb-4ebe-4366-954b-e07c9d6f1bda",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_325",
+    "atendidoPor": "ciudadano",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "ciudadano_325",
+        "texto": "Consulta: Hola",
+        "fecha": "2026-09-02T05:15:54.202Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la SUNARP. ¿En que puedo ayudarte hoy?",
+        "fecha": "2026-09-02T05:15:54.202Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "tengo una duda con un documento ",
+        "fecha": "2026-09-02T05:16:09.181Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano",
+        "texto": "tengo una duda con un documento",
+        "fecha": "2026-09-02T05:16:17.387Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:15:54.202Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "2f18e13a-95ce-473c-b464-b911d1a501e1",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_38",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_38",
+        "texto": "Consulta: Tengo una duda",
+        "fecha": "2026-09-02T05:18:33.421Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:18:33.421Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:18:33.421Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "67e33654-8686-4ff3-8e57-e2871c87f45e",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_835",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_835",
+        "texto": "Consulta: tengo un problema",
+        "fecha": "2026-09-02T05:24:27.472Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:24:27.472Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:24:27.472Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "9364cd3a-a1e9-49fd-ac29-f75012cb0ccf",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_428",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: sadasd",
+        "fecha": "2026-09-02T05:26:44.275Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:26:44.275Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: tengo una urgencia",
+        "fecha": "2026-09-02T05:26:49.934Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:26:49.941Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: pero no te debo decir mi problema?",
+        "fecha": "2026-09-02T05:27:02.858Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): ¡Entendido! Por favor, detalla tu solicitud o el inconveniente que presentas para poder ayudarte mejor.",
+        "fecha": "2026-09-02T05:27:02.858Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: pasa que me equivoque en algunos datos cuando envie mi documento",
+        "fecha": "2026-09-02T05:27:44.677Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:27:44.683Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: pero como puedo editar?",
+        "fecha": "2026-09-02T05:27:51.207Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:27:51.212Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: osea no me puedes dar una solucion?",
+        "fecha": "2026-09-02T05:28:08.210Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:28:08.215Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_428",
+        "texto": "Consulta: que pesimo..",
+        "fecha": "2026-09-02T05:28:11.057Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): Lamento si mi atencion no ha sido la esperada. Puedes presionar el boton 'Asesor' para hablar con un agente humano de inmediato.",
+        "fecha": "2026-09-02T05:28:11.058Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:26:44.275Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "cf9e23f6-9b10-4b68-acf4-8af54fec67cb",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_929",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_929",
+        "texto": "Consulta: xzyxzy",
+        "fecha": "2026-09-02T05:38:06.716Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:38:06.716Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_929",
+        "texto": "Consulta: me equivoque en algunos datos",
+        "fecha": "2026-09-02T05:38:19.639Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): Si tu tramite aun no ha sido calificado por el registrador y cometiste un error al presentarlo, es probable que reciba una 'observacion' (objecion subsanable). Tienes hasta 35 dias habiles de vigencia del asiento de presentacion para subsanarla, reingresando la correccion por el mismo canal (SID-SUNARP o mesa de partes). Puedes verificar el estado y plazo de tu tramite con el servicio Sigelo de SUNARP usando el numero de tu titulo.",
+        "fecha": "2026-09-02T05:38:19.640Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_929",
+        "texto": "Consulta: como puedo editar",
+        "fecha": "2026-09-02T05:38:33.461Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:38:33.473Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_929",
+        "texto": "Consulta: no me puedes dar solucion",
+        "fecha": "2026-09-02T05:39:57.113Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entendido. Esa informacion extra ha sido guardada en tu ticket.",
+        "fecha": "2026-09-02T05:39:57.122Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_929",
+        "texto": "Consulta: algo mas al azar",
+        "fecha": "2026-09-02T05:40:17.768Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-02T05:40:17.774Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:38:06.714Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "c9ffeec6-a76f-4a7a-a4dc-e5f5c4b59342",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "test1",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "test1",
+        "texto": "Consulta: xyz",
+        "fecha": "2026-09-02T05:46:32.792Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:46:32.792Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:46:32.790Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "8d94d81d-11ab-4647-9e73-d0648cd64ba0",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "test2",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "test2",
+        "texto": "Consulta: falla sprl",
+        "fecha": "2026-09-02T05:46:57.088Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Entendido! Por favor, detalla tu solicitud o el inconveniente que presentas para poder ayudarte mejor.",
+        "fecha": "2026-09-02T05:46:57.088Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:46:57.088Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "2b1548de-be0f-4028-a7d3-c13ad4a3acf7",
+    "categoria": "reclamo",
+    "equipoAsignado": "supervisor",
+    "reportadoPor": "test3",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "test3",
+        "texto": "Consulta: libro de reclamaciones",
+        "fecha": "2026-09-02T05:46:57.173Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Puedes registrar tu queja o reclamo formal a traves de nuestro Libro de Reclamaciones Virtual, disponible en el portal institucional. Cada reclamo es derivado a la oficina correspondiente y tiene un plazo de atencion oficial de 30 dias habiles.",
+        "fecha": "2026-09-02T05:46:57.173Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:46:57.173Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "dfe36e34-4f93-4637-be88-c92a91e8f67d",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "test2",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "test2",
+        "texto": "Consulta: falla sprl",
+        "fecha": "2026-09-02T05:47:20.280Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Entendido! Por favor, detalla tu solicitud o el inconveniente que presentas para poder ayudarte mejor.",
+        "fecha": "2026-09-02T05:47:20.280Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:47:20.280Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "92392663-ac35-4d91-8bbe-117f87aba856",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "test2",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "test2",
+        "texto": "Consulta: falla sprl",
+        "fecha": "2026-09-02T05:48:49.909Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si experimentas problemas tecnicos con el Servicio de Publicidad Registral en Linea (SPRL), por favor intenta limpiar la cache de tu navegador o usar una ventana de incognito. Si el problema persiste, detalla tu usuario y el error exacto para que el Area Tecnica pueda revisarlo.",
+        "fecha": "2026-09-02T05:48:49.909Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:48:49.908Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "7485922e-e0f8-4131-a2bd-d0968aed5b97",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_595",
+    "atendidoPor": "usuario_anonimo",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_595",
+        "texto": "Consulta: hola",
+        "fecha": "2026-09-02T05:49:41.638Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la SUNARP. ¿En que puedo ayudarte hoy?",
+        "fecha": "2026-09-02T05:49:41.639Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_595",
+        "texto": "Consulta: vigencia de poder",
+        "fecha": "2026-09-02T05:50:20.759Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: El certificado de vigencia de poder tiene un costo de S/25. Puede solicitarlo en linea mediante el SPRL.",
+        "fecha": "2026-09-02T05:50:20.760Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Conversacion finalizada por el usuario",
+        "fecha": "2026-09-02T05:50:32.303Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:49:41.638Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 1,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "0db859fb-df4c-4315-a547-1bb9c279056b",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_745",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_745",
+        "texto": "Consulta: HOLI",
+        "fecha": "2026-09-02T05:54:40.519Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:54:40.519Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_745",
+        "texto": "Consulta: HUM",
+        "fecha": "2026-09-02T05:54:44.254Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:54:44.255Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_745",
+        "texto": "Consulta: QUÉ?",
+        "fecha": "2026-09-02T05:54:46.975Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso sigue en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:54:46.975Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_745",
+        "texto": "Consulta: SINO TE HE DICHO MI CASO",
+        "fecha": "2026-09-02T05:54:52.017Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entendido. Esa informacion extra ha sido guardada en tu ticket.",
+        "fecha": "2026-09-02T05:54:52.018Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_745",
+        "texto": "Consulta: NO TE ENTIENDO ",
+        "fecha": "2026-09-02T05:55:00.783Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): ¡Perfecto! Quedo atento si tienes otra consulta.",
+        "fecha": "2026-09-02T05:55:00.784Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:54:40.519Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "80ce4fb4-a23d-4f87-9641-eb8d213a9a17",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "ciudadano_673",
+    "atendidoPor": "usuario_anonimo",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "ciudadano_673",
+        "texto": "Consulta: HOLI",
+        "fecha": "2026-09-02T05:56:35.025Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-02T05:56:35.026Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_673",
+        "texto": "Consulta: TENGO UN PROBLEMA",
+        "fecha": "2026-09-02T05:56:40.865Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta (Sugerencia KB): ¡Entendido! Por favor, detalla tu solicitud o el inconveniente que presentas para poder ayudarte mejor.",
+        "fecha": "2026-09-02T05:56:40.866Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_673",
+        "texto": "Consulta: PASA QUE NOSE CUANTO DEBO PAGAR",
+        "fecha": "2026-09-02T05:56:51.690Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-02T05:56:51.690Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_673",
+        "texto": "Consulta: PERO NO DEBERÍAS ATENDERME?",
+        "fecha": "2026-09-02T05:57:00.825Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entendido. Esa informacion extra ha sido guardada en tu ticket.",
+        "fecha": "2026-09-02T05:57:00.826Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "ciudadano_673",
+        "texto": "Consulta: A CUAL TICKET? A QUIEN CONSULTO?",
+        "fecha": "2026-09-02T05:57:10.073Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-02T05:57:10.074Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "El usuario solicito hablar con un asesor explicitamente",
+        "fecha": "2026-09-02T05:57:17.591Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Conversacion finalizada por el usuario",
+        "fecha": "2026-09-02T05:59:05.869Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-02T05:56:35.025Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 3,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "23c4e986-a451-434f-85b1-4ecd490310c4",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: se me congelo la pantalla",
+        "fecha": "2026-09-04T19:39:27.891Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:39:27.891Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:39:27.889Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "1011037f-6ae9-499b-aef3-a665235a8ae6",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: se me congelo la pantalla al usar el SID-SUNARP",
+        "fecha": "2026-09-04T19:39:55.092Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T19:39:55.092Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:39:55.091Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "fec98430-1256-45ef-8f2a-ae94dbaa3d15",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: no me llega el codigo de doble factor al celular",
+        "fecha": "2026-09-04T19:40:16.744Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:40:16.744Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:40:16.744Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "7f6c1b2c-3e57-4224-ad48-036c7c92ff62",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: como hago si mi token esta vencido",
+        "fecha": "2026-09-04T19:40:38.223Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No te preocupes. Explícame con tus propias palabras el problema técnico que tienes y te guiaré.",
+        "fecha": "2026-09-04T19:40:38.223Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:40:38.223Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "e544f678-e072-4b82-891c-2899b2dafd11",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: mi token parece que expiro",
+        "fecha": "2026-09-04T19:40:52.682Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Perfecto! Quedo atento si tienes otra incidencia.",
+        "fecha": "2026-09-04T19:40:52.682Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:40:52.682Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "501ccd96-8328-4485-a4ab-6d552517c79b",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: se malograron los alambres del internet en el piso",
+        "fecha": "2026-09-04T19:41:24.428Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:41:24.428Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:41:24.428Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "9e05e81b-e9fc-4e5c-bbaf-8bd60b9e8187",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: no puedo entrar al active directory",
+        "fecha": "2026-09-04T19:42:01.205Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:42:01.205Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:42:01.205Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "3db07dbb-f7f4-473a-9c81-a808b9d95be8",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: que problemas de hardware pueden solucionar?",
+        "fecha": "2026-09-04T19:43:06.275Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:43:06.275Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:43:06.275Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "6dfdfccc-e32b-48c8-9e66-a8015e34b273",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-04T19:43:59.699Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-04T19:43:59.699Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:43:59.697Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "cf1c8f94-fbc3-497a-a310-73629d52650f",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: se me congelo la pantalla al usar el SID-SUNARP",
+        "fecha": "2026-09-04T19:43:59.714Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T19:43:59.714Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:43:59.714Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "2c2f0817-0807-4851-b41f-0ce410dc795c",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: cual es la capital de Francia",
+        "fecha": "2026-09-04T19:44:14.910Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:44:14.910Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:44:14.910Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "9952314a-fc86-422f-9121-b05c5337b5fd",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: es urgente no funciona nada el sistema sap",
+        "fecha": "2026-09-04T19:44:14.918Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T19:44:14.918Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:44:14.918Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "95d45589-2984-4a47-8d9a-9211d625c51c",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: no me carga el intranet punto sunarp",
+        "fecha": "2026-09-04T19:44:46.826Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:44:46.826Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:44:46.826Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "d5cc0d6f-fc63-4e59-8c72-fd92fb793add",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: cual es el portal de autogestion de claves?",
+        "fecha": "2026-09-04T19:44:48.342Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-04T19:44:48.342Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:44:48.342Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "05016546-b93d-41e6-a299-bc845df29673",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: tengo una falla fisica en mi equipo",
+        "fecha": "2026-09-04T19:45:13.398Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:45:13.398Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:45:13.398Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "36a4bb76-a7b3-4899-8799-bab8ef926e88",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-04T19:47:41.573Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-04T19:47:41.573Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:47:41.572Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "ff08c062-46bd-4f97-99f1-8729010ecc15",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: tengo una falla fisica en mi equipo",
+        "fecha": "2026-09-04T19:47:49.612Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:47:49.612Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:47:49.612Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "aceb3e9e-68cc-4933-a573-8d798d530db1",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: cual es la capital de Francia",
+        "fecha": "2026-09-04T19:47:51.265Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:47:51.265Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:47:51.265Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "5aaf7da8-6e31-4d05-a24f-84f856fa0821",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: es urgente no funciona nada el sistema sap",
+        "fecha": "2026-09-04T19:47:51.273Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T19:47:51.273Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:47:51.273Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "b12b46fa-d038-4c3c-a702-a644a18acfb5",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-04T19:48:42.606Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-04T19:48:42.606Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:48:42.605Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "527f2996-f79e-4da9-8e10-7fde6ad81e7e",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: tengo una falla fisica en mi equipo",
+        "fecha": "2026-09-04T19:48:47.534Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:48:47.534Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:48:47.534Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "720877b3-f3b3-453d-a914-8a34a196e01c",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: cual es la capital de Francia",
+        "fecha": "2026-09-04T19:48:48.334Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T19:48:48.334Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:48:48.334Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "93e5bf49-08f2-478e-ba80-6f125b95c734",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: es urgente no funciona nada el sistema sap",
+        "fecha": "2026-09-04T19:48:48.341Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T19:48:48.341Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T19:48:48.341Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "b52c8750-8f23-4297-8ca4-6b2e297bb639",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-04T21:06:03.194Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-04T21:06:03.194Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T21:06:03.192Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "0a87438d-5a70-477b-a1b3-c54531a54f5f",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: tengo una falla fisica en mi equipo",
+        "fecha": "2026-09-04T21:06:05.080Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si tu equipo presenta lentitud extrema o pantallas azules, por favor reinicia el equipo. Si el problema persiste, es probable que requiera revisión presencial o remota por parte del área de soporte de hardware.",
+        "fecha": "2026-09-04T21:06:05.080Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T21:06:05.080Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "c69f6f71-21d4-4ed7-a3d3-c0888675569b",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: cual es la capital de Francia",
+        "fecha": "2026-09-04T21:06:05.878Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-04T21:06:05.878Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T21:06:05.878Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "7c030969-d4b6-4e11-947e-c874a56f1405",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "tester_123",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "tester_123",
+        "texto": "Consulta: es urgente no funciona nada el sistema sap",
+        "fecha": "2026-09-04T21:06:05.888Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia.",
+        "fecha": "2026-09-04T21:06:05.888Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-04T21:06:05.888Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "ac55a70c-3df6-4a6d-9db0-52a82ba36198",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-06T23:17:50.943Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-06T23:17:50.943Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:17:50.943Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  }
+]

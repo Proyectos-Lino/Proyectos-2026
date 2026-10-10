@@ -1,0 +1,36 @@
+{
+  "name": "chat-box--itil",
+  "version": "1.0.0",
+  "description": "Sistema de Mesa de Ayuda Interna (Service Desk) estructurado bajo los lineamientos de ITIL, disenado para ser operado exclusivamente por agentes de soporte.",
+  "main": "server.js",
+  "bin": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node --test tests/media-analysis.test.js tests/knowledge-routes.test.js",
+    "test:integration": "node tests/release-integration.cjs",
+    "test:ui": "node tests/redesign-smoke.cjs && node tests/knowledge-ui-smoke.cjs",
+    "build:exe": "node scripts/build-release.cjs",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "mammoth": "^1.12.2",
+    "pdf-parse": "^1.1.1"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*",
+      "config/**/*"
+    ]
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.22.0",
+    "esbuild": "^0.28.2"
+  }
+}

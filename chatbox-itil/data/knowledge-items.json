@@ -1,0 +1,1172 @@
+[
+  {
+    "id": "ki-05cf90fb-3769-47fc-abd9-86a33cff99e6",
+    "titulo": "Procedimiento para solucionar falla de conexion de red",
+    "tipo": "procedimiento",
+    "categoriaITIL": "Gestion de Incidentes",
+    "servicio": "Red",
+    "descripcion": "Procedimiento para restablecer conectividad de red",
+    "contenido": "Cuando un equipo no tenga conexion, verificar primero el estado fisico de la conexion, posteriormente validar la configuracion de red y finalmente comprobar la conectividad con el gateway.",
+    "fuente": "",
+    "url": "",
+    "etiquetas": [
+      "red",
+      "conexion",
+      "incidente",
+      "gateway"
+    ],
+    "fechaCreacion": "2026-09-08T17:03:32.295Z",
+    "fechaActualizacion": "2026-09-22T08:46:00.870Z",
+    "estado": "publicado",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 49,
+      "ultimoUso": "2026-09-22T08:46:00.868Z",
+      "trazabilidad": [
+        {
+          "ticketId": "general",
+          "consulta": "Mi computadora no tiene conexion a la red, que debo hacer?",
+          "fecha": "2026-09-08T17:03:47.622Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi computadora no tiene conexion a la red, que debo hacer?",
+          "fecha": "2026-09-08T17:04:09.050Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "red falla conexion",
+          "fecha": "2026-09-08T17:04:29.510Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi computadora no tiene conexion a la red, que debo hacer?",
+          "fecha": "2026-09-08T17:06:49.169Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi computadora no tiene conexion a la red, que debo hacer?",
+          "fecha": "2026-09-08T17:10:07.540Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Pasa que hay un ticket de una señora que no puede ver sus doc en la plataforma, que solucion podria brindarle?",
+          "fecha": "2026-09-08T17:15:24.794Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "okay gracias, ahora quiero pasar a otra area esta incidencia",
+          "fecha": "2026-09-08T18:43:27.308Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "okay gracias, todo esta conversacion lo puedes pasar al ticket f5431242 que era el caso de la señora",
+          "fecha": "2026-09-08T18:45:39.720Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Anexa esta conversacion al ticket f5431242",
+          "fecha": "2026-09-08T18:54:41.958Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:55:03.369Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:55:22.394Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:56:22.426Z"
+        },
+        {
+          "ticketId": "t1-manana-abierto",
+          "consulta": "Y no podrias brindarme informacion extra para brindarle mi ayuda?",
+          "fecha": "2026-09-08T18:58:57.607Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "Hum.. ya y que solucion podria brindarle?",
+          "fecha": "2026-09-08T19:11:02.224Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "alguna solucion? podria ser buscar al encargado o deverarlo y le den el acceso, no crees?",
+          "fecha": "2026-09-08T19:18:17.146Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "Esta bien , ya verifique si tiene el acceso",
+          "fecha": "2026-09-08T19:19:44.190Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "no, busquemos otro ticket, pero confirmame ya esta como solucionado?",
+          "fecha": "2026-09-08T19:21:23.286Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "si a este ticket, ya esta solucionado",
+          "fecha": "2026-09-08T19:22:12.799Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "Hum.. aqui solo voy a revisar su perfil y ver si cumple para darle el acceso esta bien",
+          "fecha": "2026-09-08T19:52:11.332Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "esta bien lo revisaré para ver si le doy la confirmacion",
+          "fecha": "2026-09-08T19:57:47.528Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "esta bien lo revisaré para ver si le doy la confirmacion",
+          "fecha": "2026-09-08T20:00:56.401Z"
+        },
+        {
+          "ticketId": "t1-manana-abierto",
+          "consulta": "Me podrias dar algunas sugerencias de como solucionar?",
+          "fecha": "2026-09-09T03:50:18.355Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Dejame ir a la area para poder darle solucion a la impresora, este al tanto de mi respuesta",
+          "fecha": "2026-09-09T03:53:26.004Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Ya pude darle solucion al ticket, creo que ya sería todo.",
+          "fecha": "2026-09-09T03:53:51.900Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Solo guardar solucion: Solucion exitosa",
+          "fecha": "2026-09-09T03:54:18.938Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "Ya entonces yo misma voy a verificar y despues darle el acceso si es que es verdad",
+          "fecha": "2026-09-09T16:24:33.475Z"
+        },
+        {
+          "ticketId": "f5431242-5e90-4e30-8d3f-f9abc017670d",
+          "consulta": "Solo guardar solucion: Usuario no responde, se procede al cierre para nuevo registro.",
+          "fecha": "2026-09-13T16:00:52.368Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "Solo guardar solucion: Se cierra el ticket por indicación del agente para abrir uno nuevo.",
+          "fecha": "2026-09-13T16:01:39.849Z"
+        },
+        {
+          "ticketId": "28fd2276-7347-426e-8ee3-05dc25d07d8e",
+          "consulta": "Que solucion podria set?",
+          "fecha": "2026-09-15T04:03:35.505Z"
+        },
+        {
+          "ticketId": "03918b91-a463-42d6-8d1a-87bb11f1d5ef",
+          "consulta": "Que solucion podria darle a esta situación?",
+          "fecha": "2026-09-15T04:12:14.900Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Alguna otra solucion que podria brindar?",
+          "fecha": "2026-09-15T04:15:32.275Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Si, ya pude solucionar el problema. Verifique y solucione que solo le sucede a él.",
+          "fecha": "2026-09-15T04:18:24.829Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "esta bien, hay casos similares?",
+          "fecha": "2026-09-15T04:42:24.108Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "ya di una solución, mande una solicitud para el nuevo material",
+          "fecha": "2026-09-15T04:44:49.290Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "Anexar toda la conversacion: Se gestionó y envió la solicitud de un nuevo teclado para el usuario por fallas en las teclas.",
+          "fecha": "2026-09-15T04:45:31.580Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "en este archivo hay alguna solucion ?",
+          "fecha": "2026-09-15T06:15:02.925Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "y en esta imagen habra una solucion o de que trata?",
+          "fecha": "2026-09-15T06:16:34.759Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "que solucion brindas?",
+          "fecha": "2026-09-18T06:34:04.470Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Me parece bien, hare un zoom para ayudarle",
+          "fecha": "2026-09-22T05:17:41.890Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Resolución de interrupción en la mesa virtual y fallas al adjuntar y finalizar expediente digital, validado y solucionado mediante sesión remota (Zoom) con el usuario.",
+          "fecha": "2026-09-22T05:18:58.801Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:19:17.246Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:29.844Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:58.915Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "llegamos a solucionar el problema?",
+          "fecha": "2026-09-22T05:24:21.829Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "a ver",
+          "fecha": "2026-09-22T05:24:32.595Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, hare un zoom con ella para ayudarle",
+          "fecha": "2026-09-22T05:24:41.292Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "la señora me envio esta foto , que opinas",
+          "fecha": "2026-09-22T05:45:00.418Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Entonces hay que usar esa solucion",
+          "fecha": "2026-09-22T08:45:33.908Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Anexar toda la conversacion: El usuario ya cuenta con los permisos correctos en la carpeta de RRHH. Se le notificará al usuario. [Subcat: Software]",
+          "fecha": "2026-09-22T08:46:00.868Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-f6d157bc-1814-4066-8761-444987b90b7f",
+    "titulo": "Procedimiento para solucionar la falla de plataforma",
+    "tipo": "solucion",
+    "categoriaITIL": "General",
+    "servicio": "Plataforma",
+    "descripcion": "",
+    "contenido": "Para ver los documentos en la plataforma, lo más adecuado seria actualizar o salir del sistema y volver a ingresar",
+    "fuente": "",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-08T17:14:43.593Z",
+    "fechaActualizacion": "2026-09-23T06:05:39.715Z",
+    "estado": "publicado",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 34,
+      "ultimoUso": "2026-09-23T06:05:39.713Z",
+      "trazabilidad": [
+        {
+          "ticketId": "general",
+          "consulta": "Pasa que hay un ticket de una señora que no puede ver sus doc en la plataforma, que solucion podria brindarle?",
+          "fecha": "2026-09-08T17:15:24.791Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:55:03.372Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:55:22.396Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Mi red se cayo otra vez, que indica el procedimiento institucional?",
+          "fecha": "2026-09-08T18:56:22.429Z"
+        },
+        {
+          "ticketId": "t1-manana-abierto",
+          "consulta": "Y no podrias brindarme informacion extra para brindarle mi ayuda?",
+          "fecha": "2026-09-08T18:58:57.610Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "Hum.. ya y que solucion podria brindarle?",
+          "fecha": "2026-09-08T19:11:02.228Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "alguna solucion? podria ser buscar al encargado o deverarlo y le den el acceso, no crees?",
+          "fecha": "2026-09-08T19:18:17.149Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "claro, verifique se le verifico su autenticacion por otro sistema y ya le he dado el permiso",
+          "fecha": "2026-09-08T19:20:56.361Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "Hum.. aqui solo voy a revisar su perfil y ver si cumple para darle el acceso esta bien",
+          "fecha": "2026-09-08T19:52:11.335Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "esta bien lo revisaré para ver si le doy la confirmacion",
+          "fecha": "2026-09-08T19:57:47.531Z"
+        },
+        {
+          "ticketId": "t5-tarde-abierto",
+          "consulta": "esta bien lo revisaré para ver si le doy la confirmacion",
+          "fecha": "2026-09-08T20:00:56.405Z"
+        },
+        {
+          "ticketId": "t1-manana-abierto",
+          "consulta": "Me podrias dar algunas sugerencias de como solucionar?",
+          "fecha": "2026-09-09T03:50:18.358Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Dejame ir a la area para poder darle solucion a la impresora, este al tanto de mi respuesta",
+          "fecha": "2026-09-09T03:53:26.007Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Ya pude darle solucion al ticket, creo que ya sería todo.",
+          "fecha": "2026-09-09T03:53:51.903Z"
+        },
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Solo guardar solucion: Solucion exitosa",
+          "fecha": "2026-09-09T03:54:18.942Z"
+        },
+        {
+          "ticketId": "f5431242-5e90-4e30-8d3f-f9abc017670d",
+          "consulta": "Solo guardar solucion: Usuario no responde, se procede al cierre para nuevo registro.",
+          "fecha": "2026-09-13T16:00:52.372Z"
+        },
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "Solo guardar solucion: Se cierra el ticket por indicación del agente para abrir uno nuevo.",
+          "fecha": "2026-09-13T16:01:39.846Z"
+        },
+        {
+          "ticketId": "28fd2276-7347-426e-8ee3-05dc25d07d8e",
+          "consulta": "Que solucion podria set?",
+          "fecha": "2026-09-15T04:03:35.501Z"
+        },
+        {
+          "ticketId": "03918b91-a463-42d6-8d1a-87bb11f1d5ef",
+          "consulta": "Que solucion podria darle a esta situación?",
+          "fecha": "2026-09-15T04:12:14.904Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Alguna otra solucion que podria brindar?",
+          "fecha": "2026-09-15T04:15:32.279Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Si, ya pude solucionar el problema. Verifique y solucione que solo le sucede a él.",
+          "fecha": "2026-09-15T04:18:24.835Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Solo guardar solucion: Se verificó que el problema de permisos en la carpeta compartida era particular del usuario y se solucionó.",
+          "fecha": "2026-09-15T04:18:56.658Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "ya di una solución, mande una solicitud para el nuevo material",
+          "fecha": "2026-09-15T04:44:49.294Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "Anexar toda la conversacion: Se gestionó y envió la solicitud de un nuevo teclado para el usuario por fallas en las teclas.",
+          "fecha": "2026-09-15T04:45:31.584Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "en este archivo hay alguna solucion ?",
+          "fecha": "2026-09-15T06:15:02.929Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "que solucion brindas?",
+          "fecha": "2026-09-18T06:34:04.474Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "que ves?",
+          "fecha": "2026-09-18T07:37:48.615Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Me parece bien, hare un zoom para ayudarle",
+          "fecha": "2026-09-22T05:17:41.895Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "llegamos a solucionar el problema?",
+          "fecha": "2026-09-22T05:24:21.834Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "a ver",
+          "fecha": "2026-09-22T05:24:32.591Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, hare un zoom con ella para ayudarle",
+          "fecha": "2026-09-22T05:24:41.300Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, solo le pedi que reiniciará y volver ingresar",
+          "fecha": "2026-09-22T05:25:12.019Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Entonces hay que usar esa solucion",
+          "fecha": "2026-09-22T08:45:33.904Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pero consejo personal, no del trabajo",
+          "fecha": "2026-09-23T06:05:39.713Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-70a2d85e-7902-4243-909a-72166e4bc85e",
+    "titulo": "Configuración de Zona con Cobertura Inalámbrica Móvil",
+    "tipo": "imagen",
+    "categoriaITIL": "Gestion de Solicitudes de Servicio",
+    "servicio": "Conectividad de Red y Wi-Fi",
+    "descripcion": "Visualización y estado actual de la función de hotspot móvil en Windows, incluyendo el interruptor de encendido, métodos de compartir y propiedades de red.",
+    "contenido": "Se detalla la interfaz de configuración de la 'Zona con cobertura inalámbrica móvil' en Red e Internet de Windows. Actualmente el interruptor principal se encuentra en estado 'Desactivado'. Se muestran los parámetros de configuración: 'Compartir mi conexión a Internet desde' (Wi-Fi), 'Compartir a través de' (Wi-Fi), y los datos de la red actual (Nombre: CRISTINA 6985, Contraseña: 7!61bM15, Banda: Cualquiera disponible), los cuales disponen de un botón de edición.",
+    "fuente": "image (39).png",
+    "url": "",
+    "etiquetas": [
+      "hotspot",
+      "windows",
+      "red",
+      "inalámbrico",
+      "configuración"
+    ],
+    "fechaCreacion": "2026-09-08T21:06:14.485Z",
+    "fechaActualizacion": "2026-09-22T08:46:00.865Z",
+    "estado": "publicado",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 11,
+      "ultimoUso": "2026-09-22T08:46:00.863Z",
+      "trazabilidad": [
+        {
+          "ticketId": "t4-manana-cerrado",
+          "consulta": "Ya pude darle solucion al ticket, creo que ya sería todo.",
+          "fecha": "2026-09-09T03:53:51.906Z"
+        },
+        {
+          "ticketId": "28fd2276-7347-426e-8ee3-05dc25d07d8e",
+          "consulta": "Que solucion podria set?",
+          "fecha": "2026-09-15T04:03:35.508Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Solo guardar solucion: Se verificó que el problema de permisos en la carpeta compartida era particular del usuario y se solucionó.",
+          "fecha": "2026-09-15T04:18:56.662Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "esta bien, hay casos similares?",
+          "fecha": "2026-09-15T04:42:24.113Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Resolución de interrupción en la mesa virtual y fallas al adjuntar y finalizar expediente digital, validado y solucionado mediante sesión remota (Zoom) con el usuario.",
+          "fecha": "2026-09-22T05:18:58.795Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:19:17.250Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:29.848Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:58.919Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, hare un zoom con ella para ayudarle",
+          "fecha": "2026-09-22T05:24:41.297Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "la señora me envio esta foto , que opinas",
+          "fecha": "2026-09-22T05:45:00.423Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Anexar toda la conversacion: El usuario ya cuenta con los permisos correctos en la carpeta de RRHH. Se le notificará al usuario. [Subcat: Software]",
+          "fecha": "2026-09-22T08:46:00.863Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-19bf49b1-a657-4913-9507-01efc7771bc0",
+    "titulo": "Imagen decorativa abstracta",
+    "tipo": "imagen",
+    "categoriaITIL": "Gestion de Niveles de Servicio",
+    "servicio": "General",
+    "descripcion": "Una imagen con puntos de colores dispersos sobre fondo blanco.",
+    "contenido": "--- Imagen 1: confetti-18.gif ---\nImagen abstracta de puntos de colores estilo confeti o gráfico de dispersión, sin relación directa con procedimientos o soporte técnico de TI.",
+    "fuente": "confetti-18.gif",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-09T03:48:17.800Z",
+    "fechaActualizacion": "2026-09-23T06:09:10.763Z",
+    "estado": "inactivo",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 5,
+      "ultimoUso": "2026-09-22T05:47:36.873Z",
+      "trazabilidad": [
+        {
+          "ticketId": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+          "consulta": "Solo guardar solucion: Se cierra el ticket por indicación del agente para abrir uno nuevo.",
+          "fecha": "2026-09-13T16:01:39.852Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Si, me parece perfecto realizar el comprobante si solo le afecta al usuario o es un problema general. Dame un momento.",
+          "fecha": "2026-09-15T04:17:25.015Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "y en esta imagen habra una solucion o de que trata?",
+          "fecha": "2026-09-15T06:16:34.754Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "sino? bueno le dire que reinicie entonces",
+          "fecha": "2026-09-22T05:46:02.837Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "okay le dire que limpie el cache y las coockies, mejor?",
+          "fecha": "2026-09-22T05:47:36.873Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-6361ac85-937b-4a4c-bb25-6e3c533eafc3",
+    "titulo": "Diseño Centrado en el Usuario - Módulo de Participante",
+    "tipo": "imagen",
+    "categoriaITIL": "Gestion de Solicitudes de Servicio",
+    "servicio": "Módulo de Participante / Portal de Soporte",
+    "descripcion": "Análisis de usuarios y tareas principales para el rediseño del Módulo de Participante, enfocado en mejorar la interacción y usabilidad.",
+    "contenido": "--- Imagen 1: 115a3e0d-6169-4dba-a76a-9c7ef9924a7f.png ---\nLa imagen presenta los principios de diseño centrado en el usuario aplicados al rediseño del Módulo de Participante. Define quién es el usuario principal (el participante que gestiona su información y comprobantes) y detalla 6 tareas principales: 1. Iniciar sesión, 2. Registrarse como participante, 3. Registrar comprobantes de compra, 4. Consultar comprobantes registrados, 5. Revisar información de participación, y 6. Gestionar información de cuenta. Además, establece el enfoque del rediseño para facilitar la interacción considerando diversos niveles de experiencia tecnológica, buscando una interfaz intuitiva y fácil de usar.",
+    "fuente": "115a3e0d-6169-4dba-a76a-9c7ef9924a7f.png",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-15T04:11:19.962Z",
+    "fechaActualizacion": "2026-09-23T06:18:06.581Z",
+    "estado": "publicado",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 32,
+      "ultimoUso": "2026-09-23T06:18:06.580Z",
+      "trazabilidad": [
+        {
+          "ticketId": "03918b91-a463-42d6-8d1a-87bb11f1d5ef",
+          "consulta": "Que solucion podria darle a esta situación?",
+          "fecha": "2026-09-15T04:12:14.909Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Alguna otra solucion que podria brindar?",
+          "fecha": "2026-09-15T04:15:32.283Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Si, me parece perfecto realizar el comprobante si solo le afecta al usuario o es un problema general. Dame un momento.",
+          "fecha": "2026-09-15T04:17:25.010Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Si, ya pude solucionar el problema. Verifique y solucione que solo le sucede a él.",
+          "fecha": "2026-09-15T04:18:24.839Z"
+        },
+        {
+          "ticketId": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+          "consulta": "Solo guardar solucion: Se verificó que el problema de permisos en la carpeta compartida era particular del usuario y se solucionó.",
+          "fecha": "2026-09-15T04:18:56.653Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "Sii, que podria decirle al usuario?",
+          "fecha": "2026-09-15T04:39:48.723Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "esta bien, hay casos similares?",
+          "fecha": "2026-09-15T04:42:24.116Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "ya di una solución, mande una solicitud para el nuevo material",
+          "fecha": "2026-09-15T04:44:49.298Z"
+        },
+        {
+          "ticketId": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+          "consulta": "Anexar toda la conversacion: Se gestionó y envió la solicitud de un nuevo teclado para el usuario por fallas en las teclas.",
+          "fecha": "2026-09-15T04:45:31.575Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "y en esta imagen habra una solucion o de que trata?",
+          "fecha": "2026-09-15T06:16:34.774Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "que solucion brindas?",
+          "fecha": "2026-09-18T06:34:04.479Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "que ves?",
+          "fecha": "2026-09-18T07:37:48.610Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Me parece bien, hare un zoom para ayudarle",
+          "fecha": "2026-09-22T05:17:41.899Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "cerrar el ticket como solucionado",
+          "fecha": "2026-09-22T05:18:48.957Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:19:17.255Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:29.852Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "estas?",
+          "fecha": "2026-09-22T05:23:58.922Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "a ver",
+          "fecha": "2026-09-22T05:24:32.599Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, solo le pedi que reiniciará y volver ingresar",
+          "fecha": "2026-09-22T05:25:12.023Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Se solucionó el problema de la mesa virtual pidiéndole al usuario que reiniciara el equipo y volviera a ingresar a la plataforma.",
+          "fecha": "2026-09-22T05:25:32.945Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "la señora me envio esta foto , que opinas",
+          "fecha": "2026-09-22T05:45:00.413Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "sino? bueno le dire que reinicie entonces",
+          "fecha": "2026-09-22T05:46:02.841Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "okay le dire que limpie el cache y las coockies, mejor?",
+          "fecha": "2026-09-22T05:47:36.865Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "listo, me dijo que si le funciono !",
+          "fecha": "2026-09-22T05:47:55.964Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "que paso?",
+          "fecha": "2026-09-22T05:49:20.821Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Entonces hay que usar esa solucion",
+          "fecha": "2026-09-22T08:45:33.912Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Anexar toda la conversacion: El usuario ya cuenta con los permisos correctos en la carpeta de RRHH. Se le notificará al usuario. [Subcat: Software]",
+          "fecha": "2026-09-22T08:46:00.872Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Hola que taal",
+          "fecha": "2026-09-23T05:50:48.665Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pero consejo personal, no del trabajo",
+          "fecha": "2026-09-23T06:05:39.708Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pasa que mi enamorado me engaño:c",
+          "fecha": "2026-09-23T06:06:03.026Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Ese es el problema?",
+          "fecha": "2026-09-23T06:17:44.305Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "ya que otras soluciones me brindas",
+          "fecha": "2026-09-23T06:18:06.580Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-20c2c7b0-25de-4df9-a8f8-7584586912e8",
+    "titulo": "Flujo de Proceso de Gestión de Solicitudes y Tickets",
+    "tipo": "imagen",
+    "categoriaITIL": "Gestion de Solicitudes de Servicio",
+    "servicio": "Mesa de Ayuda y Soporte TI",
+    "descripcion": "Diagrama de proceso en BPMN que detalla las fases de apertura, análisis, resolución, registro y cierre de solicitudes de TI.",
+    "contenido": "--- Imagen 1: WhatsApp Image 2026-09-15 at 16.09.59 (1).jpeg ---\nEl flujo comienza cuando el usuario reporta un problema, generando la apertura del caso y asignación de un responsable por parte de UTI. Pasa a la fase de análisis y resolución donde se evalúa si requiere escalamiento externo o autorización de los jefes de unidades. Si se requiere autorización, se envía a los jefes de unidades para su aprobación. Tras la resolución o aprobación, se procede a aplicar la solución, interactuando con una base de datos (BD). Finalmente, se cierra el ticket, se notifica al usuario y se genera conocimiento, concluyendo el proceso.",
+    "fuente": "WhatsApp Image 2026-09-15 at 16.09.59 (1).jpeg",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-18T06:53:33.879Z",
+    "fechaActualizacion": "2026-09-23T06:09:30.208Z",
+    "estado": "inactivo",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 22,
+      "ultimoUso": "2026-09-23T06:06:03.030Z",
+      "trazabilidad": [
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-18T08:08:01.553Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:17:01.578Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "tenia este problema",
+          "fecha": "2026-09-22T05:18:11.081Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "cerrar el ticket como solucionado",
+          "fecha": "2026-09-22T05:18:48.952Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Resolución de interrupción en la mesa virtual y fallas al adjuntar y finalizar expediente digital, validado y solucionado mediante sesión remota (Zoom) con el usuario.",
+          "fecha": "2026-09-22T05:18:58.805Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "eso sería todo, grax",
+          "fecha": "2026-09-22T05:19:26.536Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "entonces ya cerraste el ticket?",
+          "fecha": "2026-09-22T05:22:38.625Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "no puedes cerrar el ticket?",
+          "fecha": "2026-09-22T05:23:12.913Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:24:10.995Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "ok, solo le pedi que reiniciará y volver ingresar",
+          "fecha": "2026-09-22T05:25:12.026Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "si, cierra",
+          "fecha": "2026-09-22T05:25:21.595Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Se solucionó el problema de la mesa virtual pidiéndole al usuario que reiniciara el equipo y volviera a ingresar a la plataforma.",
+          "fecha": "2026-09-22T05:25:32.952Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:44:25.216Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "okay le dire que limpie el cache y las coockies, mejor?",
+          "fecha": "2026-09-22T05:47:36.869Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "listo, me dijo que si le funciono !",
+          "fecha": "2026-09-22T05:47:55.969Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "que paso?",
+          "fecha": "2026-09-22T05:49:20.825Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T07:52:34.968Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T08:45:17.626Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Si, ya me fije y si tiene acceso, se lo dire, cierra el ticket",
+          "fecha": "2026-09-22T08:45:53.059Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Hola que taal",
+          "fecha": "2026-09-23T05:50:48.669Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pero consejo personal, no del trabajo",
+          "fecha": "2026-09-23T06:05:39.717Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pasa que mi enamorado me engaño:c",
+          "fecha": "2026-09-23T06:06:03.030Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ki-40d9b66e-ee39-4e58-94da-9f983aaedabc",
+    "titulo": "Diagrama de Flujo de Gestión de Solicitudes y Tickets de Soporte TI",
+    "tipo": "imagen",
+    "categoriaITIL": "Gestion de Solicitudes de Servicio",
+    "servicio": "Mesa de Ayuda y Soporte Técnico (Service Desk)",
+    "descripcion": "Diagrama BPMN que detalla el flujo completo de atención, análisis, escalamiento, autorización y cierre de solicitudes en el área de soporte TI.",
+    "contenido": "--- Imagen 1: WhatsApp Image 2026-09-15 at 16.09.59 (1).jpeg ---\nEl proceso inicia cuando el usuario reporta un problema, generando la apertura del caso y la creación de un ticket por parte de UTI con asignación de responsable. El equipo de UTI analiza y resuelve la solicitud evaluando si requiere escalamiento externo (solicitando solución a oficina competente de ser necesario) o si requiere autorización. Si necesita autorización, pasa a los Jefes de Unidades para su aprobación; si se aprueba, se procede con la solución y se registra en la base de datos (BD). Finalmente, se cierra el ticket, se notifica al usuario y se genera conocimiento, concluyendo el flujo.",
+    "fuente": "WhatsApp Image 2026-09-15 at 16.09.59 (1).jpeg",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-18T07:18:44.971Z",
+    "fechaActualizacion": "2026-09-23T06:09:47.243Z",
+    "estado": "inactivo",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 19,
+      "ultimoUso": "2026-09-23T06:06:03.035Z",
+      "trazabilidad": [
+        {
+          "ticketId": "general",
+          "consulta": "que ves?",
+          "fecha": "2026-09-18T07:37:48.619Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-18T08:08:01.557Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:17:01.584Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "tenia este problema",
+          "fecha": "2026-09-22T05:18:11.085Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "cerrar el ticket como solucionado",
+          "fecha": "2026-09-22T05:18:48.946Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "eso sería todo, grax",
+          "fecha": "2026-09-22T05:19:26.540Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "entonces ya cerraste el ticket?",
+          "fecha": "2026-09-22T05:22:38.621Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "no puedes cerrar el ticket?",
+          "fecha": "2026-09-22T05:23:12.908Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:24:11.000Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "si, cierra",
+          "fecha": "2026-09-22T05:25:21.599Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Solo guardar solucion: Se solucionó el problema de la mesa virtual pidiéndole al usuario que reiniciara el equipo y volviera a ingresar a la plataforma.",
+          "fecha": "2026-09-22T05:25:32.949Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:44:25.220Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "listo, me dijo que si le funciono !",
+          "fecha": "2026-09-22T05:47:55.974Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "que paso?",
+          "fecha": "2026-09-22T05:49:20.829Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T07:52:34.979Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T08:45:17.630Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Si, ya me fije y si tiene acceso, se lo dire, cierra el ticket",
+          "fecha": "2026-09-22T08:45:53.054Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "Hola que taal",
+          "fecha": "2026-09-23T05:50:48.673Z"
+        },
+        {
+          "ticketId": "general",
+          "consulta": "pasa que mi enamorado me engaño:c",
+          "fecha": "2026-09-23T06:06:03.035Z"
+        }
+      ]
+    },
+    "adjuntos": [
+      {
+        "id": "221d8283-ea43-492b-a705-21aa7ef91245",
+        "nombre": "WhatsApp Image 2026-09-15 at 16.09.59 (1).jpeg",
+        "mime": "image/jpeg",
+        "tamano": 52757
+      }
+    ]
+  },
+  {
+    "id": "ki-dfdd037e-d268-4a34-b911-ddd4231b2570",
+    "titulo": "Laboratorio 1: Análisis de Arquitecturas BI - Caso TechnoMart",
+    "tipo": "documento",
+    "categoriaITIL": "Gestion del Conocimiento",
+    "servicio": "Business Intelligence y Sistemas Core",
+    "descripcion": "Análisis de la arquitectura de Business Intelligence y sistemas actuales de la empresa TechnoMart para identificar desafíos en la gestión de datos.",
+    "contenido": "Caso de estudio de la empresa TechnoMart, una cadena de tiendas tecnológicas en Colombia con 45 sucursales. El documento detalla el contexto del problema de su solución de Business Intelligence implementada hace 2 años, la cual presenta tiempos de actualización lentos, inconsistencias de datos, limitaciones de acceso, problemas de escalabilidad e integración limitada. Asimismo, se describen los sistemas actuales de la compañía: ERP (SAP Business One), CRM (Salesforce Sales Cloud), Plataforma E-commerce (Magento Commerce), Sistema de Punto de Venta (Oracle MICROS Retail) y Sistema de Recursos Humanos (BambooHR), detallando sus funciones, usuarios, volúmenes de datos, frecuencia de actualización y nivel de criticidad.",
+    "fuente": "Laboratorio_1_bi.pdf",
+    "url": "",
+    "etiquetas": [
+      "Business Intelligence",
+      "Arquitectura BI",
+      "TechnoMart",
+      "Analisis de Datos"
+    ],
+    "fechaCreacion": "2026-09-18T07:24:50.997Z",
+    "fechaActualizacion": "2026-09-23T06:09:34.857Z",
+    "estado": "inactivo",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 11,
+      "ultimoUso": "2026-09-22T08:45:53.064Z",
+      "trazabilidad": [
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-18T08:08:01.546Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:17:01.569Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "tenia este problema",
+          "fecha": "2026-09-22T05:18:11.078Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "eso sería todo, grax",
+          "fecha": "2026-09-22T05:19:26.544Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:24:10.990Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "llegamos a solucionar el problema?",
+          "fecha": "2026-09-22T05:24:21.837Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T05:44:25.198Z"
+        },
+        {
+          "ticketId": "5116c447-93af-4604-b951-7e5f5d5266a9",
+          "consulta": "sino? bueno le dire que reinicie entonces",
+          "fecha": "2026-09-22T05:46:02.833Z"
+        },
+        {
+          "ticketId": "40c4ea18-950a-47c7-a109-7c215b11910f",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T07:52:34.956Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Resume este caso brevemente",
+          "fecha": "2026-09-22T08:45:17.619Z"
+        },
+        {
+          "ticketId": "b3aea4f5-df4a-4020-a920-995e55134762",
+          "consulta": "Si, ya me fije y si tiene acceso, se lo dire, cierra el ticket",
+          "fecha": "2026-09-22T08:45:53.064Z"
+        }
+      ]
+    },
+    "adjuntos": [
+      {
+        "id": "f76b2883-a58e-415f-8479-c6f4e55bbe9d",
+        "nombre": "Laboratorio_1_bi.pdf",
+        "mime": "application/pdf",
+        "tamano": 377641
+      }
+    ]
+  },
+  {
+    "id": "ki-3c15dcd7-c618-4073-a9ef-679b07276db0",
+    "titulo": "Personal de Seguridad y Tecnicos de Soporte en Sala de Control",
+    "tipo": "imagen",
+    "categoriaITIL": "General",
+    "servicio": "Seguridad Fisica e Infraestructura",
+    "descripcion": "Fotografia de personal de seguridad junto con un tecnico en un pasillo, contexto operativo de soporte.",
+    "contenido": "--- Imagen 1: WhatsApp Image 2026-09-21 at 23.32.43.jpeg ---\nLa imagen muestra a un oficial de policia con chaleco reflectante y gorra, junto con un tecnico o personal de apoyo uniformado en un pasillo interior, reflejando presencia de seguridad fisica o supervision en areas de soporte.",
+    "fuente": "WhatsApp Image 2026-09-21 at 23.32.43.jpeg",
+    "url": "",
+    "etiquetas": [],
+    "fechaCreacion": "2026-09-22T18:35:09.269Z",
+    "fechaActualizacion": "2026-09-23T06:09:42.703Z",
+    "estado": "inactivo",
+    "metadatos": {
+      "procesadoPorIA": false,
+      "tamanoArchivo": 0,
+      "formatoOriginal": "",
+      "usoContador": 0,
+      "ultimoUso": null,
+      "trazabilidad": []
+    },
+    "adjuntos": [
+      {
+        "id": "edc33d6f-2a69-4b11-b169-428d023b0728",
+        "nombre": "WhatsApp Image 2026-09-21 at 23.32.43.jpeg",
+        "mime": "image/jpeg",
+        "tamano": 109595
+      }
+    ]
+  }
+]

@@ -1,0 +1,102 @@
+/* Shared visual language. */
+@font-face {
+  font-family:Inter;
+  src:url('/assets/fonts/InterVariable.woff2') format('woff2');
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap
+}
+:root {
+  --bg-dark:#f5f6f8;
+  --bg-card:#fff;
+  --bg-sidebar:#171c26;
+  --surface-soft:#edf0f4;
+  --text-main:#182230;
+  --text-muted:#526174;
+  --text-dark:#182230;
+  --primary:#2457e6;
+  --primary-hover:#1943b8;
+  --primary-soft:#eaf0ff;
+  --accent:#dcec9b;
+  --violet:#6d4bd1;
+  --success:#166534;
+  --warning:#92400e;
+  --danger:#b42318;
+  --info:#175cd3;
+  --border:#d7dee7;
+  --control-border:#7c899b;
+  --radius:10px;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-12:48px;
+  --shadow-float:0 8px 24px rgba(24,34,48,.10);
+  --shadow-dialog:0 24px 64px rgba(24,34,48,.18);
+  --font:Inter,'Segoe UI',Arial,sans-serif
+}
+* {
+  box-sizing:border-box
+}
+body {
+  font-family:var(--font);
+  color:var(--text-main)
+}
+button,input,select,textarea {
+  font:inherit
+}
+button,a,input,select,textarea {
+  -webkit-tap-highlight-color:transparent
+}
+button {
+  cursor:pointer
+}
+button:disabled {
+  cursor:not-allowed;
+  opacity:.55
+}
+a {
+  color:var(--primary)
+}
+:focus-visible {
+  outline:2px solid var(--primary);
+  outline-offset:4px
+}
+input:focus-visible,select:focus-visible,textarea:focus-visible {
+  outline-offset:2px
+}
+svg {
+  flex-shrink:0
+}
+.icon {
+  width:20px;
+  height:20px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+.sr-only {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0
+}
+[hidden] {
+  display:none!important
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important
+  }
+}

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesa de Ayuda ITIL - Soporte</title>
+  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/voice-input.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <div class="app-container">
+    <nav class="sidebar" id="main-navigation" aria-label="Navegación principal">
+      <div class="brand">
+        <span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="11" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="18" width="7" height="3" rx="1"/></svg></span><div><h1>Service Desk</h1><small>ITIL WORKSPACE</small></div>
+      </div>
+      <div class="nav-label">Espacio de trabajo</div><ul class="nav-links">
+        <li><a href="#" class="active" id="nav-tickets"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Tickets</span></a></li>
+        <li><a href="#" id="nav-asistente-ia"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7Z"/><path d="M19 3v4M17 5h4"/></svg><span>Agente de soporte</span></a></li>
+        <li><a href="#" id="nav-knowledge-mgmt"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v15"/></svg><span>Conocimiento</span></a></li>
+        <li><a href="#" id="nav-dashboard"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="11" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="18" width="7" height="3" rx="1"/></svg><span>Dashboard</span></a></li>
+
+        <li style="display: none;"><a href="#" id="nav-chat">Asistente Virtual (Chat)</a></li>
+        <li style="display: none;"><a href="#" id="nav-knowledge">Base de Conocimiento</a></li>
+      </ul>
+
+      <div class="user-info" style="display:flex; flex-direction:column; gap:8px;">
+        <div><label for="current-agent-input">Agente de soporte</label><input type="text" id="current-agent-input" value="agente_01" class="agent-input"></div>
+        <div>Equipo: <span id="current-team">mesa_de_ayuda</span></div>
+      </div>
+    </nav>
+
+    <button class="sidebar-backdrop" type="button" aria-label="Cerrar navegación" tabindex="-1"></button><main class="content" id="main-content" tabindex="-1">
+<div class="workspace-bar"><button class="mobile-menu" type="button" aria-label="Abrir navegación" aria-controls="main-navigation" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="workspace-path"><span>Espacio de trabajo</span><span aria-hidden="true">/</span><strong id="current-view-label">Tickets</strong></div><span class="workspace-note">SOPORTE INTERNO / ITIL</span></div>
+      <!-- VISTA DE CHAT (Oculta) -->
+      <section id="view-chat" class="view" style="display: none;">
+        <header>
+          <h2>Asistente de Soporte</h2>
+          <p class="subtitle">Consulte la base de conocimiento o registre incidencias</p>
+        </header>
+
+        <div class="chat-interface">
+          <div class="chat-history" id="chat-history">
+            <div class="message system">
+              <div class="message-content">Bienvenido. Escriba su consulta o incidencia para iniciar un nuevo ticket.</div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <form id="chat-form">
+              <input type="text" id="chat-input" placeholder="Describa el problema o consulta..." required>
+              <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="active-ticket-panel" id="active-ticket-panel" style="display: none;">
+          <h3>Ticket Actual: <span id="active-ticket-id"></span></h3>
+          <div class="ticket-status-badge" id="active-ticket-status">Abierto</div>
+
+          <div class="ticket-actions">
+            <h4>Acciones de Agente</h4>
+            <form id="log-form">
+              <input type="text" id="log-text" placeholder="Detalle la accion realizada..." required>
+              <input type="number" id="log-mins" placeholder="Minutos" min="0" required>
+              <button type="submit" class="btn-secondary">Registrar en Bitacora</button>
+            </form>
+
+            <div class="action-buttons">
+              <button id="btn-close-ticket" class="btn-success">Cerrar Ticket</button>
+              <button id="btn-derivate-ticket" class="btn-warning">Derivar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- VISTA DE DETALLE DE TICKET (Sub-pagina) -->
+      <section id="view-ticket-detail" class="view" style="display: none;">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2>Detalle del Ticket</h2>
+            <p class="subtitle" id="detail-ticket-id">Cargando...</p>
+          </div>
+          <button id="btn-back-to-list" class="btn-outline">&larr; Volver a la Lista</button>
+        </header>
+        <div id="ticket-detail-content" style="background:#fff; border-radius:8px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); min-height: 400px;">
+          <!-- Detalle y bitacora se renderizan aqui -->
+        </div>
+      </section>
+
+      <!-- VISTA DE TICKETS (Gestion General) -->
+      <section id="view-tickets" class="view active-view">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h2>Gestión de tickets</h2>
+            <p class="subtitle">Consulta, prioriza y gestiona las solicitudes de soporte.</p>
+          </div>
+          <button id="btn-new-ticket" class="btn-primary"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Nuevo ticket</button>
+        </header>
+
+        <div class="ticket-overview" id="ticket-overview" aria-label="Resumen de tickets"></div>
+        <div class="filters ticket-filters">
+          <label class="sr-only" for="ticket-search">Buscar tickets</label>
+          <input type="search" id="ticket-search" placeholder="Buscar por asunto, código, persona o contenido…" autocomplete="off">
+          <label class="sr-only" for="filter-tickets-status">Estado</label>
+          <select id="filter-tickets-status">
+            <option value="">Todos</option>
+            <option value="abierto">En atención</option>
+            <option value="derivado">Derivados</option>
+            <option value="cerrado">Cerrados</option>
+          </select>
+          <label class="sr-only" for="filter-tickets-priority">Prioridad</label>
+          <select id="filter-tickets-priority"><option value="">Todas las prioridades</option></select>
+        </div>
+
+        <div class="tickets-list" id="all-tickets-list">
+          <div class="loading">Cargando tickets...</div>
+        </div>
+        <div class="ticket-pagination">
+          <span id="ticket-results" role="status" aria-live="polite"></span>
+          <div><label for="ticket-page-size">Por página</label><select id="ticket-page-size"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select><button type="button" id="ticket-prev" class="btn-secondary">Anterior</button><span id="ticket-page-label"></span><button type="button" id="ticket-next" class="btn-secondary">Siguiente</button></div>
+        </div>
+      </section>
+
+      <!-- VISTA DE CONOCIMIENTO (solo lectura KB chatbot) -->
+      <section id="view-knowledge" class="view" style="display: none;">
+        <header>
+          <h2>Base de Conocimiento (Chatbot)</h2>
+          <p class="subtitle">Intents del asistente de turnos — solo lectura</p>
+        </header>
+        <div id="knowledge-container">
+          <div class="loading">Cargando base de conocimiento...</div>
+        </div>
+      </section>
+
+      <!-- VISTA DE GESTION DEL CONOCIMIENTO INSTITUCIONAL -->
+      <section id="view-knowledge-mgmt" class="view" style="display: none;">
+        <header style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <span class="eyebrow">03 / Biblioteca de soporte</span><h2>Conocimiento</h2>
+            <p class="subtitle">Procedimientos, soluciones y documentación que hacen avanzar al equipo.</p>
+          </div>
+          <button id="btn-add-knowledge" class="btn-primary"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar conocimiento</button>
+        </header>
+
+        <!-- Stats cards -->
+        <div id="ki-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 24px;">
+          <div class="loading">Cargando...</div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters" style="flex-wrap: wrap; gap: 10px;">
+          <input type="text" id="ki-search-input" placeholder="Buscar en el conocimiento..." style="flex:1; min-width:180px;">
+          <select id="ki-filter-tipo" style="width:160px;">
+            <option value="">Todos los tipos</option>
+            <option value="procedimiento">Procedimiento</option>
+            <option value="solucion">Solucion</option>
+            <option value="documento">Documento</option>
+            <option value="texto">Texto</option>
+            <option value="imagen">Imagen</option>
+            <option value="video">Video</option>
+            <option value="enlace">Enlace</option>
+          </select>
+          <select id="ki-filter-categoria" style="width:210px;">
+            <option value="">Todas las categorias ITIL</option>
+          </select>
+          <button id="btn-ki-search" class="btn-secondary">Buscar</button>
+          <button id="btn-ki-refresh" class="btn-secondary">Actualizar</button>
+        </div>
+
+        <!-- Knowledge list -->
+        <div id="ki-list">
+          <div class="loading">Cargando conocimiento...</div>
+        </div>
+      </section>
+
+      <!-- VISTA DE DASHBOARD -->
+      <section id="view-dashboard" class="view" style="display: none;">
+        <header>
+          <div><span class="eyebrow">04 / Visión general</span><h2>El servicio, en perspectiva.</h2>
+          <p class="subtitle">Indicadores clave de la mesa de ayuda.</p></div>
+        </header>
+        <div id="dashboard-container">
+          <div class="loading">Cargando metricas...</div>
+        </div>
+      </section>
+      <!-- VISTA ASISTENTE IA (chat conversacional para la tecnica) -->
+      <section id="view-asistente-ia" class="view" style="display: none;">
+        <header>
+          <div><span class="eyebrow">02 / Inteligencia aplicada</span><h2>Agente de soporte</h2>
+          <p class="subtitle">Consulta sobre tickets, estadísticas o busca soluciones similares.</p></div><button type="button" id="expand-agent" class="btn-secondary" aria-pressed="false">Ampliar conversación</button>
+        </header>
+
+        <div class="asistente-layout">
+          <!-- Sidebar de contexto: ticket activo en el panel de traspaso -->
+          <div class="asistente-context-panel" id="asistente-context-panel">
+            <button type="button" class="context-toggle" aria-expanded="false" aria-controls="asistente-ticket-info">Ticket en foco <span aria-hidden="true">+</span></button><div class="context-label">Contexto del caso</div>
+            <div id="asistente-ticket-info" class="context-ticket-info">
+              <span class="no-ticket-msg">Ninguno seleccionado.<br>Ve a Gestión de Tickets y haz clic en un ticket para enfocar.</span>
+            </div>
+            <button id="btn-clear-asistente-ticket" class="btn-link" style="display:none;">Quitar foco</button>
+          </div>
+
+          <!-- Area principal del chat -->
+          <div class="asistente-chat-container">
+            <div class="asistente-history" id="asistente-history">
+              <div class="asistente-msg system assistant-welcome"><span class="assistant-symbol"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="8" width="22" height="22" rx="6" fill="currentColor"/><rect x="34" y="8" width="22" height="22" rx="6" stroke="currentColor" stroke-width="2"/><rect x="8" y="34" width="22" height="22" rx="6" stroke="currentColor" stroke-width="2"/><path d="M45 34v22M34 45h22" stroke="currentColor" stroke-width="3"/></svg></span><span class="eyebrow">Tu espacio para resolver</span><h3>Menos búsqueda.<br>Más soluciones.</h3><p>Conecta el contexto de tus tickets con el conocimiento del equipo. Describe lo que necesitas y trabajemos en el siguiente paso.</p><div class="welcome-topics"><span>Casos similares</span><span>Conocimiento del equipo</span><span>Consultas operativas</span></div></div>
+            </div>
+            <div class="asistente-input-area">
+              <form id="asistente-form" style="display:flex; gap:10px; align-items:center;">
+                <label for="asistente-image-input" class="attach-button" tabindex="0" role="button" aria-label="Adjuntar archivo, imagen o video"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 13 7-7a3 3 0 0 1 4 4L9 20a5 5 0 0 1-7-7L13 2M5 15l9-9"/></svg></label>
+                <input type="file" id="asistente-image-input" accept="image/*,video/*,application/pdf" multiple style="display:none;">
+                <textarea id="asistente-input" rows="2" placeholder="Escribe tu consulta…" aria-label="Consulta al agente"></textarea>
+                <button type="submit" class="btn-primary" id="asistente-submit">Enviar</button>
+              </form>
+              <p class="composer-note">Enter para enviar · Mayús + Enter para una nueva línea. La bitácora conserva el historial real.</p><div id="asistente-image-preview" style="display:none; margin-top:10px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal para Derivar -->
+  <div class="modal-overlay" id="modal-derivate" style="display: none;">
+    <div class="modal">
+      <h3>Derivar Ticket</h3>
+      <form id="form-derivate">
+        <input type="hidden" id="derivate-ticket-id">
+        <div class="form-group">
+          <label>Equipo Destino:</label>
+          <div class="team-cards" id="derivate-teams-container">
+            <!-- Cargado dinamicamente -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Motivo de derivacion:</label>
+          <input type="text" id="derivate-reason" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="document.getElementById('modal-derivate').style.display='none'">Cancelar</button>
+          <button type="submit" class="btn-primary">Confirmar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Comentario -->
+  <div class="modal-overlay" id="modal-comment" style="display: none;">
+    <div class="modal">
+      <h3>Dejar Comentario</h3>
+      <form id="form-comment">
+        <input type="hidden" id="comment-ticket-id">
+        <div class="form-group">
+          <label>Comentario (Bitácora):</label>
+          <textarea id="comment-text" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Minutos invertidos:</label>
+          <input type="number" id="comment-mins" min="0" value="0" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="document.getElementById('modal-comment').style.display='none'">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Cierre de Ticket -->
+  <div class="modal-overlay" id="modal-close-ticket" style="display: none;">
+    <div class="modal">
+      <h3>Cierre y Control de Calidad</h3>
+      <form id="form-close-ticket">
+        <input type="hidden" id="close-ticket-id">
+
+        <div class="form-group">
+          <label>Subcategoría Técnica Definitiva: *</label>
+          <select id="close-ticket-subcategoria" required>
+            <option value="">Seleccione subcategoría técnica...</option>
+            <!-- Cargado dinámicamente desde knowledge-base.json -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Solución Técnica Aplicada: *</label>
+          <textarea id="close-ticket-solucion" rows="5" placeholder="Detalle paso a paso la solución implementada para enriquecer la Base de Conocimiento..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Minutos invertidos en la solución:</label>
+          <input type="number" id="close-ticket-mins" min="0" value="0" required>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="document.getElementById('modal-close-ticket').style.display='none'">Cancelar</button>
+          <button type="submit" class="btn-primary" >Confirmar Cierre</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Nuevo Ticket Manual -->
+  <div class="modal-overlay" id="modal-new-ticket" style="display: none;">
+    <div class="modal">
+      <h3>Nuevo Ticket (Ingreso Manual)</h3>
+      <form id="form-new-ticket">
+        <div class="form-group ai-extract-box">
+          <label class="ai-label"> Extracción Inteligente de Contexto (Opcional):</label>
+          <p class="ai-desc">Adjunta la evidencia y tu agente de soporte te ayudará a completar los campos. Revisa la información antes de guardar.</p>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <input type="file" id="new-ticket-evidence" accept="image/*,video/*,audio/*,application/pdf" style="font-size:0.8rem;">
+            <button type="button" id="btn-autofill-ai" class="btn-primary" style="font-size:0.85rem; padding: 8px 16px;">Autocompletar</button>
+          </div>
+          <div id="autofill-loading" style="display:none; font-size:0.8rem; color:var(--warning); margin-top:8px;">Procesando evidencia... esto puede tomar unos segundos.</div>
+        </div>
+        <div class="form-group form-grid">
+          <div>
+            <label>Reportado por: *</label>
+            <input type="text" id="new-ticket-reporter" placeholder="Nombre de quien llama/reporta" required>
+          </div>
+          <div>
+            <label>Alcance: *</label>
+            <input type="text" id="new-ticket-alcance" placeholder="Ej: Un Puesto, Toda la Oficina..." required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Título / Asunto: *</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="new-ticket-titulo" placeholder="[Área] + [Componente] + [Breve Descripción]" required style="flex: 1;">
+            <button type="button" id="btn-format-title" class="btn-secondary" title="Pedir a la IA que arregle el formato" style="padding: 0 10px; font-size: 1.1em;"></button>
+          </div>
+          <small id="titulo-error" style="color:var(--danger); display:none;">El título debe tener el formato: [Area] + [Componente] + Descripcion y no ser genérico.</small>
+        </div>
+
+        <div class="form-group form-grid">
+          <div>
+            <label>Tipo: *</label>
+            <select id="new-ticket-tipo" required>
+              <option value="">Seleccione...</option>
+              <!-- Cargado dinamicamente -->
+            </select>
+          </div>
+          <div>
+            <label>Prioridad (SLA): *</label>
+            <select id="new-ticket-prioridad" required>
+              <option value="">Seleccione...</option>
+              <!-- Cargado dinamicamente -->
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-grid">
+          <div>
+            <label>Código patrimonial (si aplica)</label>
+            <input type="text" id="new-ticket-codigo" placeholder="Ej: CP-10294" aria-describedby="asset-code-help">
+            <p class="form-help" id="asset-code-help">Solo si el caso involucra un equipo inventariado. Puedes dejarlo vacío.</p>
+          </div>
+          <div>
+            <label>Mensaje de Error Exacto (Opcional):</label>
+            <input type="text" id="new-ticket-error" placeholder="Ej: Error 502 Bad Gateway">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción del problema: *</label>
+          <textarea id="new-ticket-desc" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Detalle la consulta o incidencia..." required></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="document.getElementById('modal-new-ticket').style.display='none'">Cancelar</button>
+          <button type="submit" class="btn-primary">Crear Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Selector de tipo de conocimiento -->
+  <div class="modal-overlay" id="modal-ki-type" style="display: none;">
+    <div class="modal" style="width: 480px;">
+      <h3>Agregar Conocimiento</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Selecciona el tipo de conocimiento a incorporar</p>
+      <div class="ki-type-grid">
+        <button class="ki-type-btn" data-tipo="texto" id="btn-tipo-texto">
+          <span class="ki-type-icon">T</span>
+          <span>Texto libre</span>
+        </button>
+        <button class="ki-type-btn" data-tipo="procedimiento" id="btn-tipo-proc">
+          <span class="ki-type-icon">P</span>
+          <span>Procedimiento</span>
+        </button>
+        <button class="ki-type-btn" data-tipo="solucion" id="btn-tipo-sol">
+          <span class="ki-type-icon">S</span>
+          <span>Solucion</span>
+        </button>
+        <button class="ki-type-btn" data-tipo="documento" id="btn-tipo-doc">
+          <span class="ki-type-icon">D</span>
+          <span>Documento</span>
+        </button>
+        <button class="ki-type-btn" data-tipo="imagen" id="btn-tipo-img">
+          <span class="ki-type-icon">I</span>
+          <span>Imagen</span>
+        </button>
+        <button class="ki-type-btn" data-tipo="video" id="btn-tipo-vid">
+          <span class="ki-type-icon">V</span>
+          <span>Video</span>
+        </button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" onclick="document.getElementById('modal-ki-type').style.display='none'">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Formulario para agregar/editar conocimiento -->
+  <div class="modal-overlay" id="modal-ki-form" style="display: none;">
+    <div class="modal" style="width: 620px; max-height: 90vh; overflow-y: auto;">
+      <h3 id="ki-form-title">Agregar Conocimiento</h3>
+      <form id="form-ki" novalidate>
+        <input type="hidden" id="ki-form-id">
+        <input type="hidden" id="ki-form-tipo">
+
+        <!-- Estado de procesamiento (visible durante analisis con IA) -->
+        <div id="ki-processing-bar" style="display:none;" class="ki-processing-bar">
+          <div class="ki-processing-text" id="ki-processing-text">Procesando con tu agente...</div>
+        </div>
+
+        <!-- Campo: archivo (solo para documento) -->
+        <div class="form-group" id="ki-file-group" style="display:none;">
+          <label>Archivo(s) (PDF, DOCX, TXT — max 10 MB c/u):</label>
+          <input type="file" id="ki-file-input" accept=".pdf,.docx,.txt" multiple style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+          <div id="ki-file-status" style="font-size:0.8rem; color: var(--text-muted); margin-top:4px;"></div>
+          <div id="ki-file-preview" style="margin-top: 10px; display: none; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; gap: 10px; max-height: 500px; overflow-y: auto;"></div>
+          <button type="button" id="btn-extract-file" class="btn-secondary" style="margin-top:8px; width:100%;">Extraer texto del/los archivo(s)</button>
+        </div>
+
+        <!-- Campo: imagen -->
+        <div class="form-group" id="ki-image-group" style="display:none;">
+          <label>Imagen(es) (JPG, PNG, GIF, WEBP — max 4 MB c/u):</label>
+          <input type="file" id="ki-image-input" accept="image/*" multiple style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+          <div id="ki-image-preview" style="margin-top: 10px; display: none; text-align: center; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;"></div>
+          <button type="button" id="btn-analyze-image" class="btn-secondary" style="margin-top:8px; width:100%;">Analizar imagen(es) con tu agente</button>
+        </div>
+
+        <!-- Campo: URL (para video) -->
+        <div class="form-group" id="ki-url-group" style="display:none;">
+          <label for="ki-video-input">Archivo de video (MP4, WebM u OGG; límite de análisis: 256 MB):</label>
+          <input type="file" id="ki-video-input" accept="video/mp4,video/webm,video/ogg,.ogg">
+          <p class="form-help">El video se procesa temporalmente y no se guarda. Puedes indicar una URL pública de YouTube.</p>
+          <label>URL del video:</label>
+          <input type="url" id="ki-url-input" placeholder="https://...">
+          <div id="ki-url-preview" style="margin-top: 10px; display: none; text-align: center; background: #f0f0f0; border-radius: 4px; padding: 10px;"></div>
+        </div>
+
+        <div id="ki-saved-attachments" class="form-group"></div>
+        <div class="form-group">
+          <label>Titulo: <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="ki-titulo" placeholder="Titulo descriptivo del conocimiento" required>
+        </div>
+
+        <div class="form-group">
+          <label>Descripcion (resumen breve):</label>
+          <input type="text" id="ki-descripcion" placeholder="Una o dos oraciones que resuman el contenido">
+        </div>
+
+        <div class="form-group" id="ki-content-group">
+          <label>Contenido: <span style="color:var(--danger)">*</span></label>
+          <textarea id="ki-contenido" rows="6" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; font-family:inherit; font-size:0.9rem;" placeholder="Contenido completo del conocimiento..." required></textarea>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Categoria ITIL:</label>
+            <select id="ki-categoria">
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Servicio relacionado:</label>
+            <input type="text" id="ki-servicio" placeholder="Red, Correo, ERP...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Etiquetas (separadas por coma):</label>
+          <input type="text" id="ki-etiquetas" placeholder="red, conexion, incidente">
+        </div>
+
+        <div class="form-group">
+          <label>Fuente:</label>
+          <input type="text" id="ki-fuente" placeholder="Nombre del documento, manual o procedimiento">
+        </div>
+
+        <div class="form-group">
+          <label>Estado de publicacion:</label>
+          <select id="ki-estado">
+            <option value="publicado">Publicado (disponible para Agente de soporte)</option>
+            <option value="pendiente_revision">Pendiente de revision</option>
+            <option value="pendiente">Pendiente</option>
+          </select>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+          <button type="button" id="btn-ki-analyze" class="btn-secondary" style="flex:1;">Analizar con tu agente</button>
+          <button type="submit" class="btn-primary" id="ki-submit-btn" style="flex:1;">Guardar Conocimiento</button>
+        </div>
+        <button type="button" class="btn-cancel" style="width:100%;" onclick="cancelKIAnalysis(); document.getElementById('modal-ki-form').style.display='none'">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Ver detalle de un conocimiento -->
+  <div class="modal-overlay" id="modal-ki-detail" style="display: none;">
+    <div class="modal" style="width: 620px; max-height: 90vh; overflow-y: auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 id="ki-detail-title">Detalle del Conocimiento</h3>
+        <button class="btn-cancel" onclick="document.getElementById('modal-ki-detail').style.display='none'">Cerrar</button>
+      </div>
+      <div id="ki-detail-content"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="app.js?v=8"></script>
+<script src="/voice-input.js"></script>
+</body>
+</html>

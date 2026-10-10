@@ -1,0 +1,586 @@
+[
+  {
+    "id": "t1-manana-abierto",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "Juan Perez",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "Juan Perez",
+        "texto": "Consulta: Mi PC no enciende.",
+        "fecha": "2023-10-27T08:00:00Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Por favor verifique el cable de poder.",
+        "fecha": "2023-10-27T08:00:05Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2023-10-27T08:00:00Z",
+    "tfrMinutos": 1508339,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "t2-tarde-progreso",
+    "categoria": "reclamo",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "Ana Gomez",
+    "atendidoPor": "agente_01",
+    "turno": "tarde",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "Ana Gomez",
+        "texto": "Consulta: Llevo esperando 3 dias por mi equipo.",
+        "fecha": "2023-10-27T14:00:00Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Estamos revisando el estado del envio.",
+        "fecha": "2023-10-27T14:15:00Z",
+        "minutosInvertidos": 15
+      },
+      {
+        "autor": "sistema",
+        "texto": "Asistente IA derivo el ticket desde mesa_de_ayuda a mesa_de_ayuda. Motivo: ",
+        "fecha": "2026-09-13T15:59:40.198Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2023-10-27T14:00:00Z",
+    "tfrMinutos": 15,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "t3-noche-resuelto",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "Carlos Diaz",
+    "atendidoPor": "agente_01",
+    "turno": "noche",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "Carlos Diaz",
+        "texto": "Consulta: Como reseteo mi password?",
+        "fecha": "2023-10-27T22:00:00Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_02",
+        "texto": "Ingresa al portal de autoservicio y dale a olvidar contraseña.",
+        "fecha": "2023-10-27T22:05:00Z",
+        "minutosInvertidos": 5
+      },
+      {
+        "autor": "sistema",
+        "texto": "Asistente IA derivo el ticket desde mesa_de_ayuda a mesa_de_ayuda. Motivo: ",
+        "fecha": "2026-09-13T15:59:05.297Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2023-10-27T22:00:00Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "f5431242-5e90-4e30-8d3f-f9abc017670d",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "CLIENTE",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "sistema",
+        "texto": "Historial completo de conversacion con Asistente IA:\n¡Hola! Qué tal, colega. Echándole un vistazo al ticket f5431242 y a nuestros casos similares, te cuento lo que tenemos:\n\nCaso similar (Tramites): El ticket se resolvió exitosamente verificando y otorgando los accesos necesarios a la carpeta compartida del área de Recursos Humanos.\n\n¿Te sirve este resumen o necesitas que profundice en algo más para avanzar con el caso?\n\n\n\nOpciones de Derivacion: Elige a que equipo quieres derivar el ticket f5431242:\n\nMesa de Ayuda\nArea Tecnica\nSupervisor\n\nde que trata el ticket\n\n¡Hola! Qué tal, colega. Echándole un vistazo al ticket con ID f5431242, veo que actualmente está categorizado como \"otro\", se encuentra abierto y asignado a nuestra Mesa de Ayuda.\n\nSin embargo, el mensaje original registrado dice \"N/D\" y todavía no tiene entradas en la bitácora, por lo que no hay mucha más información detallada sobre el problema del usuario.\n\n¿Te parece si nos comunicamos con el usuario para pedirle más detalles o necesitas que te ayude a actualizar el estado?\n\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\nmejor cerrar el ticket, seguro aperturará otro\n\n¡Hola! Entiendo perfectamente. Si el usuario es recurrente o prefiere abrir un nuevo caso para el seguimiento, dejamos este cerrado.\n\nPara proceder con el cierre, por favor indícame un breve resumen de la solución o el motivo que deseas registrar en el sistema (por ejemplo: \"Usuario no responde y prefiere reabrir nuevo ticket\").\n\n\n\nOpciones de Cierre: Elige como documentar este cierre en la bitacora oficial:\n\nSolo registrar la solucion corta en la bitacora\nAnexar la conversacion completa y cerrar\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\n",
+        "fecha": "2026-09-13T16:00:52.348Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Ticket resuelto mediante Asistente IA. Solucion: Usuario no responde, se procede al cierre para nuevo registro.",
+        "fecha": "2026-09-13T16:00:53.722Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-08T16:26:03.370Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 7175,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "c4610770-eea4-4c43-ad87-a2a2b5885f6a",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "JUANA LIMPIEZA DE DATOS",
+    "atendidoPor": "agente_01",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "sistema",
+        "texto": "Historial completo de conversacion con Asistente IA:\n¡Hola! Qué tal. Veo que me pides un resumen del ticket actual (ID: c4610770), reportado por JUANA LIMPIEZA DE DATOS bajo la categoría \"otro\", pero la verdad es que aún no tiene entradas en la bitácora ni un mensaje registrado.\n\nPara que te hagas una idea de cómo solemos manejar este tipo de categorías \"otro\", te cuento que en un caso similar anterior se cerró porque el usuario no respondía y se requería un nuevo registro.\n\nBueno entonces cerrar el ticket ya que volvera abrir otro\n\n¡Hola! Entendido, procedo a solicitar el cierre del ticket tal como me lo indicas.\n\nPor favor, selecciona abajo cómo deseas registrar la solución para finalizar el proceso.\n\n\n\nOpciones de Cierre: Elige como documentar este cierre en la bitacora oficial:\n\nSolo registrar la solucion corta en la bitacora\nAnexar la conversacion completa y cerrar\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\n",
+        "fecha": "2026-09-13T16:01:39.828Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Ticket resuelto mediante Asistente IA. Solucion: Se cierra el ticket por indicación del agente para abrir uno nuevo.",
+        "fecha": "2026-09-13T16:01:41.372Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-08T19:10:38.433Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 7011,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "c001d88e-3447-428c-82f4-e008755ca829",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "jgarcia",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "jgarcia",
+        "texto": "Consulta: No puedo acceder a mi correo institucional.",
+        "fecha": "2026-09-13T16:05:26.321Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "jgarcia",
+        "texto": "Consulta: Revisé la contraseña y está correcta, me sale \"Cuenta bloqueada\".",
+        "fecha": "2026-09-13T16:05:26.321Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Asistente IA derivo el ticket desde area_tecnica a area_tecnica. Motivo: ",
+        "fecha": "2026-09-15T03:51:06.076Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:26.321Z",
+    "tfrMinutos": 2146,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "6896e56d-6ba3-4a90-9a78-551bba92b4a1",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "jgarcia",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "jgarcia",
+        "texto": "Consulta: No puedo acceder a mi correo institucional.",
+        "fecha": "2026-09-13T16:05:57.925Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "jgarcia",
+        "texto": "Consulta: Revisé la contraseña y está correcta, me sale \"Cuenta bloqueada\".",
+        "fecha": "2026-09-13T16:05:57.925Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Asistente IA derivo el ticket desde area_tecnica a area_tecnica. Motivo: ",
+        "fecha": "2026-09-15T03:51:22.232Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.925Z",
+    "tfrMinutos": 2145,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "28fd2276-7347-426e-8ee3-05dc25d07d8e",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "mlopez",
+    "atendidoPor": "sistema",
+    "turno": "tarde",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "mlopez",
+        "texto": "Consulta: Necesito que instalen AutoCAD en el equipo de la oficina 3.",
+        "fecha": "2026-09-13T16:05:57.935Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.935Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "2fa8704c-f87b-46d3-a3c4-9ba30d2d8404",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "atorres",
+    "atendidoPor": "sistema",
+    "turno": "noche",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "atorres",
+        "texto": "Consulta: El sistema de contabilidad está muy lento, tarda minutos en guardar un registro.",
+        "fecha": "2026-09-13T16:05:57.939Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.939Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "f6ffeb6e-397b-4490-a5fa-1b74b64e57eb",
+    "categoria": "reclamo",
+    "equipoAsignado": "supervisor",
+    "reportadoPor": "sruiz",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "sruiz",
+        "texto": "Consulta: Llevo 3 días esperando el reemplazo de mi monitor y nadie se comunica.",
+        "fecha": "2026-09-13T16:05:57.942Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.942Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "7f9c27c0-ce69-4a0a-a8fe-5ee1aec43415",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "pcastillo",
+    "atendidoPor": "sistema",
+    "turno": "tarde",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "pcastillo",
+        "texto": "Consulta: Por favor habilitar los permisos de red para la carpeta compartida de RRHH.",
+        "fecha": "2026-09-13T16:05:57.945Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Ticket resuelto mediante Asistente IA. Solucion: Se verificó que el problema de permisos en la carpeta compartida era particular del usuario y se solucionó.",
+        "fecha": "2026-09-15T04:18:58.316Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.945Z",
+    "tfrMinutos": 2173,
+    "ttrMinutos": 2173,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "d8445276-521c-48d6-9e0d-eaf2bc3a8873",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "lfernandez",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "lfernandez",
+        "texto": "Consulta: La impresora del piso 2 marca error de atasco de papel, pero ya la revisamos y no tiene nada.",
+        "fecha": "2026-09-13T16:05:57.949Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.949Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "973e0077-ea7a-4aca-9c6c-4629c0f267a7",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "dquiroz",
+    "atendidoPor": "sistema",
+    "turno": "noche",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "dquiroz",
+        "texto": "Consulta: No me puedo conectar a la VPN corporativa desde mi casa.",
+        "fecha": "2026-09-13T16:05:57.953Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.953Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "6f94e0f3-3c8e-4e31-9738-0b668e976395",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "fcastro",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "fcastro",
+        "texto": "Consulta: Solicito un teclado nuevo porque varias teclas dejaron de funcionar.",
+        "fecha": "2026-09-13T16:05:57.956Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Historial completo de conversacion con Asistente IA:\n¡Hola! Claro que sí, compañero. Aquí tienes el resumen rápido del ticket:\n\nCaso #6f94e0f3: El usuario fcastro reportó que necesita un teclado nuevo debido a que varias teclas dejaron de funcionar correctamente. Actualmente el ticket se encuentra abierto y asignado a la Mesa de ayuda con una entrada en la bitácora.\n\n¿Necesitas que te apoye con alguna gestión adicional o con alguna sugerencia para este caso?\n\nSii, que podria decirle al usuario?\n\n¡Hola de nuevo, colega! Claro que sí, te paso un par de opciones de mensajes que le puedes enviar al usuario fcastro para gestionar su solicitud del teclado:\n\nOpción 1 (Verificación rápida): \"Hola, estimado usuario. Para poder gestionar el requerimiento de tu nuevo teclado por desgaste o falla técnica, ¿podrías confirmarnos por este medio si se derramó algún líquido o si el teclado sufrió algún golpe? Esto nos ayuda para agilizar el trámite con logística.\"\nOpción 2 (Solicitud de datos): \"Hola, fcastro. Entiendo que varias teclas dejaron de funcionar. Por favor, indícanos el código patrimonial o etiqueta de activo fijo que aparece en la parte inferior del teclado actual para registrar el pedido de reemplazo.\"\n\n¡Dime si te sirve alguna de estas o si prefieres enfocarlo de otra manera!\n\nOtras respuestas\n\n¡Hola de nuevo, colega! Veo que necesitas más alternativas para responderle a fcastro. Como no tenemos un procedimiento institucional específico para reposición de teclados en nuestra base de conocimientos, te comparto un enfoque totalmente distinto.\n\nPodrías optar por una prueba de diagnóstico remoto o la revisión temporal de un periférico alternativo mientras se gestiona el cambio.\n\nSugerencia de la IA: Puedes enviarle este mensaje al usuario: \"Hola fcastro, mientras gestionamos la solicitud de tu nuevo teclado con el área logística, ¿podrías intentar conectar el teclado a otro puerto USB de tu equipo o probarlo en otra laptop si tienes la facilidad? A veces un reinicio del controlador de bus serial universal (USB) o cambiar de puerto soluciona el problema de manera temporal. Avísame si esto te ayuda.\" Ten en cuenta que esta es solo una opción generada por la IA y no un procedimiento oficial, por lo que eres totalmente libre de utilizarla o descartarla.\n\n¿Qué te parece este enfoque? Avísame si prefieres explorar otra ruta o si deseas realizar alguna acción sobre el ticket.\n\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\nme parece bien, y soluciones?\n\n¡Excelente, colega! Me alegra que te haya servido la idea del diagnóstico preliminar.\n\nComo el requerimiento principal del usuario es un cambio físico por fallas en las teclas, las soluciones o pasos siguientes desde la perspectiva de soporte suelen orientarse a la validación de activos y el flujo de reemplazo.\n\nSugerencia de la IA: Como no contamos con un procedimiento institucional específico registrado para esta situación, te ofrezco esta opción adicional que no es obligatoria: podrías verificar internamente el estado de la garantía del equipo en el sistema de inventarios, o bien solicitar al usuario una evidencia corta (como un video breve o una foto donde se intente usar el teclado en un bloc de notas) para justificar formalmente el requerimiento ante el área de logística o soporte de segundo nivel. Recuerda que esta es solo una recomendación de la inteligencia artificial y tienes total libertad de aplicarla o no.\n\n¿Te gustaría que redactemos un mensaje para pedirle esa evidencia al usuario o prefieres derivar el caso a logística?\n\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\nesta bien, hay casos similares?\n\n¡Hola de nuevo, colega! He revisado nuestros registros y la base de datos actual, y la verdad es que no tenemos casos históricos similares registrados en el sistema para este tipo específico de falla de teclado con el usuario fcastro.\n\nComo no disponemos de un historial o guía institucional previa sobre este caso, te sugiero que, si ya realizaste las pruebas de puertos USB o la validación de las teclas, procedas a solicitar el visto bueno de un supervisor o a derivar el ticket al área de soporte técnico o logística para el cambio físico del hardware.\n\nSugerencia de la IA: Como no existen registros previos institucionales sobre este caso particular, te propongo que busques en la base de inventarios local si el equipo cuenta con póliza de mantenimiento activa para acelerar el cambio. Esta es solo una recomendación generada por inteligencia artificial y no un procedimiento oficial, por lo que no estás obligado a utilizarla.\n\n¿Te gustaría que derivemos este ticket al área correspondiente o prefieres gestionarlo de otra manera?\n\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\nya di una solución, mande una solicitud para el nuevo material\n\n¡Excelente trabajo, colega! Qué bueno que ya pudiste gestionar la solicitud del nuevo material con el área correspondiente.\n\nSi ya concluiste con la asistencia y el trámite del teclado para el usuario fcastro, recuerda que puedes indicarme si deseas cerrar este caso o si necesitas realizar alguna otra gestión con el ticket.\n\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\ndeseo cerrrar el caso, graciasss\n\n¡De nada, colega! Es un gusto haberte apoyado con el caso de fcastro.\n\nPara proceder con el cierre, por favor selecciona una de las opciones disponibles en el sistema (como guardar la solución o anexar toda la conversación) para que el ticket quede cerrado correctamente.\n\n\n\nOpciones de Cierre: Elige como documentar este cierre en la bitacora oficial:\n\nSolo registrar la solucion corta en la bitacora\nAnexar la conversacion completa y cerrar\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\n",
+        "fecha": "2026-09-15T04:45:31.560Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Cierre y Anexo por Asistente IA.\nDetalle de conversacion guardado en historial.\nSolucion final: Se gestionó y envió la solicitud de un nuevo teclado para el usuario por fallas en las teclas.",
+        "fecha": "2026-09-15T04:45:32.764Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.956Z",
+    "tfrMinutos": 2200,
+    "ttrMinutos": 2200,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "03918b91-a463-42d6-8d1a-87bb11f1d5ef",
+    "categoria": "reclamo",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "ehurtado",
+    "atendidoPor": "sistema",
+    "turno": "tarde",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "ehurtado",
+        "texto": "Consulta: Mi ticket anterior fue cerrado sin solución. Sigo sin acceso al portal de ventas.",
+        "fecha": "2026-09-13T16:05:57.960Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Asistente IA derivo el ticket desde supervisor a area_tecnica. Motivo: Derivación solicitada por el agente para revisión de acceso al portal de ventas.",
+        "fecha": "2026-09-15T04:13:50.471Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.960Z",
+    "tfrMinutos": 2168,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "40c4ea18-950a-47c7-a109-7c215b11910f",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "vramirez",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "vramirez",
+        "texto": "Consulta: El servidor de base de datos de pruebas está rechazando las conexiones entrantes.",
+        "fecha": "2026-09-13T16:05:57.963Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-13T16:05:57.963Z",
+    "tfrMinutos": null,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "5116c447-93af-4604-b951-7e5f5d5266a9",
+    "titulo": "[Área Administrativa] + [Mesa Virtual] + [Falla al adjuntar expediente]",
+    "tipo": "Incidente",
+    "prioridad": "P1",
+    "codigoPatrimonial": "N/D",
+    "mensajeError": "No se pudo completar la operación",
+    "alcance": "Un Puesto",
+    "subcategoriaTecnica": "Software",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "Mariela Paredes",
+    "atendidoPor": "sistema",
+    "turno": "noche",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "Mariela Paredes",
+        "texto": "Consulta: El usuario reporta interrupción en el servicio de la mesa virtual, experimentando fallas al intentar adjuntar y finalizar el registro de un expediente digital. El problema persiste tras reiniciar el equipo.",
+        "fecha": "2026-09-18T08:45:13.757Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-18T08:45:13.757Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Ticket resuelto mediante Asistente IA. Solucion: Se solucionó la falla al adjuntar y finalizar el registro del expediente en la mesa virtual mediante la limpieza de caché y cookies del navegador.",
+        "fecha": "2026-09-22T05:50:11.271Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-18T08:45:13.757Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 5585,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "b3aea4f5-df4a-4020-a920-995e55134762",
+    "titulo": "[Infraestructura] + [Servidor de Archivos] + [Falla de acceso a carpeta de recursos]",
+    "tipo": "Incidente",
+    "prioridad": "P4",
+    "codigoPatrimonial": "N/D",
+    "mensajeError": "N/D",
+    "alcance": "RRHH",
+    "subcategoriaTecnica": "Software",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "Milagros",
+    "atendidoPor": "sistema",
+    "turno": "noche",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "Milagros",
+        "texto": "Consulta: no le deja acceder a la carpeta de RRHH",
+        "fecha": "2026-09-22T08:45:10.138Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-22T08:45:10.138Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Historial completo de conversacion con Agente de soporte:\n¡Hola, colega! Claro que sí, aquí tienes el resumen del ticket activo:\n\nTicket ID: b3aea4f5\nReportado por: Milagros\nCategoría: Otro (Consulta sobre acceso a la carpeta de RRHH)\n\nRevisando los casos históricos similares, encontramos un antecedente (Caso 2) donde se solucionó otorgando los permisos directamente sobre la carpeta compartida de Recursos Humanos.\n\nEntonces hay que usar esa solucion\n\n¡Entendido, colega! Vamos a proceder con esa solución basada en el antecedente.\n\nTe sugiero verificar los permisos directamente sobre la carpeta compartida de Recursos Humanos para el usuario de Milagros, asegurándote de que tenga los accesos de lectura y escritura necesarios asignados en el Active Directory o en las propiedades de la red.\n\nDime si con eso logramos destrabar el caso o si necesitas que te ayude con algo más.\n\nSi, ya me fije y si tiene acceso, se lo dire, cierra el ticket\n\n¡Entendido, colega! Comprendo que el usuario ya cuenta con los permisos necesarios en la carpeta compartida y que procederás a comunicárselo para cerrar el caso.\n\nComo has solicitado cerrar este ticket, he iniciado el proceso correspondiente. Por favor, selecciona cómo deseas guardar la solución en el sistema.\n\n\n\nOpciones de Cierre: Elige como documentar este cierre en la bitacora oficial:\n\nSubcategoria Tecnica: \n-- Seleccionar --\nHardware\nSoftware\nRedes\nCuentas/Accesos\nOtro\nSolo registrar la solucion corta en la bitacora\nAnexar la conversacion completa y cerrar\n\n(No se encontraron mas casos similares distintos a los ya mostrados)\n\n",
+        "fecha": "2026-09-22T08:46:00.844Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Cierre y Anexo por Asistente IA.\nDetalle de conversacion guardado en historial.\nSolucion final: El usuario ya cuenta con los permisos correctos en la carpeta de RRHH. Se le notificará al usuario.",
+        "fecha": "2026-09-22T08:46:03.044Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-22T08:45:10.138Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 1,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  }
+]

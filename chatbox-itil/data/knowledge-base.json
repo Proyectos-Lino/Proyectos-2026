@@ -1,0 +1,113 @@
+{
+  "categories": [
+    "tramites",
+    "estado",
+    "requisitos",
+    "costos",
+    "incidencia_tecnica",
+    "reclamo",
+    "informacion_general",
+    "otro"
+  ],
+  "shifts": [
+    "general",
+    "mañana",
+    "tarde",
+    "noche"
+  ],
+  "teams": [
+    "mesa_de_ayuda",
+    "area_tecnica",
+    "supervisor",
+    "otro"
+  ],
+  "sedes": [
+    "Sede Central",
+    "Agencia Norte",
+    "Agencia Sur",
+    "Sede Administrativa"
+  ],
+  "prioridades": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "tiposTicket": [
+    "Incidente",
+    "Requerimiento"
+  ],
+  "subcategoriasTecnicas": [
+    "Hardware - PC/Laptop",
+    "Hardware - Impresora",
+    "Software - ERP/SAP",
+    "Software - Ofimática",
+    "Redes e Internet",
+    "Cuentas y Accesos",
+    "Telefonía",
+    "Otros"
+  ],
+  "intents": [
+    {
+      "trigger": ["contraseña", "clave", "resetear", "olvide mi contraseña", "desbloquear", "cuenta bloqueada"],
+      "category": "incidencia_tecnica",
+      "response": "Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas de la institución. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud."
+    },
+    {
+      "trigger": ["vpn", "conexion vpn", "forticlient", "cisco anyconnect", "no conecta vpn"],
+      "category": "incidencia_tecnica",
+      "response": "Los problemas de VPN suelen deberse a una caída temporal de la red o a un token vencido. Asegúrate de tener conexión a internet estable. Si sigues sin poder conectar, indícanos el código de error que muestra el cliente VPN."
+    },
+    {
+      "trigger": ["impresora", "no imprime", "toner", "atasco de papel", "impresora de red"],
+      "category": "incidencia_tecnica",
+      "response": "Para problemas de impresión, verifica que la impresora tenga papel, esté encendida y conectada a la red. Si requiere cambio de tóner o reporta una falla física, indícanos el código patrimonial o modelo de la impresora."
+    },
+    {
+      "trigger": ["correo", "outlook", "buzon lleno", "no entran correos"],
+      "category": "incidencia_tecnica",
+      "response": "Si tienes problemas con Outlook o te indica buzón lleno, intenta archivar correos antiguos o usar la versión web (OWA). Si necesitas más cuota o no puedes enviar correos, procederemos a escalar tu caso al administrador de correo."
+    },
+    {
+      "trigger": ["erp", "sistema sap", "no entra al sistema", "sistema caido", "sistema corporativo"],
+      "category": "incidencia_tecnica",
+      "response": "Si el ERP o el sistema misional presenta lentitud o caída, el área de infraestructura podría estar realizando mantenimiento. Indícanos el módulo exacto que presenta fallas para registrar la incidencia."
+    },
+    {
+      "trigger": ["lentitud", "computadora lenta", "se cuelga", "pantalla azul", "virus"],
+      "category": "incidencia_tecnica",
+      "response": "Si tu equipo presenta lentitud extrema o pantallas azules, por favor reinicia el equipo. Si el problema persiste, es probable que requiera revisión presencial o remota por parte del área de soporte de hardware."
+    },
+    {
+      "trigger": ["hola", "buenos dias", "buenas tardes", "buenas noches", "hey", "saludos", "que tal", "como estas"],
+      "category": "informacion_general",
+      "response": "¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna. ¿En qué puedo ayudarte hoy?"
+    },
+    {
+      "trigger": ["adios", "hasta luego", "chau", "nos vemos", "bye", "despedida"],
+      "category": "informacion_general",
+      "response": "¡Hasta pronto! Que tengas un excelente día de trabajo."
+    },
+    {
+      "trigger": ["quien eres", "eres humano", "eres un bot", "eres una ia", "con quien hablo", "robot"],
+      "category": "informacion_general",
+      "response": "Soy el asistente virtual inteligente de la Mesa de Ayuda Interna, programado para orientarte con incidencias técnicas."
+    },
+    {
+      "trigger": ["no se", "como hago", "no entiendo", "me perdi", "explicame"],
+      "category": "informacion_general",
+      "response": "No te preocupes. Explícame con tus propias palabras el problema técnico que tienes y te guiaré."
+    },
+    {
+      "trigger": ["ok", "vale", "perfecto", "entiendo", "genial", "excelente", "comprendo", "listo", "de acuerdo", "bien"],
+      "category": "informacion_general",
+      "response": "¡Perfecto! Quedo atento si tienes otra incidencia."
+    },
+    {
+      "trigger": ["gracias", "muchas gracias", "te lo agradezco", "mil gracias", "muy amable"],
+      "category": "informacion_general",
+      "response": "¡De nada! Estamos para servirte. ¿Te puedo ayudar con algo más?"
+    }
+  ],
+  "flows": []
+}

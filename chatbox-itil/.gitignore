@@ -1,0 +1,16 @@
+node_modules/
+.env
+.DS_Store
+.vscode/
+npm-debug.log
+yarn-error.log
+*.log
+*.exe
+bundle.js
+sea-prep.blob
+sea-config.json
+.tmp/
+deliverables/
+.env.local
+dist/
+build/

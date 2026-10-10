@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "closed-test-1",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "user_test",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "user_test",
+        "texto": "Consulta: tengo un problema con una pc sobre la bd ayudam error 1",
+        "fecha": "2026-09-01T10:00:00.000Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Solución 1: Reiniciar equipo",
+        "fecha": "2026-09-01T10:05:00.000Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-01T10:00:00.000Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": 5,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": []
+  },
+  {
+    "id": "closed-test-2",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "user_test",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "user_test",
+        "texto": "Consulta: tengo un problema con una pc sobre la bd ayudam error 2",
+        "fecha": "2026-09-02T10:00:00.000Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Solución 2: Revisar cable de red",
+        "fecha": "2026-09-02T10:05:00.000Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-02T10:00:00.000Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": 5,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": []
+  },
+  {
+    "id": "closed-test-3",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "user_test",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "user_test",
+        "texto": "Consulta: tengo un problema con una pc sobre la bd ayudam error 3",
+        "fecha": "2026-09-03T10:00:00.000Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Solución 3: Desactivar VPN",
+        "fecha": "2026-09-03T10:05:00.000Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-03T10:00:00.000Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": 5,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": []
+  },
+  {
+    "id": "closed-test-4",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "user_test",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "user_test",
+        "texto": "Consulta: tengo un problema con una pc sobre la bd ayudam error 4",
+        "fecha": "2026-09-04T10:00:00.000Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Solución 4: Borrar cache de DNS",
+        "fecha": "2026-09-04T10:05:00.000Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-04T10:00:00.000Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": 5,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": []
+  },
+  {
+    "id": "closed-test-5",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "user_test",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "user_test",
+        "texto": "Consulta: tengo un problema con una pc sobre la bd ayudam error 5",
+        "fecha": "2026-09-05T10:00:00.000Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Solución 5: Actualizar credenciales",
+        "fecha": "2026-09-05T10:05:00.000Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-05T10:00:00.000Z",
+    "tfrMinutos": 5,
+    "ttrMinutos": 5,
+    "resueltoEnPrimerContacto": true,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": []
+  },
+  {
+    "id": "99a8e7b2-ef9c-4518-82e2-44c11b7afd72",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: como reseteo mi clave",
+        "fecha": "2026-09-06T23:24:09.408Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Para resetear tu contraseña del Active Directory o desbloquear tu cuenta, puedes usar el portal de autogestión de contraseñas en intranet.sunarp.gob.pe. Si el problema persiste, por favor indica tu nombre de usuario para escalar la solicitud.",
+        "fecha": "2026-09-06T23:24:09.408Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:24:09.408Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "db3b49b4-3981-48f3-a911-3ba4a9dc9d2f",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: no puedo conectar a la vpn me sale error",
+        "fecha": "2026-09-06T23:24:09.422Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: Los problemas de VPN suelen deberse a una caída temporal de la red o a un token vencido. Asegúrate de tener conexión a internet estable. Si sigues sin poder conectar, indícanos el código de error que muestra el cliente VPN.",
+        "fecha": "2026-09-06T23:24:09.422Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:24:09.422Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "844c3700-64d4-4201-95b1-decbfde68885",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: urgente mi pc de escritorio se apago de la nada y no prende",
+        "fecha": "2026-09-06T23:24:17.300Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-06T23:24:17.300Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:24:17.300Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "6ea5b3b9-da2e-4eed-9fda-d69465029198",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "usuario_anonimo",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "resuelto_pendiente",
+    "bitacora": [
+      {
+        "autor": "usuario_anonimo",
+        "texto": "Consulta: buenos dias",
+        "fecha": "2026-09-06T23:24:17.306Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-06T23:24:17.306Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:24:17.306Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": false,
+    "flowState": null
+  },
+  {
+    "id": "5611858b-aca9-477e-bbf3-8a5384deb4a1",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Holaa",
+        "fecha": "2026-09-06T23:32:45.888Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-06T23:32:45.888Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Tengo un ticket de dudas sobre el arreglo de una computadora",
+        "fecha": "2026-09-06T23:33:13.985Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-06T23:33:15.721Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Queria que me ayudes, no tienes tickets similares a mi problema?",
+        "fecha": "2026-09-06T23:33:34.392Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-06T23:33:35.918Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:32:45.887Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "b5af8afb-901d-4f76-99b8-7aafa2d301c6",
+    "categoria": "informacion_general",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "derivado",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: holaa",
+        "fecha": "2026-09-06T23:38:52.688Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-06T23:38:52.688Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Tengo un ticket de dudas sobre el arreglo de una computadora",
+        "fecha": "2026-09-06T23:38:54.510Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-06T23:38:56.709Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no tienes tickets similares a mi problema?",
+        "fecha": "2026-09-06T23:39:12.898Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-06T23:39:14.526Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: de    verdad necesito ayuda con esto",
+        "fecha": "2026-09-06T23:42:14.126Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entendido. Esa informacion extra ha sido guardada en tu ticket.",
+        "fecha": "2026-09-06T23:42:15.962Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no me puedes mostrar tickets similares para guiarme ?",
+        "fecha": "2026-09-06T23:42:43.201Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-06T23:42:44.764Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Derivado a area_tecnica. Motivo: solucion de ellos",
+        "fecha": "2026-09-06T23:43:01.485Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:38:52.688Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "c4d6f343-46a1-4c34-89c9-4cfa80535dee",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Holu",
+        "fecha": "2026-09-06T23:43:37.502Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-06T23:43:37.502Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Holi",
+        "fecha": "2026-09-06T23:43:49.370Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-06T23:43:56.342Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:43:37.501Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "b9e477f4-4432-4f1b-8008-84348ce287be",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Holaa",
+        "fecha": "2026-09-06T23:44:17.912Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-06T23:44:17.912Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-06T23:44:26.001Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-06T23:44:26.954Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: No tienes tickets similares a mi problema?",
+        "fecha": "2026-09-06T23:44:36.798Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso ya se encuentra en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-06T23:44:37.811Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Necesito que me ayudes porfa",
+        "fecha": "2026-09-06T23:44:43.228Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entendido. Esa informacion extra ha sido guardada en tu ticket.",
+        "fecha": "2026-09-06T23:44:44.978Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:44:17.912Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null
+  },
+  {
+    "id": "f7b39300-3317-4aeb-b0bc-97aa35cd1605",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-06T23:48:44.111Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Comprendo que estás pasando por un momento complicado con la PC y la base de datos, pero no te preocupes, estoy aquí para ayudarte. \n\nComo no tengo una solución exacta en mi base de conocimiento para este caso específico, quiero darte total tranquilidad: **ya mismo estoy tomando nota y derivando tu caso a nuestro equipo técnico especializado** para que puedan revisarlo a detalle y ponerse en contacto contigo lo antes posible.\n\n¿Podrías indicarme tu nombre de usuario, el número de anexo o algún detalle adicional del error que te muestra la pantalla para adjuntarlo al reporte? ¡Muchas gracias por tu paciencia!",
+        "fecha": "2026-09-06T23:48:44.111Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: No tienes tickets similares a mi problema?",
+        "fecha": "2026-09-06T23:48:44.128Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso sigue en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-06T23:48:45.201Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Necesito que me ayudes porfa",
+        "fecha": "2026-09-06T23:48:45.211Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-06T23:48:46.166Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-06T23:48:44.109Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "c9f6a2f3-1264-496c-8043-ff336adb5e2b",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:01:54.230Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con la PC y la base de datos. Comprendo lo frustrante que puede ser cuando se presentan estos bloqueos en las herramientas de trabajo.\n\nComo no tengo un procedimiento exacto registrado para este caso específico en nuestra Base de Conocimiento, quiero darte total tranquilidad: ya he registrado tu reporte y nuestro equipo técnico especializado lo revisará a detalle para ayudarte a solucionarlo lo antes posible.\n\n<SUGERENCIA>Casos similares resueltos anteriormente indican que reiniciar el servicio de la base de datos o verificar la conectividad de la red local suele restablecer el acceso rápidamente. Mientras tanto, te sugerimos reiniciar tu equipo.</SUGERENCIA>",
+        "fecha": "2026-09-07T00:01:54.230Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: No tienes tickets similares a mi problema?",
+        "fecha": "2026-09-07T00:01:54.250Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso sigue en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-07T00:01:55.571Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Necesito que me ayudes porfa",
+        "fecha": "2026-09-07T00:01:55.581Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-07T00:01:56.797Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:01:54.229Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "73d96a82-b4ba-46e8-9cdd-d44fa8d29f98",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "ciudadano_794",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "ciudadano_794",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:02:28.044Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con la PC y la base de datos. Comprendo lo frustrante que puede ser cuando se presentan estos bloqueos en el trabajo. \n\nNo te preocupes, en este momento no cuento con una solución directa en mi base de conocimiento para este caso en específico, pero quiero darte toda la tranquilidad: ya mismo he tomado nota de tu reporte y nuestro equipo técnico especializado lo revisará a detalle para ponerse en contacto contigo y ayudarte a solucionarlo lo antes posible.\n\n<SUGERENCIA>Para incidencias relacionadas con bases de datos o equipos que requieren intervención especializada, en casos anteriores ha sido muy útil que el trabajador adjunte una captura de pantalla del error exacto que muestra la PC y el nombre del servidor o base de datos a la que intenta acceder. Si puedes brindarme ese detalle, acelerará mucho la revisión.</SUGERENCIA>",
+        "fecha": "2026-09-07T00:02:28.044Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:02:28.044Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "a501e7b0-57a1-4215-8e32-02ce754a8774",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: hola",
+        "fecha": "2026-09-07T00:05:05.579Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-07T00:05:05.579Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: tengo un problema con la computadora",
+        "fecha": "2026-09-07T00:08:02.851Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con tu computadora. \n\nPara ayudarte de la mejor manera, te sugiero que intentes reiniciar el equipo. Si el problema persiste, es probable que requiera revisión presencial o remota por parte del área de soporte de hardware, así que no te preocupes, el equipo de soporte técnico estará atento para revisarlo y ayudarte a solucionarlo lo antes posible.\n\n<SUGERENCIA>Si tu equipo presenta lentitud extrema o pantallas azules, por favor reinicia el equipo. Si el problema persiste, es probable que requiera revisión presencial o remota por parte del área de soporte de hardware.</SUGERENCIA>",
+        "fecha": "2026-09-07T00:08:05.247Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no me funciono esa solucion, tienes otra?",
+        "fecha": "2026-09-07T00:09:49.651Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Gracias, he agregado ese detalle a tu expediente para el agente.",
+        "fecha": "2026-09-07T00:09:52.053Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no tienes?",
+        "fecha": "2026-09-07T00:10:02.580Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso sigue en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-07T00:10:04.622Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:41:00.527Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Entiendo perfectamente tu situación y lamento los inconvenientes que esto te pueda causar en tus labores. No te preocupes, nuestro equipo de **Mesa de ayuda** revisará tu caso a la brevedad para brindarte el apoyo necesario y ayudarte a solucionarlo.\n\n<SUGERENCIA>\n- Solución 1: Reiniciar equipo\n- Solución 2: Revisar cable de red\n- Solución 3: Desactivar VPN\n</SUGERENCIA>",
+        "fecha": "2026-09-07T00:41:02.572Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:41:23.407Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Tu caso sigue en cola para ser atendido por un agente. Hemos añadido tu ultimo mensaje al expediente.",
+        "fecha": "2026-09-07T00:41:38.418Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Solucionado",
+        "fecha": "2026-09-07T00:42:41.794Z",
+        "minutosInvertidos": 5
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Qué gran noticia saber que el problema está solucionado. Me alegra mucho haber podido ayudarte. \n\nSi necesitas asistencia con cualquier otra consulta o incidencia en el futuro, no dudes en escribirnos nuevamente. El equipo de **Mesa de ayuda** siempre estará dispuesto a apoyarte. ¡Que tengas un excelente día de trabajo en la SUNARP!\n\n<SUGERENCIA>\n- Solución 4: Borrar cache de DNS\n- Solución 5: Actualizar credenciales\n</SUGERENCIA>",
+        "fecha": "2026-09-07T00:42:45.988Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:05:05.579Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3",
+      "closed-test-4",
+      "closed-test-5"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "d6fa73cd-10d1-4138-82a7-f348370c5581",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:14:13.812Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Entiendo perfectamente tu preocupación con la conexión a la base de datos desde la PC. No te preocupes, el equipo técnico revisará tu caso con calma para ayudarte a solucionarlo lo antes posible. \n\nPor favor, indícanos el nombre de tu usuario y el área en la que te encuentras para registrar la incidencia y ponernos en contacto contigo pronto.\n\n<SUGERENCIA>Como sugerencia basada en casos similares resueltos, a veces este inconveniente ocurre por caché de DNS (lo cual se soluciona ejecutando el comando `ipconfig /flushdns` en la consola) o por un bloqueo de puerto en el firewall de Windows tras la última actualización. Si gustas, puedes revisar esto mientras el equipo te contacta.</SUGERENCIA>",
+        "fecha": "2026-09-07T00:14:13.812Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: No tienes tickets similares a mi problema?",
+        "fecha": "2026-09-07T00:14:13.830Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Comprendo que quieras revisar si hay antecedentes sobre tu caso. \n\nEn este momento no tengo un registro de tickets anteriores asociados específicamente a ti, ya que mi función principal es brindarte una solución rápida basada en nuestra Base de Conocimiento y guiarte con tu incidencia actual. \n\nNo te preocupes, cuéntame exactamente qué inconveniente técnico estás presentando y con mucho gusto lo revisaremos y te daré una solución o escalaré el caso con el equipo correspondiente para que no te detengas en tus labores. ¿En qué te puedo ayudar hoy?",
+        "fecha": "2026-09-07T00:14:15.027Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Necesito que me ayudes porfa",
+        "fecha": "2026-09-07T00:14:15.037Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! No te preocupes. Explícame con tus propias palabras el problema técnico que tienes y te guiaré.",
+        "fecha": "2026-09-07T00:14:15.946Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:14:15.956Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Entiendo perfectamente tu frustración y lamento mucho que la orientación anterior no haya dado resultado. No te preocupes, he anotado esto en tu expediente para que el equipo de soporte técnico lo revise con prioridad y se comunique contigo lo antes posible para solucionarlo.",
+        "fecha": "2026-09-07T00:14:16.987Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:14:13.811Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "respondidoPorIA": true
+  },
+  {
+    "id": "65149592-ef46-4353-8880-7e6e712a9e59",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:31:38.030Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Entiendo perfectamente tu preocupación con respecto a la base de datos y la PC. No te preocupes, vamos a revisarlo con calma para que puedas continuar con tus labores sin inconvenientes. \n\nTu caso ya ha sido derivado al equipo del **Área técnica**, quienes se encargarán de analizar la situación a detalle y te contactarán pronto para brindarte el soporte necesario. \n\nSi tienes algún detalle adicional sobre el error que muestra el sistema, no dudes en responder a este mensaje para sumarlo a tu ticket y facilitar la revisión. ¡Que tengas un excelente día de trabajo!",
+        "fecha": "2026-09-07T00:31:38.030Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:31:38.053Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Entiendo perfectamente que la solución anterior no haya dado resultado y lamento los inconvenientes que esto te genera en tus labores. \n\nNo te preocupes, ya he registrado este detalle en tu expediente. El **Área técnica** revisará tu caso con mayor profundidad y se pondrá en contacto contigo muy pronto para brindarte una solución definitiva y personalizada. Quedo a tu entera disposición si deseas agregar algún dato extra sobre el problema.",
+        "fecha": "2026-09-07T00:31:39.336Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:31:39.347Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que la alternativa anterior no haya dado el resultado esperado. No te preocupes por ello, ya he registrado este detalle en tu expediente para que el **Área técnica** tome nota de esta prueba fallida y revise tu caso con mayor profundidad y prioridad. \n\nSe pondrán en contacto contigo muy pronto para brindarte una solución definitiva y personalizada. Quedo a tu entera disposición si deseas agregar algún dato extra sobre el problema.",
+        "fecha": "2026-09-07T00:31:40.359Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:31:38.028Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "f4246988-b549-440f-8061-4c1fc3d87d30",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:33:01.480Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con tu computadora y la base de datos. No te preocupes, estoy aquí para ayudarte. \n\nPara poder darte una mejor orientación, ¿podrías brindarme un poco más de detalle sobre el mensaje de error que te aparece o qué es lo que sucede exactamente al intentar acceder? \n\nDe todas formas, no te preocupes, he registrado tu caso y el **Área técnica** lo revisará a la brevedad para brindarte el soporte necesario y solucionar este inconveniente juntos. ¡Quedo atento a cualquier detalle adicional!",
+        "fecha": "2026-09-07T00:33:01.480Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:33:01.503Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que la indicación anterior no te haya funcionado. No te preocupes, ya he registrado este detalle en tu expediente para que el **Área técnica** pueda revisarlo con prioridad y brindarte una solución definitiva muy pronto. Quedo a tu total disposición si necesitas comentarme algo más sobre el problema.",
+        "fecha": "2026-09-07T00:33:04.949Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:33:04.958Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Entiendo perfectamente que esa opción no funcionó. Lamento los inconvenientes que esto te está generando, pero no te preocupes; he registrado este detalle en tu expediente para que el **Área técnica** pueda revisarlo con mayor detalle y brindarte una solución definitiva muy pronto. Quedo a tu total disposición si necesitas comentarme algo más sobre el problema.",
+        "fecha": "2026-09-07T00:33:05.865Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:33:01.479Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "4a85f918-f6c6-414a-be9f-aa3aa8a422b3",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:36:32.469Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Entiendo perfectamente tu situación y lamento los inconvenientes que esto te pueda causar con tu trabajo. No te preocupes, estoy aquí para ayudarte.\n\nDado que tu caso está relacionado con un tema técnico específico, he procedido a derivarlo con nuestro equipo del **Área técnica**, quienes se encargarán de revisarlo a detalle y contactarse contigo lo antes posible para brindarte una solución. \n\n<SUGERENCIA>\n- Solución 1: Reiniciar equipo\n- Solución 2: Revisar cable de red\n- Solución 3: Desactivar VPN\n</SUGERENCIA>",
+        "fecha": "2026-09-07T00:36:32.469Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:36:32.494Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que las opciones anteriores no te hayan funcionado, pero no te preocupes, estoy aquí para apoyarte. \n\nDado que la solución anterior no resolvió el inconveniente, he registrado esta observación en tu ticket y he escalado tu caso directamente con el **Área técnica**. Ellos revisarán tu situación con prioridad y se pondrán en contacto contigo muy pronto para ayudarte a solucionarlo. Quedo a tu total disposición si necesitas consultarme algo más mientras tanto.",
+        "fecha": "2026-09-07T00:36:33.719Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:36:33.730Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Entiendo perfectamente tu frustración y lamento mucho que la opción anterior no te haya funcionado. No te preocupes, he anotado esto en tu expediente para que el **Área técnica** lo revise con prioridad y se ponga en contacto contigo muy pronto para ayudarte a solucionarlo. \n\nQuedo a tu total disposición si necesitas consultarme algo más mientras tanto. ¡Mucho éxito en tus labores de hoy!",
+        "fecha": "2026-09-07T00:36:34.766Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:36:32.468Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "af3338da-8697-4393-b06b-9aa45847aa2d",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:37:33.572Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con tu equipo y la base de datos. No te preocupes, estoy aquí para ayudarte. \n\nPara que tu caso sea atendido con la mayor prioridad y detalle, he registrado tu solicitud y el **Área técnica** la revisará a la brevedad para brindarte una solución adecuada. \n\n<SUGERENCIA>\n- Solución 1: Reiniciar equipo\n- Solución 2: Revisar cable de red\n- Solución 3: Desactivar VPN\n</SUGERENCIA>",
+        "fecha": "2026-09-07T00:37:33.572Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:37:33.595Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que las soluciones anteriores no hayan dado resultado. Comprendo lo frustrante que puede ser cuando esto pasa, pero no te preocupes, ya he tomado nota de esto en tu expediente para que el **Área técnica** pueda revisar tu caso con mayor profundidad y darte una pronta solución. \n\nQuedo a tu entera disposición por si necesitas comentarme algún detalle adicional sobre el problema mientras el equipo especializado se encarga de revisarlo. ¡Mucho ánimo!",
+        "fecha": "2026-09-07T00:37:34.734Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:37:34.745Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola de nuevo! Lamento mucho que la solución anterior no haya dado el resultado esperado. Comprendo perfectamente tu frustración, pero no te preocupes, ya he registrado este detalle en tu expediente. \n\nEl **Área técnica** ha sido notificada para revisar tu caso con mayor profundidad y brindarte una solución definitiva lo antes posible. Quedo a tu total disposición por si deseas agregar algún dato extra mientras el equipo especializado toma el caso. ¡Mucho ánimo y que tengas un buen día!",
+        "fecha": "2026-09-07T00:37:36.006Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:37:33.570Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "991f4419-d6d4-45c8-82e7-3a42765e0bb5",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "userTest",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "userTest",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:39:54.883Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con la PC y la base de datos. No te preocupes, estoy aquí para ayudarte y asegurarme de que tu caso sea atendido de la mejor manera. \n\nHe registrado tu solicitud y la he derivado al **Área técnica**, quienes se encargarán de revisar el caso a detalle y ponerse en contacto contigo muy pronto para brindarte una solución. \n\nMientras tanto, te compartimos algunas recomendaciones previas que podrían ayudarte:\n\n<SUGERENCIA>\n- Solución 1: Reiniciar equipo\n- Solución 2: Revisar cable de red\n- Solución 3: Desactivar VPN\n</SUGERENCIA>\n\nQuedo a tu entera disposición si tienes alguna otra consulta. ¡Que tengas un excelente día!",
+        "fecha": "2026-09-07T00:39:54.883Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:39:54.905Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que las opciones anteriores no hayan dado resultado. Comprendo lo frustrante que puede ser cuando el inconveniente persiste, pero no te preocupes, estoy aquí para apoyarte.\n\nHe tomado nota de que las soluciones previas no funcionaron y ya he actualizado tu expediente para que el **Área técnica** esté al tanto y le dé una revisión prioritaria a tu caso. Ellos se comunicarán contigo muy pronto para ayudarte a resolverlo por completo.\n\nMientras tanto, te comparto un par de alternativas adicionales que nos han reportado otros compañeros en casos similares:\n\n<SUGERENCIA>\n- Solución 4: Borrar cache de DNS\n- Solución 5: Actualizar credenciales\n</SUGERENCIA>\n\nAgradezco mucho tu paciencia y colaboración. Quedo a tu disposición si necesitas consultarme algo más. ¡Que tengas un gran día!",
+        "fecha": "2026-09-07T00:39:56.403Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "userTest",
+        "texto": "Consulta: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:39:56.415Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento de verdad que ninguna de las alternativas anteriores haya dado resultado. Entiendo perfectamente lo incómodo que es seguir con este inconveniente, pero por favor no te preocupes, ya he actualizado tu expediente para que el **Área técnica** tome tu caso con prioridad y te brinde una solución definitiva muy pronto.\n\nAgradezco infinitamente tu paciencia y colaboración en este proceso. El **Área técnica** se pondrá en contacto contigo a la brevedad. Quedo a tu entera disposición si requieres alguna otra consulta mientras tanto. ¡Mucho éxito en tus labores de hoy!",
+        "fecha": "2026-09-07T00:39:57.838Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:39:54.881Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3",
+      "closed-test-4",
+      "closed-test-5"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "6a44c81a-1f13-4e08-94f0-81520399f7ac",
+    "categoria": "incidencia_tecnica",
+    "equipoAsignado": "area_tecnica",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Tengo un problema con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T00:43:09.264Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Lamento mucho que estés pasando por este inconveniente con la PC y la base de datos. No te preocupes, estoy aquí para ayudarte y asegurarme de que tu caso quede en buenas manos.\n\nPara poder brindarte una solución más precisa, ¿podrías indicarme si la computadora presenta algún mensaje de error en pantalla o si se trata de una lentitud extrema al momento de acceder a la base de datos? \n\nHe derivado tu reporte al **Área técnica**, quienes se encargarán de revisarlo a detalle y se pondrán en contacto contigo lo antes posible para solucionarlo. Quedo a tu entera disposición si tienes alguna duda adicional. ¡Que tengas un excelente día!\n\n<SUGGESTION>\n- Solución 1: Reiniciar equipo\n- Solución 2: Revisar cable de red\n- Solución 3: Desactivar VPN\n</SUGGESTION>",
+        "fecha": "2026-09-07T00:43:09.264Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: no me funciono, tienes otra?",
+        "fecha": "2026-09-07T00:43:28.260Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "¡Hola! Lamento mucho que las opciones anteriores no hayan dado el resultado esperado. No te preocupes, entiendo lo frustrante que puede ser cuando se presentan estos inconvenientes, pero estoy aquí para apoyarte. \n\nHe registrado en tu ticket que las alternativas previas no funcionaron, y ya he derivado esta actualización directamente al **Área técnica** para que puedan tomar acciones adicionales y priorizar tu caso. \n\nMientras el **Área técnica** se pone en contacto contigo para una revisión más profunda, te sugiero tener en cuenta las siguientes alternativas basadas en casos similares resueltos:\n\n<SUGERENCIA>\n- Borrar cache de DNS\n- Actualizar credenciales\n</SUGGESTION>\n\nQuedo a tu entera disposición si tienes alguna otra consulta. ¡Mucho éxito en tus labores de hoy!",
+        "fecha": "2026-09-07T00:43:30.625Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T00:43:09.264Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [
+      "closed-test-1",
+      "closed-test-2",
+      "closed-test-3",
+      "closed-test-4",
+      "closed-test-5"
+    ],
+    "respondidoPorIA": true
+  },
+  {
+    "id": "da90a633-1f24-4865-b36e-0d716b5a2d88",
+    "categoria": "otro",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "empleado_test",
+    "atendidoPor": "tecnico_01",
+    "turno": "mañana",
+    "estado": "cerrado",
+    "bitacora": [
+      {
+        "autor": "empleado_test",
+        "texto": "Consulta: tengo un problema raro con una pc sobre la bd ayudam",
+        "fecha": "2026-09-07T01:04:28.748Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-07T01:04:28.748Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "tecnico_01",
+        "texto": "Agente aplico solucion: flush de DNS y reinicio de equipo. Problema resuelto.",
+        "fecha": "2026-09-07T01:04:35.627Z",
+        "minutosInvertidos": 15
+      },
+      {
+        "autor": "tecnico_01",
+        "texto": "Ticket cerrado tras aplicar solucion de caso similar.",
+        "fecha": "2026-09-07T01:04:35.638Z",
+        "minutosInvertidos": 5
+      }
+    ],
+    "fechaCreacion": "2026-09-07T01:04:28.747Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": 0,
+    "resueltoEnPrimerContacto": false,
+    "requiereEscalamiento": false,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  },
+  {
+    "id": "e3f17970-c460-4bf1-81f8-17f5ed9ae2fd",
+    "categoria": "informacion_general",
+    "equipoAsignado": "mesa_de_ayuda",
+    "reportadoPor": "agente_01",
+    "atendidoPor": "sistema",
+    "turno": "mañana",
+    "estado": "abierto",
+    "bitacora": [
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: hola",
+        "fecha": "2026-09-07T01:09:00.955Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: ¡Hola! Soy el asistente virtual de la Mesa de Ayuda Interna de SUNARP. ¿En qué puedo ayudarte hoy?",
+        "fecha": "2026-09-07T01:09:00.955Z",
+        "minutosInvertidos": 0
+      },
+      {
+        "autor": "agente_01",
+        "texto": "Consulta: Consulta adicional: cuantos tickets tenemos hoy?",
+        "fecha": "2026-09-07T01:09:19.070Z",
+        "minutosInvertidos": 1
+      },
+      {
+        "autor": "sistema",
+        "texto": "Respuesta: No encontre una respuesta en la base de conocimiento. El ticket queda abierto para un agente.",
+        "fecha": "2026-09-07T01:09:19.070Z",
+        "minutosInvertidos": 0
+      }
+    ],
+    "fechaCreacion": "2026-09-07T01:09:00.955Z",
+    "tfrMinutos": 0,
+    "ttrMinutos": null,
+    "resueltoEnPrimerContacto": null,
+    "requiereEscalamiento": true,
+    "flowState": null,
+    "sugerenciasMostradasIds": [],
+    "respondidoPorIA": false
+  }
+]
