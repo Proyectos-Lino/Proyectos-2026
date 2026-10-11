@@ -11,6 +11,8 @@
 !/backend/mvnw
 !/backend/mvnw.cmd
 !/backend/pom.xml
+!/backend/Dockerfile
+!/backend/.dockerignore
 !/backend/src/
 
 /frontend/*
@@ -25,6 +27,9 @@
 !/frontend/tsconfig*.json
 !/frontend/vite.config.ts
 !/frontend/vercel.json
+!/frontend/Dockerfile
+!/frontend/.dockerignore
+!/frontend/nginx.conf
 !/frontend/src/
 !/frontend/public/
 !/frontend/desktop/
