@@ -1,0 +1,14 @@
+spring:
+  flyway:
+    # Permite adoptar la base local ya creada manualmente a partir de V1 y V2.
+    # En una base vacía, Flyway ejecutará ambas migraciones normalmente.
+    baseline-on-migrate: true
+    baseline-version: 2
+
+app:
+  bootstrap:
+    enabled: ${BOOTSTRAP_ENABLED:true}
+
+logging:
+  level:
+    com.labcore.platform: INFO
