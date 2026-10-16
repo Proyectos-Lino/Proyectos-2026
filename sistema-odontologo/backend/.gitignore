@@ -5,7 +5,8 @@ target/
 config/whatsapp.local.properties
 config/ai.local.properties
 config/kapso.local.properties
-config/
+# Solo la carpeta privada en la raíz; conservar los paquetes Java llamados config.
+/config/
 src/main/resources/application-local.properties
 *.dump
 *.backup
