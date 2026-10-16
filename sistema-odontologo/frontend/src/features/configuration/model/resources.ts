@@ -1,0 +1,126 @@
+import type { Column } from '../../../shared/ui/PagedTable'
+import type { PickerSource, PickedEntity } from '../../../shared/ui/EntityPicker'
+export interface EntityRow {
+  id: string
+  version: number
+  [key: string]: unknown
+}
+export interface FieldDefinition {
+  key: string
+  label: string
+  type?:
+    | 'text'
+    | 'email'
+    | 'password'
+    | 'number'
+    | 'date'
+    | 'time'
+    | 'textarea'
+    | 'checkbox'
+    | 'select'
+    | 'multi'
+    | 'picker'
+  required?: boolean
+  min?: number
+  max?: number
+  maxLength?: number
+  step?: number
+  hint?: string
+  options?: { value: string; label: string }[]
+  source?: PickerSource
+  multiple?: boolean
+  immutable?: boolean
+  selected?: (row: EntityRow) => PickedEntity[]
+}
+export interface ResourceDefinition {
+  endpoint: string
+  title: string
+  singular: string
+  description: string
+  read: string
+  write: string
+  defaults: Record<string, unknown>
+  fields: FieldDefinition[]
+  columns: Column<EntityRow>[]
+  sort?: string
+  keyFor?: (row: EntityRow) => string
+  prepare?: (values: Record<string, unknown>, editing: boolean) => Record<string, unknown>
+  validate?: (values: Record<string, unknown>) => string | undefined
+}
+export const roleOptions = [
+  { value: 'ADMIN', label: 'Administrador' },
+  { value: 'DENTIST', label: 'Odontólogo' },
+  { value: 'RECEPTION', label: 'Recepción' },
+  { value: 'CASHIER', label: 'Caja' },
+]
+export const permissionLabels: Record<string, string> = {
+  REPORTS_READ: 'Consultar reportes de las áreas autorizadas',
+  REPORTS_EXPORT: 'Exportar reportes en CSV y PDF',
+  AGENT_CONTROL_WRITE: 'Asumir, devolver y cerrar conversaciones',
+  AGENT_TEST_WRITE: 'Probar y reintentar el agente IA',
+  WHATSAPP_READ: 'Consultar conversaciones de WhatsApp',
+  WHATSAPP_WRITE: 'Enviar respuestas por WhatsApp',
+  CLINICAL_READ: 'Consultar expediente clínico',
+  CLINICAL_WRITE: 'Registrar atenciones y odontograma',
+  DOCUMENTS_READ: 'Consultar y descargar archivos clínicos',
+  DOCUMENTS_WRITE: 'Adjuntar archivos y consentimientos',
+  CLINICAL_CONFIG_READ: 'Consultar categorías y reglas de archivos',
+  PLANS_READ: 'Consultar presupuestos y planes',
+  PLANS_WRITE: 'Gestionar presupuestos y planes',
+  FINANCES_READ: 'Consultar cuentas, cobros y sustentos',
+  PAYMENTS_WRITE: 'Registrar abonos, anticipos y cuotas',
+  CASH_READ: 'Consultar caja y arqueos',
+  CASH_WRITE: 'Abrir y cerrar caja',
+  EXPENSES_WRITE: 'Registrar egresos y sustentos',
+  FINANCE_CONFIG_WRITE: 'Configurar categorías financieras',
+  FINANCES_ADJUST: 'Ajustar cargos y liberar deuda pendiente',
+  CLINICAL_CONFIG_WRITE: 'Editar categorías y reglas de archivos',
+  SETTINGS_READ: 'Consultar el consultorio',
+  SETTINGS_WRITE: 'Editar el consultorio',
+  USERS_READ: 'Consultar usuarios',
+  USERS_WRITE: 'Administrar usuarios',
+  ROLES_READ: 'Consultar roles',
+  ROLES_WRITE: 'Administrar permisos',
+  DENTISTS_READ: 'Consultar odontólogos',
+  DENTISTS_WRITE: 'Administrar odontólogos',
+  SERVICES_READ: 'Consultar servicios y categorías',
+  SERVICES_WRITE: 'Administrar servicios y categorías',
+  SCHEDULES_READ: 'Consultar horarios y bloqueos',
+  SCHEDULES_WRITE: 'Administrar horarios y bloqueos',
+  AUDIT_READ: 'Consultar auditoría',
+  PATIENTS_READ: 'Consultar pacientes',
+  PATIENTS_WRITE: 'Administrar pacientes',
+  APPOINTMENTS_READ: 'Consultar agenda',
+  APPOINTMENTS_WRITE: 'Administrar citas',
+}
+export const dentistSource: PickerSource = {
+  endpoint: '/api/v1/dentists',
+  labelKey: 'fullName',
+  filters: { active: 'true' },
+}
+export const serviceSource: PickerSource = {
+  endpoint: '/api/v1/services',
+  labelKey: 'name',
+  filters: { active: 'true' },
+}
+export const dayOptions = [
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes',
+  'Sábado',
+  'Domingo',
+].map((label, i) => ({ value: String(i + 1), label }))
+export function timeLabel(minutes: unknown) {
+  return (
+    String(Math.floor(Number(minutes) / 60)).padStart(2, '0') +
+    ':' +
+    String(Number(minutes) % 60).padStart(2, '0')
+  )
+}
+export function timeValue(value: unknown) {
+  if (typeof value === 'number') return value
+  const [h, m] = String(value).split(':').map(Number)
+  return h * 60 + m
+}

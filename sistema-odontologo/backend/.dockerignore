@@ -1,0 +1,11 @@
+**
+!pom.xml
+!src/
+!src/main/
+!src/main/**
+!Dockerfile
+!.dockerignore
+src/main/resources/application-local.properties
+src/main/resources/application-test.properties
+**/*.local.properties
+**/.env*
