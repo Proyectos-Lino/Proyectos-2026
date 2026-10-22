@@ -1,0 +1,27 @@
+package com.odontocare.installation.dto;
+
+public record SettingsResponse(
+    String displayName,
+    String timeZone,
+    String currency,
+    String legalName,
+    String address,
+    String phone,
+    String email,
+    String brandColor,
+    String accentColor,
+    String dateFormat,
+    String documentHeader,
+    String documentFooter,
+    String appointmentInstructions,
+    String patientPrefix,
+    int patientNextNumber,
+    String receiptPrefix,
+    int receiptNextNumber,
+    String budgetPrefix,
+    int budgetNextNumber,
+    int minimumLeadMinutes,
+    int appointmentGapMinutes,
+    long version,
+    boolean hasLogo,
+    int logoRevision) {}

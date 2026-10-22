@@ -1,0 +1,19 @@
+* text=auto
+*.java text eol=lf
+*.properties text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+mvnw text eol=lf
+*.cmd text eol=crlf
+
+# Preserve original upload fixtures, PDF cross-reference offsets and ZIP archives.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.zip binary
+
+Dockerfile text eol=lf
+.dockerignore text eol=lf
+*.sh text eol=lf
