@@ -3,6 +3,7 @@ import { notify } from '../../shared/notifications/notifications'
 import { useEffect, useState, type FormEvent } from 'react'
 import { useAuth } from '../auth/hooks/useAuth'
 import { request, saveJson, ApiError, errorMessage } from '../../shared/api/http'
+import { apiUrl } from '../../shared/api/apiUrl'
 import { Button } from '../../shared/ui/Button'
 interface Settings {
   displayName: string
@@ -155,7 +156,7 @@ export function SettingsPage({ onChanged }: { onChanged: () => void }) {
       <div className="flex flex-wrap items-center gap-5 rounded-2xl border border-line bg-white p-5">
         {data.hasLogo ? (
           <img
-            src={'/api/v1/system/logo?v=' + data.logoRevision}
+            src={apiUrl('/api/v1/system/logo?v=' + data.logoRevision)}
             alt="Logo del consultorio"
             className="size-20 rounded-xl border border-line object-contain p-2"
           />

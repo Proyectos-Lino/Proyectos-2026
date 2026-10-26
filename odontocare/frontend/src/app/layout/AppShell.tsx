@@ -8,6 +8,7 @@ import { BrandMark } from '../../shared/ui/BrandMark'
 import { Button } from '../../shared/ui/Button'
 import { useAuth } from '../../features/auth/hooks/useAuth'
 import { errorMessage } from '../../shared/api/http'
+import { apiUrl } from '../../shared/api/apiUrl'
 import { modules } from '../navigation'
 import { SideNavigation } from './SideNavigation'
 
@@ -16,7 +17,7 @@ function Brand({ state }: { state: InstallationState }) {
     <div className="flex items-center gap-3">
       {state.status === 'ready' && state.data.hasLogo ? (
         <img
-          src={'/api/v1/system/logo?v=' + state.data.logoRevision}
+          src={apiUrl('/api/v1/system/logo?v=' + state.data.logoRevision)}
           alt=""
           className="size-10 shrink-0 object-contain"
         />

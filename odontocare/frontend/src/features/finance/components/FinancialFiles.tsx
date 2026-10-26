@@ -137,9 +137,15 @@ function SupportForm({
 }
 function FilePreview({ document, onClose }: { document: FinancialDocument; onClose: () => void }) {
   const [page, setPage] = useState(0),
-    [data, setData] = useState<{ url: string; pages: number }>(),
-    [error, setError] = useState(''),
+    [result, setResult] = useState<{
+      key: string
+      url?: string
+      pages: number
+      error?: string
+    }>({ key: '', pages: 1 }),
     [zoom, setZoom] = useState(100)
+  const key = document.id + ':' + page,
+    loading = result.key !== key
   useEffect(() => {
     const control = new AbortController()
     let url: string | undefined
@@ -150,24 +156,25 @@ function FilePreview({ document, onClose }: { document: FinancialDocument; onClo
       control.signal,
     )
       .then(({ blob, pages }) => {
+        if (control.signal.aborted) return
         url = URL.createObjectURL(blob)
-        setData({ url, pages })
+        setResult({ key, url, pages })
       })
       .catch((e) => {
-        if (!control.signal.aborted) setError(String(e.message))
+        if (!control.signal.aborted) setResult({ key, pages: 1, error: String(e.message) })
       })
     return () => {
       control.abort()
       if (url) URL.revokeObjectURL(url)
     }
-  }, [document, page])
+  }, [document, page, key])
   return (
     <Modal title="Visualizar documento financiero" onClose={onClose}>
       <div className="space-y-4">
         <p className="text-sm">{document.description}</p>
-        {error && (
+        {!loading && result.error && (
           <p role="alert" className="error-box">
-            {error}
+            {result.error}
           </p>
         )}
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -195,28 +202,36 @@ function FilePreview({ document, onClose }: { document: FinancialDocument; onClo
           role="region"
           aria-label="Vista del documento ampliable"
         >
-          {data ? (
+          {loading ? (
+            <p role="status">Cargando documento…</p>
+          ) : result.url ? (
             <img
-              src={data.url}
+              src={result.url}
               alt={document.description}
               className="mx-auto h-auto max-w-none"
               style={{ width: zoom + '%' }}
             />
-          ) : (
-            <p role="status">Cargando documento…</p>
-          )}
+          ) : null}
         </div>
-        {document.mediaType === 'application/pdf' && data && (
+        {document.mediaType === 'application/pdf' && (
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button variant="secondary" disabled={page === 0} onClick={() => setPage((n) => n - 1)}>
+            <Button
+              variant="secondary"
+              disabled={loading || page === 0}
+              onClick={() => setPage((n) => n - 1)}
+            >
               Página anterior
             </Button>
             <span className="text-sm">
-              Página {page + 1} de {data.pages}
+              {loading
+                ? 'Cargando página…'
+                : result.error
+                  ? `Página ${page + 1} no disponible`
+                  : `Página ${page + 1} de ${result.pages}`}
             </span>
             <Button
               variant="secondary"
-              disabled={page + 1 >= data.pages}
+              disabled={loading || page + 1 >= result.pages}
               onClick={() => setPage((n) => n + 1)}
             >
               Página siguiente
