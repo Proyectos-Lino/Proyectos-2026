@@ -1,0 +1,5 @@
+# Entorno recomendado. Sin estos paquetes existe un modo compatible con
+# Tkinter y WSGI de la biblioteca estándar de Python para uso local.
+Flask>=3.1,<4
+ttkbootstrap>=1.14,<2
+Pillow>=11,<13

@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+data/
+reportes/
+dist/
+build/
+.build/
+.test-data/
+pids/
+*.log
+*.key
+.env
+.env.*
+!.env.example

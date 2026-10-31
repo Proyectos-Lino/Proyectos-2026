@@ -1,0 +1,19 @@
+{
+  "name": "biotrack-portal",
+  "version": "1.1.0",
+  "description": "Portal administrativo local de BIOTRACK",
+  "author": "BIOTRACK",
+  "private": true,
+  "main": "main.js",
+  "scripts": {"start": "electron .", "build": "electron-builder --win --x64 --dir"},
+  "devDependencies": {"electron": "45.2.1", "electron-builder": "26.18.0"},
+  "build": {
+    "electronDist": "node_modules/electron/dist",
+    "appId": "pe.biotrack.portal",
+    "productName": "BIOTRACK Portal",
+    "asar": true,
+    "directories": {"output": "../dist/windows-portal"},
+    "files": ["main.js", "loading.html", "package.json"],
+    "win": {"signAndEditExecutable": false}
+  }
+}
