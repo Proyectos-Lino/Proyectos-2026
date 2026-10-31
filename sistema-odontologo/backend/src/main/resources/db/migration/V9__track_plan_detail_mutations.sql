@@ -1,1 +1,0 @@
-ALTER TABLE treatment_plan ADD COLUMN mutation INTEGER NOT NULL DEFAULT 0;
