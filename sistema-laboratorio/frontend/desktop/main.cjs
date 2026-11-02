@@ -4,7 +4,7 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const APP_ORIGIN = 'app://labcore';
-const API_ORIGIN = 'https://api-laboratorio-amcdbpgzgyf4avgu.canadacentral-01.azurewebsites.net';
+const API_ORIGIN = 'https://api-labflow.camiluxlym.com';
 const BUNDLE_DIRECTORY = path.join(__dirname, '..', 'dist');
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
@@ -108,13 +108,17 @@ function createWindow() {
     height: 900,
     minWidth: 840,
     minHeight: 600,
-    title: 'LabCore Laboratorio',
+    title: 'LabFlow - Plataforma integral de gestión de laboratorios',
     backgroundColor: '#f6f8fc',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       sandbox: true,
     },
+  });
+
+  window.on('page-title-updated', (event) => {
+    event.preventDefault();
   });
 
   window.webContents.on('will-navigate', (event, destination) => {

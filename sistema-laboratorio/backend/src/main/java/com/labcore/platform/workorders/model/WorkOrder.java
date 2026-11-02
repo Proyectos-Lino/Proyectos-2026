@@ -117,6 +117,15 @@ public class WorkOrder extends BaseEntity {
     closedAt = Instant.now();
   }
 
+  public void returnTo(WorkOrderStatus status) {
+    this.status = status;
+    this.closedAt = null;
+  }
+
+  public void correctDueDate(Instant date) {
+    this.laboratoryDueAt = date;
+  }
+
   public void cancel(String reason) {
     status = WorkOrderStatus.CANCELLED;
     cancellationReason = reason;

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -91,6 +92,26 @@ public class GlobalExceptionHandler {
     detail.setTitle("Error interno");
     detail.setInstance(URI.create(request.getRequestURI()));
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(detail);
+  }
+
+  @ExceptionHandler(HttpMessageNotReadableException.class)
+  ResponseEntity<ProblemDetail> handleMalformedInput(
+      HttpMessageNotReadableException exception, HttpServletRequest request) {
+    return problem(
+        HttpStatus.BAD_REQUEST,
+        "Datos no válidos",
+        "Revisa los tipos de datos enviados. Las cantidades de yemas y cargadores deben ser números enteros.",
+        request.getRequestURI());
+  }
+
+  @ExceptionHandler(org.springframework.orm.ObjectOptimisticLockingFailureException.class)
+  ResponseEntity<ProblemDetail> handleConcurrentChange(
+      Exception exception, HttpServletRequest request) {
+    return problem(
+        HttpStatus.CONFLICT,
+        "La operación cambió",
+        "Otro usuario modificó esta operación. Actualiza la información y revisa los cambios antes de continuar.",
+        request.getRequestURI());
   }
 
   private ResponseEntity<ProblemDetail> problem(

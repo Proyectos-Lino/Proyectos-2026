@@ -34,6 +34,13 @@ export const documentTypeLabels = {
 } as const;
 
 export const auditActionLabels: Record<string, string> = {
+  BEFORE_CORRECTION: 'Versión anterior a la corrección',
+  RETURNED_FOR_CORRECTION: 'Devuelta a la etapa anterior',
+  ASSIGNMENT_CORRECTED: 'Asignaciones técnicas corregidas',
+  TECHNICAL_PROCESS_REOPENED: 'Proceso técnico reabierto',
+  REVIEW_REOPENED: 'Resultado devuelto a revisión',
+  MATRIX_STARTED: 'Evaluación matricial iniciada',
+  MATRIX_DRAFT_SAVED: 'Avance de matriz guardado',
   CREATED: 'Creación',
   UPDATED: 'Actualización',
   CONFIRMED: 'Confirmación',
@@ -104,6 +111,9 @@ const systemCodeLabels: Record<string, string> = {
   EMAIL: 'Correo electrónico',
   PHONE: 'Teléfono',
   PICKUP: 'Recojo',
+  RETAINED: 'Mantener en custodia',
+  RETURNED_TO_CLIENT: 'Devolver al cliente',
+  DISPOSED: 'Desechar según procedimiento',
 };
 
 export function labelForAction(action: string) {

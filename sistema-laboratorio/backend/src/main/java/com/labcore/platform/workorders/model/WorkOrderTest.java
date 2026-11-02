@@ -77,6 +77,10 @@ public class WorkOrderTest extends BaseEntity {
     status = WorkOrderTestStatus.RECORDED;
   }
 
+  public void reassignAnalyst(UUID analystId) {
+    assignedAnalystId = analystId;
+  }
+
   public void requestCorrection() {
     status = WorkOrderTestStatus.CORRECTION_REQUESTED;
   }

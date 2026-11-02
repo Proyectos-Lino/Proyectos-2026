@@ -155,6 +155,10 @@ export function OrdersPage() {
             setIsFormOpen(true);
           }}
           onFinalize={(orderId) => void finalizeOrder(orderId)}
+          onRefresh={() => {
+            if (selectedOrder) void openOrder(selectedOrder.id);
+            void loadOrders(filters);
+          }}
           onOpenRecord={openRecord}
           onSubmitCorrection={setSubmittingCorrectionOrder}
           order={selectedOrder}

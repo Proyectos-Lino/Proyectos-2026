@@ -10,6 +10,7 @@ export const serviceOrderStatusLabels: Record<ServiceOrderStatus, string> = {
 };
 
 export const serviceOrderHistoryActionLabels: Record<ServiceOrderHistoryAction, string> = {
+  TECHNICAL_PROCESS_REOPENED: 'Proceso técnico reabierto',
   CREATED: 'Orden registrada',
   COMMERCIAL_DETAILS_UPDATED: 'Datos comerciales actualizados',
   SAMPLES_UPDATED: 'Muestras y ensayos actualizados',

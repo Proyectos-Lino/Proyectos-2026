@@ -249,6 +249,7 @@ export function useWorkOrders(canManageWorkOrders: boolean, initialFilters: Work
     isLoading,
     isSaving,
     loadHistory,
+    loadWorkOrders,
     openWorkOrder,
     openDocument,
     responsibleUsers,

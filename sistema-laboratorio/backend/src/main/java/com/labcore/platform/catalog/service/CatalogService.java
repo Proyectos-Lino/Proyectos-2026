@@ -142,6 +142,26 @@ public class CatalogService {
     return new CatalogDtos.Item(area.getId(), area.getCode(), area.getName());
   }
 
+  public Product getProduct(UUID id) {
+    Product product =
+        productRepository
+            .findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("el producto", id));
+    if (!product.isActive())
+      throw new BusinessRuleViolationException("El producto seleccionado está inactivo.");
+    return product;
+  }
+
+  public ProductVariety getVariety(UUID id) {
+    ProductVariety variety =
+        varietyRepository
+            .findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("la variedad", id));
+    if (!variety.isActive())
+      throw new BusinessRuleViolationException("La variedad seleccionada está inactiva.");
+    return variety;
+  }
+
   public CatalogDtos.UnitItem createUnit(CatalogDtos.UnitRequest request) {
     ensureCodeAvailable(
         unitRepository.existsByCodeIgnoreCase(normalizeCode(request.code())),

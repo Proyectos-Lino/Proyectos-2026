@@ -6,6 +6,8 @@ import com.labcore.platform.reports.LaboratoryReportService;
 import com.labcore.platform.security.ApplicationUser;
 import com.labcore.platform.security.ApplicationUserRepository;
 import com.labcore.platform.security.RoleCode;
+import com.labcore.platform.workflow.OperationType;
+import com.labcore.platform.workflow.OperationVersionService;
 import com.labcore.platform.workorders.WorkOrder;
 import com.labcore.platform.workorders.WorkOrderDocumentService;
 import com.labcore.platform.workorders.WorkOrderHistory;
@@ -31,6 +33,7 @@ public class ServiceOrderCorrectionWorkflowService {
   private final LaboratoryReportService reportService;
   private final ServiceOrderDocumentService serviceOrderDocumentService;
   private final WorkOrderDocumentService workOrderDocumentService;
+  private final OperationVersionService versions;
 
   public ServiceOrderCorrectionWorkflowService(
       ServiceOrderService serviceOrderService,
@@ -41,7 +44,8 @@ public class ServiceOrderCorrectionWorkflowService {
       ApplicationUserRepository userRepository,
       LaboratoryReportService reportService,
       ServiceOrderDocumentService serviceOrderDocumentService,
-      WorkOrderDocumentService workOrderDocumentService) {
+      WorkOrderDocumentService workOrderDocumentService,
+      OperationVersionService versions) {
     this.serviceOrderService = serviceOrderService;
     this.impactService = impactService;
     this.serviceOrderHistoryRepository = serviceOrderHistoryRepository;
@@ -51,6 +55,7 @@ public class ServiceOrderCorrectionWorkflowService {
     this.reportService = reportService;
     this.serviceOrderDocumentService = serviceOrderDocumentService;
     this.workOrderDocumentService = workOrderDocumentService;
+    this.versions = versions;
   }
 
   public ServiceOrderDtos.ServiceOrderDetail requestCorrection(
@@ -63,13 +68,21 @@ public class ServiceOrderCorrectionWorkflowService {
         workOrderRepository.findByServiceOrderIdOrderByCreatedAtAsc(orderId);
     ensureTechnicalAuthority(actor, workOrders);
     if (order.getStatus() != ServiceOrderStatus.IN_PROGRESS
-        && order.getStatus() != ServiceOrderStatus.FINALIZED) {
+        && order.getStatus() != ServiceOrderStatus.FINALIZED
+        && order.getStatus() != ServiceOrderStatus.CORRECTION_REVIEW) {
       throw new BusinessRuleViolationException(
           "Solo una orden en laboratorio o finalizada puede devolverse a corrección comercial.");
     }
 
     ServiceOrderStatus previousStatus = order.getStatus();
     String reason = request.reason().trim();
+    versions.capture(
+        OperationType.SERVICE_ORDER,
+        orderId,
+        "BEFORE_CORRECTION",
+        reason,
+        () -> serviceOrderService.getDetail(orderId),
+        actorEmail);
     order.requestCommercialCorrection(reason, actorEmail);
     serviceOrderHistoryRepository.save(
         new ServiceOrderHistory(
@@ -82,6 +95,13 @@ public class ServiceOrderCorrectionWorkflowService {
     workOrders.forEach(workOrder -> pauseWorkOrder(workOrder, reason, actorEmail));
     reportService.cancelOpenReportsForCommercialCorrection(
         orderId, "Corrección comercial solicitada: " + reason, actorEmail);
+    versions.capture(
+        OperationType.SERVICE_ORDER,
+        orderId,
+        "COMMERCIAL_CORRECTION_REQUESTED",
+        reason,
+        () -> serviceOrderService.getDetail(orderId),
+        actorEmail);
     return serviceOrderService.getDetail(orderId);
   }
 
@@ -106,6 +126,13 @@ public class ServiceOrderCorrectionWorkflowService {
     ServiceOrderStatus previousStatus = order.getStatus();
     String changeNote = request.changeNote().trim();
     order.submitCommercialCorrection(actorEmail, changeNote);
+    versions.capture(
+        OperationType.SERVICE_ORDER,
+        orderId,
+        "COMMERCIAL_CORRECTION_SUBMITTED",
+        changeNote,
+        () -> serviceOrderService.getDetail(orderId),
+        actorEmail);
     serviceOrderHistoryRepository.save(
         new ServiceOrderHistory(
             orderId,
@@ -130,6 +157,13 @@ public class ServiceOrderCorrectionWorkflowService {
 
     ServiceOrderStatus previousStatus = order.getStatus();
     order.approveCommercialCorrection(actorEmail);
+    versions.capture(
+        OperationType.SERVICE_ORDER,
+        orderId,
+        "COMMERCIAL_CORRECTION_APPROVED",
+        order.getCorrectionChangeNote(),
+        () -> serviceOrderService.getDetail(orderId),
+        actorEmail);
     serviceOrderHistoryRepository.save(
         new ServiceOrderHistory(
             orderId,

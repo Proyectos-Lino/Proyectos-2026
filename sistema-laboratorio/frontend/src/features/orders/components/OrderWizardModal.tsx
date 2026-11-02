@@ -13,6 +13,9 @@ import type {
 import { CommercialDetailsFields } from './CommercialDetailsFields';
 import { SampleTestAssignment } from './SampleTestAssignment';
 import { SampleTraceabilityFields } from './SampleTraceabilityFields';
+import { SampleNavigator } from './SampleNavigator';
+import { useSampleCatalog } from '../hooks/useSampleCatalog';
+import { copyCommonSampleData, type CommonDataGroup } from '../model/sample-common-data';
 import type { CommercialDetailsFormValues } from '../model/order-commercial-details';
 import {
   emptyOrderWizard,
@@ -53,7 +56,7 @@ function initialForm(
 }
 
 export function OrderWizardModal({
-  catalog,
+  catalog: baseCatalog,
   clients,
   editingOrder,
   isCreatingClient,
@@ -66,7 +69,10 @@ export function OrderWizardModal({
   onSubmitSamplesUpdate,
   producers,
 }: OrderWizardModalProps) {
+  const { catalog, createProduct, createVariety } = useSampleCatalog(baseCatalog);
   const [form, setForm] = useState<OrderWizardForm>(() => initialForm(editingOrder, catalog));
+  const [activeSampleIndex, setActiveSampleIndex] = useState(0);
+  const activeIndex = Math.min(activeSampleIndex, form.samples.length - 1);
   const [step, setStep] = useState(1);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [isQuickClientOpen, setIsQuickClientOpen] = useState(false);
@@ -82,6 +88,7 @@ export function OrderWizardModal({
   function closeModal() {
     setForm(initialForm(editingOrder, catalog));
     setStep(1);
+    setActiveSampleIndex(0);
     setValidationError(null);
     setCorrectionImpact(null);
     onClose();
@@ -99,6 +106,37 @@ export function OrderWizardModal({
       ...current,
       samples: current.samples.map((sample, sampleIndex) =>
         sampleIndex === index ? ({ ...sample, [field]: value } as WizardSampleForm) : sample,
+      ),
+    }));
+  }
+
+  function selectProduct(index: number, productId: string, productName: string) {
+    updateForm((current) => ({
+      ...current,
+      samples: current.samples.map((sample, sampleIndex) =>
+        sampleIndex === index
+          ? { ...sample, productId, productName, varietyId: '', varietyName: '' }
+          : sample,
+      ),
+    }));
+  }
+
+  function selectVariety(index: number, varietyId: string, varietyName: string) {
+    updateForm((current) => ({
+      ...current,
+      samples: current.samples.map((sample, sampleIndex) =>
+        sampleIndex === index ? { ...sample, varietyId, varietyName } : sample,
+      ),
+    }));
+  }
+
+  function copyCommon(groups: CommonDataGroup[], overwrite: boolean) {
+    updateForm((current) => ({
+      ...current,
+      samples: current.samples.map((sample, index) =>
+        index === activeIndex
+          ? sample
+          : copyCommonSampleData(current.samples[activeIndex], sample, groups, overwrite),
       ),
     }));
   }
@@ -195,24 +233,36 @@ export function OrderWizardModal({
     }
 
     if (step === 2) {
-      const incompleteSample = form.samples.some(
-        (sample) => !sample.productName.trim() || !sample.sampleTypeId,
+      const incompleteSample = form.samples.findIndex(
+        (sample) =>
+          !sample.productId ||
+          !sample.sampleTypeId ||
+          (sample.varietyName !== '' && !sample.varietyId) ||
+          [sample.budCount, sample.carrierCount].some(
+            (value) => value !== '' && (!/^\d+$/.test(value) || Number(value) > 2147483647),
+          ),
       );
-      if (incompleteSample) {
-        setValidationError('Cada muestra debe tener producto o matriz y tipo de muestra.');
+      if (incompleteSample >= 0) {
+        setActiveSampleIndex(incompleteSample);
+        setValidationError(
+          `Revisa la muestra ${incompleteSample + 1}: selecciona producto, variedad válida si corresponde, tipo de muestra y cantidades enteras válidas.`,
+        );
         return false;
       }
     }
 
     if (step === 3) {
-      const incompleteTests = form.samples.some(
+      const incompleteTests = form.samples.findIndex(
         (sample) =>
           !sample.serviceId ||
           sample.requestedTests.length === 0 ||
           sample.requestedTests.some((test) => !test.testMethodId),
       );
-      if (incompleteTests) {
-        setValidationError('Cada muestra debe tener un servicio, al menos un ensayo y un método.');
+      if (incompleteTests >= 0) {
+        setActiveSampleIndex(incompleteTests);
+        setValidationError(
+          `La muestra ${incompleteTests + 1} debe tener un servicio, al menos un ensayo y un método.`,
+        );
         return false;
       }
     }
@@ -318,7 +368,7 @@ export function OrderWizardModal({
             ? 'Corrige los datos solicitados. El sistema conservará las OT y evaluará el impacto sobre los resultados.'
             : isEditingSamples
               ? 'Modifica muestras y ensayos antes de iniciar el procesamiento técnico.'
-            : 'Completa los tres pasos para registrar una orden de servicio trazable.'
+              : 'Completa los tres pasos para registrar una orden de servicio trazable.'
         }
         isOpen={isOpen}
         onClose={closeModal}
@@ -449,19 +499,37 @@ export function OrderWizardModal({
 
           {step === 2 && catalog ? (
             <div className="space-y-5">
-              {form.samples.map((sample, index) => (
-                <SampleTraceabilityFields
-                  catalog={catalog}
-                  index={index}
-                  isRemovable={form.samples.length > 1}
-                  key={sample.clientKey}
-                  onChange={(field, value) => updateSample(index, field, value)}
-                  onRemove={() => removeSample(index)}
-                  producers={producers}
-                  sample={sample}
-                />
-              ))}
-              <Button onClick={addSample} variant="secondary">
+              <SampleNavigator
+                samples={form.samples}
+                activeIndex={activeIndex}
+                onSelect={setActiveSampleIndex}
+                onCopy={copyCommon}
+              />
+              {form.samples.map((sample, index) =>
+                index === activeIndex ? (
+                  <SampleTraceabilityFields
+                    catalog={catalog}
+                    index={index}
+                    isRemovable={form.samples.length > 1}
+                    key={sample.clientKey}
+                    onChange={(field, value) => updateSample(index, field, value)}
+                    onRemove={() => removeSample(index)}
+                    onCreateProduct={createProduct}
+                    onCreateVariety={createVariety}
+                    onSelectProduct={(id, name) => selectProduct(index, id, name)}
+                    onSelectVariety={(id, name) => selectVariety(index, id, name)}
+                    producers={producers}
+                    sample={sample}
+                  />
+                ) : null,
+              )}
+              <Button
+                onClick={() => {
+                  addSample();
+                  setActiveSampleIndex(form.samples.length);
+                }}
+                variant="secondary"
+              >
                 <Plus size={16} />
                 Agregar muestra
               </Button>
@@ -470,20 +538,27 @@ export function OrderWizardModal({
 
           {step === 3 && catalog ? (
             <div className="space-y-5">
-              {form.samples.map((sample, index) => (
-                <SampleTestAssignment
-                  catalog={catalog}
-                  index={index}
-                  key={sample.clientKey}
-                  laboratoryAreaId={form.laboratoryAreaId}
-                  onMethodChange={(testDefinitionId, testMethodId) =>
-                    changeMethod(index, testDefinitionId, testMethodId)
-                  }
-                  onServiceChange={(serviceId) => changeService(index, serviceId)}
-                  onTestToggle={(testDefinitionId) => toggleTest(index, testDefinitionId)}
-                  sample={sample}
-                />
-              ))}
+              <SampleNavigator
+                samples={form.samples}
+                activeIndex={activeIndex}
+                onSelect={setActiveSampleIndex}
+              />
+              {form.samples.map((sample, index) =>
+                index === activeIndex ? (
+                  <SampleTestAssignment
+                    catalog={catalog}
+                    index={index}
+                    key={sample.clientKey}
+                    laboratoryAreaId={form.laboratoryAreaId}
+                    onMethodChange={(testDefinitionId, testMethodId) =>
+                      changeMethod(index, testDefinitionId, testMethodId)
+                    }
+                    onServiceChange={(serviceId) => changeService(index, serviceId)}
+                    onTestToggle={(testDefinitionId) => toggleTest(index, testDefinitionId)}
+                    sample={sample}
+                  />
+                ) : null,
+              )}
             </div>
           ) : null}
 
@@ -521,12 +596,19 @@ export function OrderWizardModal({
               Anterior
             </Button>
             {step < 3 ? (
-              <Button onClick={goNext} type="button">
+              <Button
+                key="next-step"
+                onClick={(event) => {
+                  event.preventDefault();
+                  goNext();
+                }}
+                type="button"
+              >
                 Siguiente
                 <ChevronRight size={16} />
               </Button>
             ) : (
-              <Button disabled={isSaving} type="submit">
+              <Button key="save-order" disabled={isSaving} type="submit">
                 {isSaving
                   ? 'Guardando…'
                   : isCorrection
@@ -535,7 +617,7 @@ export function OrderWizardModal({
                       : 'Guardar corrección'
                     : isEditingSamples
                       ? 'Guardar muestras y ensayos'
-                    : 'Registrar orden'}
+                      : 'Registrar orden'}
               </Button>
             )}
           </ModalFooter>

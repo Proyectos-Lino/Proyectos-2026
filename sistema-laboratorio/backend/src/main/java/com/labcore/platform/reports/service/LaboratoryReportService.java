@@ -180,10 +180,41 @@ public class LaboratoryReportService {
       throw new BusinessRuleViolationException(
           "La reemisión requiere que la versión anterior se encuentre anulada.");
     }
+    if (serviceOrderService.getRequired(previousReport.getServiceOrderId()).getStatus()
+        != ServiceOrderStatus.FINALIZED) {
+      throw new BusinessRuleViolationException(
+          "Completa de nuevo el proceso técnico antes de reemitir el informe.");
+    }
     ensureNoOpenReport(previousReport.getServiceOrderId());
     return createReport(
         previousReport.getServiceOrderId(),
         nextVersion(previousReport.getServiceOrderId()),
+        LaboratoryReportHistoryAction.REISSUED,
+        actorEmail);
+  }
+
+  public LaboratoryReportDtos.Detail returnToDraft(
+      UUID reportId, String reason, String actorEmail) {
+    ensureRole(currentUser(actorEmail), CONTROL_ROLES, "devolver informes");
+    LaboratoryReport report = required(reportId);
+    if (report.getStatus() != LaboratoryReportStatus.ISSUED)
+      throw new BusinessRuleViolationException(
+          "Solo un informe emitido puede volver a un nuevo borrador.");
+    if (serviceOrderService.getRequired(report.getServiceOrderId()).getStatus()
+        != ServiceOrderStatus.FINALIZED)
+      throw new BusinessRuleViolationException(
+          "La orden debe estar finalizada para preparar otro borrador.");
+    report.cancel(actorEmail, reason);
+    recordHistory(
+        report,
+        LaboratoryReportHistoryAction.CANCELLED,
+        LaboratoryReportStatus.ISSUED,
+        "Devuelto a un nuevo borrador. Motivo: " + reason,
+        actorEmail);
+    ensureNoOpenReport(report.getServiceOrderId());
+    return createReport(
+        report.getServiceOrderId(),
+        nextVersion(report.getServiceOrderId()),
         LaboratoryReportHistoryAction.REISSUED,
         actorEmail);
   }
@@ -205,8 +236,7 @@ public class LaboratoryReportService {
                   report,
                   LaboratoryReportHistoryAction.CANCELLED,
                   previous,
-                  "Anulado automáticamente por devolución de la orden a corrección comercial: "
-                      + reason,
+                  "Anulado automáticamente por devolución de la orden para corrección: " + reason,
                   actorEmail);
             });
   }

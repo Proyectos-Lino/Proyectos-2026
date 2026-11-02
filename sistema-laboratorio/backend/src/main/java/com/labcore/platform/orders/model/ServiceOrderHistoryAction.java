@@ -1,6 +1,7 @@
 package com.labcore.platform.orders;
 
 public enum ServiceOrderHistoryAction {
+  TECHNICAL_PROCESS_REOPENED,
   CREATED,
   COMMERCIAL_DETAILS_UPDATED,
   SAMPLES_UPDATED,

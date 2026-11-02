@@ -2,6 +2,8 @@ package com.labcore.platform.workorders;
 
 public enum WorkOrderHistoryAction {
   CREATED,
+  RETURNED_FOR_CORRECTION,
+  ASSIGNMENT_CORRECTED,
   SAMPLES_CLASSIFIED,
   STATUS_UPDATED,
   RESULT_RECORDED,

@@ -6,6 +6,8 @@ import com.labcore.platform.client.Client;
 import com.labcore.platform.client.ClientService;
 import com.labcore.platform.common.exception.BusinessRuleViolationException;
 import com.labcore.platform.common.exception.ResourceNotFoundException;
+import com.labcore.platform.workflow.OperationType;
+import com.labcore.platform.workflow.OperationVersionService;
 import com.labcore.platform.workorders.TechnicalSample;
 import com.labcore.platform.workorders.TechnicalSampleRepository;
 import com.labcore.platform.workorders.WorkOrderRepository;
@@ -39,6 +41,7 @@ public class ServiceOrderService {
   private final ServiceOrderWorkflowEvaluator workflowEvaluator;
   private final ServiceOrderDocumentService documentService;
   private final ServiceOrderCorrectionImpactService correctionImpactService;
+  private final OperationVersionService versions;
 
   public ServiceOrderService(
       ServiceOrderRepository orderRepository,
@@ -52,7 +55,8 @@ public class ServiceOrderService {
       TechnicalSampleRepository technicalSampleRepository,
       ServiceOrderWorkflowEvaluator workflowEvaluator,
       ServiceOrderDocumentService documentService,
-      ServiceOrderCorrectionImpactService correctionImpactService) {
+      ServiceOrderCorrectionImpactService correctionImpactService,
+      OperationVersionService versions) {
     this.orderRepository = orderRepository;
     this.sampleRepository = sampleRepository;
     this.requestedTestRepository = requestedTestRepository;
@@ -65,6 +69,7 @@ public class ServiceOrderService {
     this.workflowEvaluator = workflowEvaluator;
     this.documentService = documentService;
     this.correctionImpactService = correctionImpactService;
+    this.versions = versions;
   }
 
   public ServiceOrderDtos.ServiceOrderDetail create(
@@ -290,8 +295,21 @@ public class ServiceOrderService {
                                         test.getLaboratoryServiceId(),
                                         test.getTestDefinitionId(),
                                         test.getTestMethodId(),
-                                        test.getStatus()))
-                            .toList()))
+                                        test.getStatus(),
+                                        catalogService
+                                            .getService(test.getLaboratoryServiceId())
+                                            .getName(),
+                                        catalogService
+                                            .getTest(test.getTestDefinitionId())
+                                            .getName(),
+                                        catalogService.getMethod(test.getTestMethodId()).getName()))
+                            .toList(),
+                        sample.getProductId(),
+                        sample.getVarietyId(),
+                        catalogService.getSampleType(sample.getSampleTypeId()).getName(),
+                        sample.getMeasurementUnitId() == null
+                            ? null
+                            : catalogService.getUnit(sample.getMeasurementUnitId()).getName()))
             .toList();
     List<ServiceOrderSampleTest> requestedTests =
         testsBySample.values().stream().flatMap(Collection::stream).toList();
@@ -366,7 +384,10 @@ public class ServiceOrderService {
       order.updateClient(request.clientId());
     }
     validateCommercialDetails(
-        request.deliveryMethod(), request.pickupPerson(), request.plannedDeliveryAt());
+        request.deliveryMethod(),
+        request.pickupPerson(),
+        request.plannedDeliveryAt(),
+        !request.plannedDeliveryAt().equals(order.getPlannedDeliveryAt()));
     order.updateCommercialDetails(
         nullableTrim(request.reportName()),
         nullableTrim(request.reportEmail()),
@@ -587,32 +608,35 @@ public class ServiceOrderService {
       clientService.getActiveProducerRequired(request.producerId());
     }
     if (request.measurementUnitId() != null) catalogService.getUnit(request.measurementUnitId());
-    return new ServiceOrderSample(
-        orderId,
-        sequence,
-        nullableTrim(request.clientIdentification()),
-        request.producerId(),
-        nullableTrim(request.productName()),
-        nullableTrim(request.varietyName()),
-        request.sampleTypeId(),
-        nullableTrim(request.physicalDescription()),
-        nullableTrim(request.samplingLocation()),
-        nullableTrim(request.origin()),
-        nullableTrim(request.samplerName()),
-        request.sampledAt(),
-        request.quantity(),
-        request.measurementUnitId(),
-        nullableTrim(request.containerDescription()),
-        nullableTrim(request.batchNumber()),
-        request.productionYear(),
-        nullableTrim(request.brand()),
-        nullableTrim(request.originCertificate()),
-        nullableTrim(request.sanitaryRegistration()),
-        nullableTrim(request.cropAge()),
-        request.carrierCount(),
-        request.budCount(),
-        request.counterSampleInCustody(),
-        nullableTrim(request.observations()));
+    ServiceOrderSample sample =
+        new ServiceOrderSample(
+            orderId,
+            sequence,
+            nullableTrim(request.clientIdentification()),
+            request.producerId(),
+            nullableTrim(request.productName()),
+            nullableTrim(request.varietyName()),
+            request.sampleTypeId(),
+            nullableTrim(request.physicalDescription()),
+            nullableTrim(request.samplingLocation()),
+            nullableTrim(request.origin()),
+            nullableTrim(request.samplerName()),
+            request.sampledAt(),
+            request.quantity(),
+            request.measurementUnitId(),
+            nullableTrim(request.containerDescription()),
+            nullableTrim(request.batchNumber()),
+            request.productionYear(),
+            nullableTrim(request.brand()),
+            nullableTrim(request.originCertificate()),
+            nullableTrim(request.sanitaryRegistration()),
+            nullableTrim(request.cropAge()),
+            request.carrierCount(),
+            request.budCount(),
+            request.counterSampleInCustody(),
+            nullableTrim(request.observations()));
+    sample.selectCatalogProduct(request.productId(), request.varietyId());
+    return sample;
   }
 
   private void validateRequestedTest(ServiceOrderDtos.RequestedTestRequest request) {
@@ -631,6 +655,7 @@ public class ServiceOrderService {
 
     int sequence = 1;
     for (ServiceOrderDtos.SampleRequest sampleRequest : sampleRequests) {
+      SampleCatalogSelection.validate(sampleRequest, catalogService);
       ServiceOrderSample sample =
           sampleRepository.save(createSample(order.getId(), sequence++, sampleRequest));
       for (ServiceOrderDtos.RequestedTestRequest testRequest : sampleRequest.requestedTests()) {
@@ -681,7 +706,15 @@ public class ServiceOrderService {
 
   private void validateCommercialDetails(
       DeliveryMethod deliveryMethod, String pickupPerson, Instant plannedDeliveryAt) {
-    if (plannedDeliveryAt.isBefore(Instant.now())) {
+    validateCommercialDetails(deliveryMethod, pickupPerson, plannedDeliveryAt, true);
+  }
+
+  private void validateCommercialDetails(
+      DeliveryMethod deliveryMethod,
+      String pickupPerson,
+      Instant plannedDeliveryAt,
+      boolean validateDate) {
+    if (validateDate && plannedDeliveryAt.isBefore(Instant.now())) {
       throw new BusinessRuleViolationException(
           "La fecha de entrega programada no puede estar en el pasado.");
     }
@@ -710,6 +743,13 @@ public class ServiceOrderService {
     historyRepository.save(
         new ServiceOrderHistory(
             order.getId(), action, previousStatus, newStatus, changeNote, performedBy));
+    versions.capture(
+        OperationType.SERVICE_ORDER,
+        order.getId(),
+        action.name(),
+        changeNote,
+        () -> getDetail(order.getId()),
+        performedBy);
   }
 
   private String nullableTrim(String value) {

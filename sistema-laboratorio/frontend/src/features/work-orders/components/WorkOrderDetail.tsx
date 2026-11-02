@@ -8,13 +8,18 @@ import type {
   WorkOrderDetail as WorkOrderDetailModel,
   WorkOrderHistoryEntry,
   WorkOrderTest,
+  UserSummary,
 } from '../../../shared/types/domain';
 import { workOrderTestStatusLabels } from '../model/work-order-labels';
 import { ResultEditorModal } from '../../results/components/ResultEditorModal';
 import { WorkOrderHistory } from './WorkOrderHistory';
 import { WorkOrderStatusBadge } from './WorkOrderStatusBadge';
+import { OperationVersions } from '../../workflow/components/OperationVersions';
+import { ReturnOperationControl } from '../../workflow/components/ReturnOperationControl';
+import { WorkOrderAssignmentCorrection } from './WorkOrderAssignmentCorrection';
 
 interface WorkOrderDetailProps {
+  analysts: UserSummary[];
   canManageWorkOrders: boolean;
   canRecordResults: boolean;
   canValidateResults: boolean;
@@ -34,6 +39,7 @@ interface WorkOrderDetailProps {
 }
 
 export function WorkOrderDetail({
+  analysts,
   canManageWorkOrders,
   canRecordResults,
   canValidateResults,
@@ -231,7 +237,8 @@ export function WorkOrderDetail({
 
           {canControlCommercialCorrection ? (
             <div className="flex flex-wrap justify-end gap-3 border-t border-slate-100 pt-5">
-              {!isCommercialCorrection && workOrder.status !== 'CANCELLED' ? (
+              {workOrder.serviceOrderStatus !== 'COMMERCIAL_CORRECTION' &&
+              workOrder.status !== 'CANCELLED' ? (
                 <Button
                   disabled={isSaving}
                   onClick={() => onReturnToCommercial(workOrder)}
@@ -266,10 +273,48 @@ export function WorkOrderDetail({
           ) : null}
 
           <WorkOrderHistory history={history} onPageChange={onHistoryPageChange} />
+          {canControlCommercialCorrection &&
+          !isCommercialCorrection &&
+          workOrder.status === 'PENDING' ? (
+            <WorkOrderAssignmentCorrection
+              key={`${workOrder.id}-${workOrder.laboratoryDueAt}`}
+              order={workOrder}
+              analysts={analysts}
+              onCompleted={onRefresh}
+            />
+          ) : null}
+          {canControlCommercialCorrection &&
+          !isCommercialCorrection &&
+          ['IN_PROGRESS', 'RESULTS_RECORDED', 'VALIDATED', 'CLOSED'].includes(workOrder.status) ? (
+            <ReturnOperationControl
+              key={`${workOrder.id}-${workOrder.status}`}
+              endpoint={`/work-orders/${workOrder.id}/return-to-previous`}
+              label="Devolver OT a la etapa anterior"
+              description={
+                workOrder.status === 'CLOSED'
+                  ? 'La OT volverá a validada para revisar su cierre.'
+                  : workOrder.status === 'VALIDATED'
+                    ? 'Los resultados volverán a revisión y deberán validarse nuevamente.'
+                    : workOrder.status === 'RESULTS_RECORDED'
+                      ? 'Los resultados se devolverán al analista para su corrección.'
+                      : 'La OT volverá a pendiente para corregir sus asignaciones y fecha técnica.'
+              }
+              onCompleted={onRefresh}
+            />
+          ) : null}
+          {canControlCommercialCorrection ? (
+            <OperationVersions
+              key={workOrder.id}
+              type="WORK_ORDER"
+              id={workOrder.id}
+              refreshKey={history?.content[0]?.id ?? workOrder.status}
+            />
+          ) : null}
         </div>
       </Card>
 
       <ResultEditorModal
+        key={activeTest?.id ?? 'no-active-result'}
         canRecord={
           !isCommercialCorrection &&
           activeTest?.status !== 'INVALIDATED' &&

@@ -1,7 +1,9 @@
 package com.labcore.platform.results;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.labcore.platform.catalog.ResultFieldKind;
 import com.labcore.platform.catalog.ResultMode;
+import com.labcore.platform.common.validation.WholeNumberDeserializer;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -40,13 +42,14 @@ public final class ResultDtos {
       @Size(max = 50) String categoryCode) {}
 
   public record MatrixRequest(
-      @Min(1) int rowCount,
-      @Min(1) int columnCount,
+      @Min(1) @JsonDeserialize(using = WholeNumberDeserializer.class) int rowCount,
+      @Min(1) @JsonDeserialize(using = WholeNumberDeserializer.class) int columnCount,
       @NotEmpty List<@Valid MatrixColumnRequest> columns,
       @NotEmpty List<@Valid MatrixCellRequest> cells) {}
 
   public record StartMatrixExecutionRequest(
-      @Min(1) int declaredRowCount, @Min(1) int declaredColumnCount) {}
+      @Min(1) @JsonDeserialize(using = WholeNumberDeserializer.class) int declaredRowCount,
+      @Min(1) @JsonDeserialize(using = WholeNumberDeserializer.class) int declaredColumnCount) {}
 
   public record SaveMatrixDraftRequest(
       @NotNull @Valid MatrixRequest matrix,
@@ -215,5 +218,8 @@ public final class ResultDtos {
       String correctionRequestedByRole,
       Instant correctionRequestedAt,
       List<ReviewHistoryResponse> reviewHistory,
-      ValidationResponse validation) {}
+      ValidationResponse validation,
+      UUID lastRecordedBy,
+      String lastRecordedByName,
+      Instant lastRecordedAt) {}
 }

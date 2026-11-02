@@ -198,6 +198,8 @@ export interface ServiceOrderTechnicalProgress {
 }
 
 export interface ServiceOrderSample {
+  productId?: string;
+  varietyId?: string;
   id: string;
   commercialSequence: number;
   clientIdentification?: string;
@@ -279,6 +281,7 @@ export interface ServiceOrderDetail {
 }
 
 export type ServiceOrderHistoryAction =
+  | 'TECHNICAL_PROCESS_REOPENED'
   | 'CREATED'
   | 'COMMERCIAL_DETAILS_UPDATED'
   | 'SAMPLES_UPDATED'
@@ -393,12 +396,7 @@ export type WorkOrderStatus =
   | 'CANCELLED';
 
 export type WorkOrderTestStatus =
-  | 'PENDING'
-  | 'RECORDED'
-  | 'CORRECTION_REQUESTED'
-  | 'CORRECTED'
-  | 'VALIDATED'
-  | 'INVALIDATED';
+  'PENDING' | 'RECORDED' | 'CORRECTION_REQUESTED' | 'CORRECTED' | 'VALIDATED' | 'INVALIDATED';
 
 export interface WorkOrderTest {
   id: string;
@@ -486,6 +484,8 @@ export interface EligibleServiceOrderDetail {
 }
 
 export type WorkOrderHistoryAction =
+  | 'RETURNED_FOR_CORRECTION'
+  | 'ASSIGNMENT_CORRECTED'
   | 'CREATED'
   | 'SAMPLES_CLASSIFIED'
   | 'STATUS_UPDATED'
@@ -590,6 +590,9 @@ export interface InitialResultTemplate {
 }
 
 export interface ResultResponse {
+  lastRecordedBy?: string;
+  lastRecordedByName?: string;
+  lastRecordedAt?: string;
   id: string;
   workOrderTestId: string;
   resultTemplateId?: string;
@@ -633,17 +636,17 @@ export interface ResultResponse {
 }
 
 export type ResultEntryStatus =
-  | 'DRAFT'
-  | 'RECORDED'
-  | 'CORRECTION_REQUESTED'
-  | 'CORRECTED'
-  | 'VALIDATED'
-  | 'INVALIDATED';
+  'DRAFT' | 'RECORDED' | 'CORRECTION_REQUESTED' | 'CORRECTED' | 'VALIDATED' | 'INVALIDATED';
 
 export interface ResultReviewHistory {
   id: string;
   action:
-    'REGISTERED' | 'CORRECTION_REQUESTED' | 'CORRECTED' | 'VALIDATED' | 'CORRECTED_AND_VALIDATED';
+    | 'REGISTERED'
+    | 'CORRECTION_REQUESTED'
+    | 'CORRECTED'
+    | 'VALIDATED'
+    | 'CORRECTED_AND_VALIDATED'
+    | 'REVIEW_REOPENED';
   previousStatus?: ResultEntryStatus;
   newStatus: ResultEntryStatus;
   resultRevision: number;

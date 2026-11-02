@@ -1,4 +1,4 @@
-# Sistema de laboratorio
+# LabFlow · Plataforma integral de gestión de laboratorios
 
 Aplicación para gestionar clientes y productores, órdenes de servicio, muestras,
 órdenes de trabajo, ensayos, resultados, validación, informes PDF, indicadores
@@ -147,8 +147,8 @@ completa; la JVM también consume memoria fuera del heap.
 Configurar los dominios con HTTPS: uno para la API y otro para la interfaz.
 Los chequeos internos son `/actuator/health` en la API y `/healthz` en la web.
 Comprobar inicio de sesión, OS, OT, resultados, validación, PDF, exportaciones
-y recarga de rutas. El `.exe` actual continúa apuntando a Azure hasta que se
-regenere con la URL del backend nuevo.
+y recarga de rutas. El ejecutable se conecta al backend configurado en
+`frontend/desktop/main.cjs`; se debe regenerar si cambia esa dirección.
 
 Para compilar las imágenes localmente desde esta carpeta:
 
@@ -156,3 +156,62 @@ Para compilar las imágenes localmente desde esta carpeta:
 docker build -t labcore-api:demo ./backend
 docker build --build-arg VITE_API_URL=https://api-laboratorio.tudominio.com/api/v1 -t labcore-web:demo ./frontend
 ```
+
+## Registro y correcciones con trazabilidad
+
+En la OS, producto y variedad se seleccionan desde catálogos relacionados.
+Administración y comercial pueden registrar nuevos productos o variedades
+desde el formulario de muestras. Se puede navegar directamente entre muestras
+y copiar grupos de datos comunes, conservando sus identificaciones individuales.
+La copia respeta los valores existentes salvo que se marque reemplazarlos.
+Los ensayos del servicio se preseleccionan y se pueden quitar por muestra;
+debe quedar al menos un ensayo con método. Yemas y cargadores admiten enteros
+no negativos, tanto en la interfaz como en la API.
+
+Las devoluciones técnicas requieren un motivo y permiso de administración o
+del responsable técnico asignado a la OT. Los roles que registran o validan
+resultados mantienen sus permisos habituales. Una persona no puede validar
+un resultado que haya registrado o corregido ella misma.
+
+| Operación vigente | Devolución |
+| --- | --- |
+| OT cerrada | Validada, para revisar el cierre |
+| OT validada | Resultados registrados, para revisar la validación |
+| OT con resultados registrados | En ejecución, con corrección solicitada al analista |
+| OT en ejecución | En espera, para corregir fecha y analistas |
+| Resultado validado | Registrado, con una nueva revisión pendiente de validar |
+| Resultado registrado o corregido | Corrección solicitada al analista |
+| Informe emitido | Se conserva y anula la versión emitida; se crea un nuevo borrador |
+| Informe en borrador | Revisión técnica de sus resultados; se anula el borrador |
+
+La corrección comercial sigue permitiendo devolver la OS desde sus OT,
+editar sus datos y solicitar aprobación técnica. Se conservan OT y resultados
+compatibles; los cambios incompatibles muestran su impacto antes de confirmar.
+Los informes afectados se anulan y deben prepararse y emitirse nuevamente.
+Un informe que comprende varias OT solo puede ser devuelto por administración
+o por un responsable asignado a todas ellas.
+
+OS, OT y resultados disponen de versiones conservadas de solo consulta con
+usuario, rol, fecha, acción y motivo. Los PDF emitidos y sus validaciones
+anteriores se conservan. Las vistas técnicas mantienen la anonimización;
+las copias de la OS requieren permiso comercial. La conservación de copias
+completas comienza al avanzar o corregir operaciones con esta versión; no
+reconstruye datos históricos que nunca se guardaron.
+
+Para actualizar una instalación existente, desplegar primero el backend.
+Flyway aplica V22–V24: relaciona productos y variedades históricos solo si
+la coincidencia de nombres es única, agrega las versiones conservadas y
+permite validaciones independientes por revisión. Mantiene los nombres
+históricos y no elimina resultados. Después reconstruir el frontend.
+No se agregan variables de entorno obligatorias.
+
+## Comprobaciones
+
+- Backend: `./mvnw spotless:check verify` (en Windows: `.\mvnw.cmd`).
+- Frontend: `npm test`, `npm run lint` y `npm run build`.
+- Flujo integral local: `node backend/scripts/verify-correction-flow.mjs`.
+  Requiere una instancia local de prueba en `http://127.0.0.1:8081/api/v1`
+  y `LABFLOW_TEST_PASSWORD` con la contraseña del administrador de esa
+  instancia. Crea registros ficticios; no debe usarse sobre datos de trabajo.
+  Comprueba permisos, selección de catálogos, devoluciones, versiones,
+  resultados escalares, lecturas calculadas, matrices y documentos PDF.

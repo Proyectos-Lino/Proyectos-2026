@@ -5,5 +5,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ResultValidationRepository extends JpaRepository<ResultValidation, UUID> {
-  Optional<ResultValidation> findByResultEntryId(UUID resultEntryId);
+  Optional<ResultValidation> findFirstByResultEntryIdOrderByValidatedAtDesc(UUID resultEntryId);
+
+  default Optional<ResultValidation> findByResultEntryId(UUID resultEntryId) {
+    return findFirstByResultEntryIdOrderByValidatedAtDesc(resultEntryId);
+  }
 }

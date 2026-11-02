@@ -244,6 +244,35 @@ class WorkOrderServiceTest {
         .contains("Sólidos disueltos", "AG-2026-0002", "1 de 2", "0 de 2");
   }
 
+  @Test
+  void keepsAnOrderInProgressWhileAResultNeedsCorrection() {
+    WorkOrder order =
+        new WorkOrder(
+            "OT-2026-0011",
+            UUID.randomUUID(),
+            UUID.randomUUID(),
+            UUID.randomUUID(),
+            Instant.now().plusSeconds(86_400));
+    WorkOrderSample sample =
+        new WorkOrderSample(order.getId(), UUID.randomUUID(), UUID.randomUUID(), "AG-2026-0011", 1);
+    WorkOrderTest test =
+        new WorkOrderTest(sample.getId(), UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID());
+    test.requestCorrection();
+    given(workOrderRepository.findById(order.getId())).willReturn(Optional.of(order));
+    given(workOrderSampleRepository.findByWorkOrderId(order.getId())).willReturn(List.of(sample));
+    given(workOrderTestRepository.findByWorkOrderSampleIdIn(List.of(sample.getId())))
+        .willReturn(List.of(test));
+
+    service()
+        .synchronizeStatus(
+            order.getId(),
+            "admin@example.test",
+            WorkOrderHistoryAction.RESULT_CORRECTION_REQUESTED,
+            "Devolver al analista");
+
+    assertThat(order.getStatus()).isEqualTo(WorkOrderStatus.IN_PROGRESS);
+  }
+
   private ServiceOrder sourceOrder() {
     ServiceOrder order =
         new ServiceOrder(
@@ -326,6 +355,7 @@ class WorkOrderServiceTest {
         catalogService,
         sampleCodeGenerator,
         documentCodeGenerator,
-        documentService);
+        documentService,
+        org.mockito.Mockito.mock(com.labcore.platform.workflow.OperationVersionService.class));
   }
 }

@@ -1,5 +1,7 @@
 package com.labcore.platform.orders;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.labcore.platform.common.validation.WholeNumberDeserializer;
 import com.labcore.platform.organization.OrganizationDtos;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
@@ -78,11 +80,13 @@ public final class ServiceOrderDtos {
       @Size(max = 120) String originCertificate,
       @Size(max = 120) String sanitaryRegistration,
       @Size(max = 100) String cropAge,
-      Integer carrierCount,
-      Integer budCount,
+      @Min(0) @JsonDeserialize(using = WholeNumberDeserializer.class) Integer carrierCount,
+      @Min(0) @JsonDeserialize(using = WholeNumberDeserializer.class) Integer budCount,
       boolean counterSampleInCustody,
       @Size(max = 5000) String observations,
-      @NotEmpty List<@Valid RequestedTestRequest> requestedTests) {}
+      @NotEmpty List<@Valid RequestedTestRequest> requestedTests,
+      UUID productId,
+      UUID varietyId) {}
 
   public record UpdateOrderSamplesRequest(
       @NotEmpty List<@Valid SampleRequest> samples,
@@ -140,7 +144,10 @@ public final class ServiceOrderDtos {
       UUID serviceId,
       UUID testDefinitionId,
       UUID testMethodId,
-      RequestedTestStatus status) {}
+      RequestedTestStatus status,
+      String serviceName,
+      String testName,
+      String testMethodName) {}
 
   public record TechnicalProgress(
       int totalRequestedTests,
@@ -190,7 +197,11 @@ public final class ServiceOrderDtos {
       boolean counterSampleInCustody,
       String observations,
       TechnicalIdentificationResponse technicalIdentification,
-      List<RequestedTestResponse> requestedTests) {}
+      List<RequestedTestResponse> requestedTests,
+      UUID productId,
+      UUID varietyId,
+      String sampleTypeName,
+      String measurementUnitName) {}
 
   public record ServiceOrderDetail(
       UUID id,

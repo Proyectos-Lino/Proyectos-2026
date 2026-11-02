@@ -155,6 +155,74 @@ class ResultServiceTest {
   }
 
   @Test
+  void preventsTheLatestCorrectionAuthorFromValidatingEvenAfterReassignment() {
+    ApplicationUser validator = user(RoleCode.VALIDATOR, "latest@example.test");
+    WorkOrderTest test = workOrderTest(validator.getId());
+    UUID originalAuthor = UUID.randomUUID();
+    ResultEntry entry = new ResultEntry(test.getId(), "Registro inicial", originalAuthor);
+    entry.recordCorrectionAuthor(validator.getId());
+    given(userRepository.findByEmailIgnoreCase(validator.getEmail()))
+        .willReturn(Optional.of(validator));
+    given(workOrderService.getRequiredTest(test.getId())).willReturn(test);
+    given(entryRepository.findByWorkOrderTestId(test.getId())).willReturn(Optional.of(entry));
+    mockOperationalWorkOrder(test);
+    assertThatThrownBy(
+            () ->
+                service()
+                    .validate(
+                        test.getId(),
+                        new ResultDtos.ValidateResultRequest(null),
+                        validator.getEmail()))
+        .isInstanceOf(BusinessRuleViolationException.class)
+        .hasMessageContaining("no puede validarlo");
+    assertThat(entry.getRecordedBy()).isEqualTo(originalAuthor);
+    verify(validationRepository, never()).save(org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
+  void cannotRewriteAnInvalidatedHistoricalTest() {
+    ApplicationUser analyst = user(RoleCode.ANALYST, "analyst@example.test");
+    WorkOrderTest test = workOrderTest(analyst.getId());
+    test.invalidate("Cambio de método", "admin@example.test");
+    given(userRepository.findByEmailIgnoreCase(analyst.getEmail()))
+        .willReturn(Optional.of(analyst));
+    given(workOrderService.getRequiredTest(test.getId())).willReturn(test);
+    assertThatThrownBy(
+            () ->
+                service()
+                    .record(
+                        test.getId(),
+                        new ResultDtos.RecordResultRequest("Cambio", "Motivo", List.of(), null),
+                        analyst.getEmail()))
+        .isInstanceOf(BusinessRuleViolationException.class)
+        .hasMessageContaining("únicamente para consulta");
+    verify(entryRepository, never()).save(org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
+  void cannotValidateAnInvalidatedHistoricalResult() {
+    ApplicationUser validator = user(RoleCode.VALIDATOR, "validator@example.test");
+    WorkOrderTest test = workOrderTest(UUID.randomUUID());
+    ResultEntry entry = new ResultEntry(test.getId(), "Registro anterior", UUID.randomUUID());
+    entry.invalidate("Cambio técnico", "admin@example.test");
+    given(userRepository.findByEmailIgnoreCase(validator.getEmail()))
+        .willReturn(Optional.of(validator));
+    given(workOrderService.getRequiredTest(test.getId())).willReturn(test);
+    given(entryRepository.findByWorkOrderTestId(test.getId())).willReturn(Optional.of(entry));
+    mockOperationalWorkOrder(test);
+    assertThatThrownBy(
+            () ->
+                service()
+                    .validate(
+                        test.getId(),
+                        new ResultDtos.ValidateResultRequest(null),
+                        validator.getEmail()))
+        .isInstanceOf(BusinessRuleViolationException.class)
+        .hasMessageContaining("únicamente para consulta");
+    verify(validationRepository, never()).save(org.mockito.ArgumentMatchers.any());
+  }
+
+  @Test
   void validatorCanCorrectAScalarValueAndValidateANewRevision() {
     ApplicationUser analyst = user(RoleCode.ANALYST, "analyst@example.test");
     ApplicationUser validator = user(RoleCode.VALIDATOR, "validator@example.test");
@@ -251,6 +319,7 @@ class ResultServiceTest {
         catalogService,
         technicalCatalogService,
         matrixResultService,
-        calculationService);
+        calculationService,
+        org.mockito.Mockito.mock(com.labcore.platform.workflow.OperationVersionService.class));
   }
 }

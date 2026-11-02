@@ -31,11 +31,12 @@ public class ServiceOrderCorrectionController {
 
   @PostMapping("/return-to-commercial")
   @PreAuthorize("hasAnyRole('ADMIN', 'TECHNICAL_MANAGER')")
-  public ServiceOrderDtos.ServiceOrderDetail returnToCommercial(
+  public org.springframework.http.ResponseEntity<Void> returnToCommercial(
       @PathVariable UUID orderId,
       @Valid @RequestBody ServiceOrderDtos.RequestCommercialCorrectionRequest request,
       Authentication authentication) {
-    return workflowService.requestCorrection(orderId, request, authentication.getName());
+    workflowService.requestCorrection(orderId, request, authentication.getName());
+    return org.springframework.http.ResponseEntity.noContent().build();
   }
 
   @PostMapping("/submit-correction")
@@ -49,8 +50,9 @@ public class ServiceOrderCorrectionController {
 
   @PostMapping("/approve-correction")
   @PreAuthorize("hasAnyRole('ADMIN', 'TECHNICAL_MANAGER')")
-  public ServiceOrderDtos.ServiceOrderDetail approveCorrection(
+  public org.springframework.http.ResponseEntity<Void> approveCorrection(
       @PathVariable UUID orderId, Authentication authentication) {
-    return workflowService.approveCorrection(orderId, authentication.getName());
+    workflowService.approveCorrection(orderId, authentication.getName());
+    return org.springframework.http.ResponseEntity.noContent().build();
   }
 }

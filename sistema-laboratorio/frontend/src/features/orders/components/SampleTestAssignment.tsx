@@ -96,7 +96,6 @@ export function SampleTestAssignment({
               <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-700">
                 <input
                   checked={selectedTestIds.has(serviceTest.testDefinitionId)}
-                  disabled={serviceTest.required}
                   onChange={() => onTestToggle(serviceTest.testDefinitionId)}
                   type="checkbox"
                 />
@@ -104,11 +103,6 @@ export function SampleTestAssignment({
                   <span className="block font-semibold text-slate-800">
                     {test?.name ?? 'Ensayo'}
                   </span>
-                  {serviceTest.required ? (
-                    <span className="mt-1 block text-xs text-slate-500">
-                      Obligatorio en el servicio
-                    </span>
-                  ) : null}
                 </span>
               </label>
               <select

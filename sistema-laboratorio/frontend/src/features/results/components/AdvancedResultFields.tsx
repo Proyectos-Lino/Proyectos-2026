@@ -292,12 +292,12 @@ function MatrixFields(props: AdvancedResultFieldsProps) {
           Yemas declaradas
           <input
             disabled={props.disabled}
-            max={props.template?.maximumRows}
-            min={1}
-            onChange={(event) =>
-              props.resizeMatrix(Number(event.target.value), props.matrixColumns.length)
-            }
-            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onChange={(event) => {
+              if (/^\d+$/.test(event.target.value))
+                props.resizeMatrix(Number(event.target.value), props.matrixColumns.length);
+            }}
             value={props.matrixRows}
           />
         </label>
@@ -305,10 +305,12 @@ function MatrixFields(props: AdvancedResultFieldsProps) {
           Cargadores declarados
           <input
             disabled={props.disabled}
-            max={props.template?.maximumColumns}
-            min={1}
-            onChange={(event) => props.resizeMatrix(props.matrixRows, Number(event.target.value))}
-            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onChange={(event) => {
+              if (/^\d+$/.test(event.target.value))
+                props.resizeMatrix(props.matrixRows, Number(event.target.value));
+            }}
             value={props.matrixColumns.length}
           />
         </label>

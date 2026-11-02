@@ -16,6 +16,9 @@ import type {
 } from '../../../shared/types/domain';
 import { custodyLabels } from '../model/order-commercial-details';
 import { OrderHistory } from './OrderHistory';
+import { OperationVersions } from '../../workflow/components/OperationVersions';
+import { ReturnOperationControl } from '../../workflow/components/ReturnOperationControl';
+import { useAuth } from '../../auth/hooks/useAuth';
 import { OrderStatusBadge } from './OrderStatusBadge';
 import { OrderTechnicalProgress } from './OrderTechnicalProgress';
 
@@ -29,6 +32,7 @@ interface OrderDetailProps {
   onOpenRecord: (order: ServiceOrderDetail) => void;
   onSubmitCorrection: (order: ServiceOrderDetail) => void;
   onViewDocument: (orderId: string) => void;
+  onRefresh: () => void;
   order: ServiceOrderDetail | null;
 }
 
@@ -56,8 +60,10 @@ export function OrderDetail({
   onOpenRecord,
   onSubmitCorrection,
   onViewDocument,
+  onRefresh,
   order,
 }: OrderDetailProps) {
+  const { hasRole } = useAuth();
   return (
     <Card className="h-fit">
       <header className="flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-4">
@@ -153,9 +159,7 @@ export function OrderDetail({
             <DetailItem label="Propuesta técnica" value={order.technicalProposalNumber} />
             <DetailItem
               label="Días de desarrollo"
-              value={
-                order.developmentDays === undefined ? undefined : `${order.developmentDays} día(s)`
-              }
+              value={order.developmentDays == null ? undefined : `${order.developmentDays} día(s)`}
             />
             <DetailItem label="Servicio" value={order.outsourced ? 'Subcontratado' : 'Interno'} />
             <DetailItem
@@ -246,6 +250,22 @@ export function OrderDetail({
           ) : null}
 
           <OrderHistory history={history} onViewAll={() => onOpenRecord(order)} />
+          {hasRole('ADMIN') &&
+          ['IN_PROGRESS', 'FINALIZED', 'CORRECTION_REVIEW'].includes(order.status) ? (
+            <ReturnOperationControl
+              key={`${order.id}-${order.status}`}
+              endpoint={`/service-orders/${order.id}/return-to-commercial`}
+              label="Devolver a corrección comercial"
+              description="La OS volverá a atención comercial; las OT y los resultados compatibles se conservarán."
+              onCompleted={onRefresh}
+            />
+          ) : null}
+          <OperationVersions
+            key={order.id}
+            type="SERVICE_ORDER"
+            id={order.id}
+            refreshKey={order.updatedAt}
+          />
         </div>
       ) : (
         <EmptyState message="Selecciona una orden para ver su detalle." />

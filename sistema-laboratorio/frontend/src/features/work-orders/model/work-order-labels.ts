@@ -24,6 +24,8 @@ export const workOrderTestStatusLabels: Record<WorkOrderTestStatus, string> = {
 };
 
 export const workOrderHistoryActionLabels: Record<WorkOrderHistoryAction, string> = {
+  RETURNED_FOR_CORRECTION: 'Devuelta a la etapa anterior',
+  ASSIGNMENT_CORRECTED: 'Asignaciones técnicas corregidas',
   CREATED: 'Orden técnica emitida',
   SAMPLES_CLASSIFIED: 'Clasificación técnica confirmada',
   STATUS_UPDATED: 'Estado actualizado',

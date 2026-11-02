@@ -34,6 +34,8 @@ export interface CreateServiceOrderInput extends CommercialDetailsInput {
     sourceSampleId?: string;
     clientIdentification?: string;
     producerId?: string;
+    productId?: string;
+    varietyId?: string;
     productName: string;
     varietyName?: string;
     sampleTypeId: string;

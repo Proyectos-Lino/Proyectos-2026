@@ -286,7 +286,8 @@ public class ServiceOrder extends BaseEntity {
   }
 
   public void requestCommercialCorrection(String reason, String requestedBy) {
-    statusBeforeCorrection = status;
+    boolean repeatedReview = status == ServiceOrderStatus.CORRECTION_REVIEW;
+    if (!repeatedReview) statusBeforeCorrection = status;
     status = ServiceOrderStatus.COMMERCIAL_CORRECTION;
     correctionReason = reason;
     correctionRequestedBy = requestedBy;
@@ -297,12 +298,17 @@ public class ServiceOrder extends BaseEntity {
     correctionReviewedBy = null;
     correctionReviewedAt = null;
     correctionImpactSummary = null;
-    correctionRequiresTechnicalWork = false;
+    if (!repeatedReview) correctionRequiresTechnicalWork = false;
   }
 
   public void registerCorrectionImpact(String summary, boolean requiresTechnicalWork) {
     correctionImpactSummary = summary;
     correctionRequiresTechnicalWork = correctionRequiresTechnicalWork || requiresTechnicalWork;
+  }
+
+  public void reopenTechnicalProcess() {
+    status = ServiceOrderStatus.IN_PROGRESS;
+    finalizedAt = null;
   }
 
   public void submitCommercialCorrection(String submittedBy, String changeNote) {

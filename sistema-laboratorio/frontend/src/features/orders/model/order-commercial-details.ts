@@ -26,7 +26,7 @@ export const postAnalysisCustodyOptions = Object.keys(custodyLabels) as PostAnal
 
 export function defaultDueDate(): string {
   const date = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-  return date.toISOString().slice(0, 16);
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
 }
 
 export function emptyCommercialDetails(): CommercialDetailsFormValues {

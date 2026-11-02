@@ -19,6 +19,8 @@ import com.labcore.platform.orders.ServiceOrderStatus;
 import com.labcore.platform.security.ApplicationUser;
 import com.labcore.platform.security.ApplicationUserRepository;
 import com.labcore.platform.security.RoleCode;
+import com.labcore.platform.workflow.OperationType;
+import com.labcore.platform.workflow.OperationVersionService;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +55,7 @@ public class WorkOrderService {
   private final SampleCodeGenerator sampleCodeGenerator;
   private final DocumentCodeGenerator documentCodeGenerator;
   private final WorkOrderDocumentService documentService;
+  private final OperationVersionService versions;
 
   public WorkOrderService(
       WorkOrderRepository workOrderRepository,
@@ -68,7 +71,8 @@ public class WorkOrderService {
       CatalogService catalogService,
       SampleCodeGenerator sampleCodeGenerator,
       DocumentCodeGenerator documentCodeGenerator,
-      WorkOrderDocumentService documentService) {
+      WorkOrderDocumentService documentService,
+      OperationVersionService versions) {
     this.workOrderRepository = workOrderRepository;
     this.workOrderSampleRepository = workOrderSampleRepository;
     this.workOrderTestRepository = workOrderTestRepository;
@@ -83,6 +87,7 @@ public class WorkOrderService {
     this.sampleCodeGenerator = sampleCodeGenerator;
     this.documentCodeGenerator = documentCodeGenerator;
     this.documentService = documentService;
+    this.versions = versions;
   }
 
   public WorkOrderDtos.WorkOrderDetail create(
@@ -725,6 +730,9 @@ public class WorkOrderService {
   }
 
   private WorkOrderStatus determineStatus(List<WorkOrderTest> tests) {
+    if (tests.stream()
+        .anyMatch(test -> test.getStatus() == WorkOrderTestStatus.CORRECTION_REQUESTED))
+      return WorkOrderStatus.IN_PROGRESS;
     if (tests.isEmpty()
         || tests.stream().allMatch(test -> test.getStatus() == WorkOrderTestStatus.PENDING)) {
       return WorkOrderStatus.PENDING;
@@ -851,10 +859,83 @@ public class WorkOrderService {
     historyRepository.save(
         new WorkOrderHistory(
             workOrder.getId(), action, previousStatus, newStatus, note, performedBy));
+    captureVersion(workOrder.getId(), action.name(), note, performedBy);
+  }
+
+  public void captureVersion(UUID id, String action, String note, String actor) {
+    versions.capture(
+        OperationType.WORK_ORDER,
+        id,
+        action,
+        note,
+        () -> {
+          WorkOrder order = getRequired(id);
+          List<WorkOrderSample> samples = workOrderSampleRepository.findByWorkOrderId(id);
+          return toDetail(order, samples, getTests(samples), null, true);
+        },
+        actor);
+  }
+
+  public void registerReturn(WorkOrder order, WorkOrderStatus previous, String note, String actor) {
+    recordHistory(
+        order,
+        WorkOrderHistoryAction.RETURNED_FOR_CORRECTION,
+        previous,
+        order.getStatus(),
+        note,
+        actor);
   }
 
   private String trimToNull(String value) {
     return value == null || value.isBlank() ? null : value.trim();
+  }
+
+  public WorkOrderDtos.WorkOrderDetail correctAssignments(
+      UUID id,
+      com.labcore.platform.workflow.OperationCorrectionDtos.CorrectAssignmentRequest request,
+      String actorEmail) {
+    ApplicationUser actor = currentUser(actorEmail);
+    WorkOrder order = getRequired(id);
+    if (!hasRole(actor, RoleCode.ADMIN)
+        && !(hasRole(actor, RoleCode.TECHNICAL_MANAGER)
+            && order.getResponsibleId().equals(actor.getId())))
+      throw new org.springframework.security.access.AccessDeniedException(
+          "Sin permiso para corregir esta orden.");
+    if (order.getStatus() != WorkOrderStatus.PENDING)
+      throw new BusinessRuleViolationException(
+          "Devuelve la orden a pendiente antes de corregir sus asignaciones.");
+    ServiceOrder source = serviceOrderService.getRequired(order.getServiceOrderId());
+    if (source.getStatus() != ServiceOrderStatus.IN_PROGRESS)
+      throw new BusinessRuleViolationException("La orden de servicio debe estar en proceso.");
+    if (request.laboratoryDueAt().isAfter(source.getPlannedDeliveryAt()))
+      throw new BusinessRuleViolationException(
+          "La fecha técnica no puede superar la entrega comercial.");
+    List<WorkOrderTest> assigned =
+        getTests(workOrderSampleRepository.findByWorkOrderId(id)).stream()
+            .filter(test -> test.getStatus() != WorkOrderTestStatus.INVALIDATED)
+            .toList();
+    Map<UUID, UUID> replacements = new HashMap<>();
+    for (var replacement : request.assignments()) {
+      if (replacements.put(replacement.testId(), replacement.analystId()) != null)
+        throw new BusinessRuleViolationException("No repitas un ensayo en las asignaciones.");
+      validateAnalyst(requiredUser(replacement.analystId()), order.getLaboratoryAreaId());
+    }
+    if (assigned.size() != replacements.size()
+        || assigned.stream().anyMatch(test -> !replacements.containsKey(test.getId())))
+      throw new BusinessRuleViolationException(
+          "Las asignaciones deben corresponder exactamente a los ensayos activos de esta orden.");
+    captureVersion(id, "BEFORE_CORRECTION", request.reason(), actorEmail);
+    order.correctDueDate(request.laboratoryDueAt());
+    assigned.forEach(test -> test.reassignAnalyst(replacements.get(test.getId())));
+    recordHistory(
+        order,
+        WorkOrderHistoryAction.ASSIGNMENT_CORRECTED,
+        order.getStatus(),
+        order.getStatus(),
+        request.reason(),
+        actorEmail);
+    documentService.regenerateAfterCorrection(id, actorEmail);
+    return getDetail(id, actorEmail);
   }
 
   private record SourceTestContext(ServiceOrderSample sample, ServiceOrderSampleTest test) {}

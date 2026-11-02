@@ -1,6 +1,13 @@
 import { Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { QuickProductRegistration } from './QuickProductRegistration';
 import { Button } from '../../../shared/components/ui';
-import type { CatalogSnapshot, Client } from '../../../shared/types/domain';
+import type {
+  CatalogSnapshot,
+  Client,
+  CatalogItem as Product,
+  ProductVariety,
+} from '../../../shared/types/domain';
 import type { WizardSampleForm } from '../model/order-wizard';
 
 interface SampleTraceabilityFieldsProps {
@@ -11,6 +18,14 @@ interface SampleTraceabilityFieldsProps {
   onRemove: () => void;
   producers: Client[];
   sample: WizardSampleForm;
+  onCreateProduct: (input: { code: string; name: string }) => Promise<Product>;
+  onCreateVariety: (input: {
+    productId: string;
+    code: string;
+    name: string;
+  }) => Promise<ProductVariety>;
+  onSelectProduct: (productId: string, productName: string) => void;
+  onSelectVariety: (varietyId: string, varietyName: string) => void;
 }
 
 export function SampleTraceabilityFields({
@@ -21,7 +36,12 @@ export function SampleTraceabilityFields({
   onRemove,
   producers,
   sample,
+  onCreateProduct,
+  onCreateVariety,
+  onSelectProduct,
+  onSelectVariety,
 }: SampleTraceabilityFieldsProps) {
+  const [registering, setRegistering] = useState<'producto' | 'variedad' | null>(null);
   const fieldId = (field: string) => `sample-${index}-${field}`;
 
   return (
@@ -83,22 +103,84 @@ export function SampleTraceabilityFields({
         </div>
         <div className="space-y-2">
           <label htmlFor={fieldId('product')}>Producto o matriz</label>
-          <input
+          <select
             id={fieldId('product')}
-            list="catalog-products"
-            onChange={(event) => onChange('productName', event.target.value)}
+            onChange={(event) => {
+              const product = catalog.products.find((item) => item.id === event.target.value);
+              onSelectProduct(product?.id ?? '', product?.name ?? '');
+              setRegistering(null);
+            }}
             required
-            value={sample.productName}
-          />
+            value={sample.productId}
+          >
+            <option value="">
+              {sample.productName && !sample.productId
+                ? `Anterior: ${sample.productName} · seleccionar producto`
+                : 'Seleccionar producto'}
+            </option>
+            {catalog.products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.name}
+              </option>
+            ))}
+          </select>
+          <Button onClick={() => setRegistering('producto')} variant="ghost">
+            + Registrar producto
+          </Button>
+          {registering === 'producto' ? (
+            <QuickProductRegistration
+              kind="producto"
+              onClose={() => setRegistering(null)}
+              onSave={async (input) => {
+                const product = await onCreateProduct(input);
+                onSelectProduct(product.id, product.name);
+              }}
+            />
+          ) : null}
         </div>
         <div className="space-y-2">
           <label htmlFor={fieldId('variety')}>Variedad</label>
-          <input
+          <select
             id={fieldId('variety')}
-            list="catalog-varieties"
-            onChange={(event) => onChange('varietyName', event.target.value)}
-            value={sample.varietyName}
-          />
+            disabled={!sample.productId}
+            onChange={(event) => {
+              const variety = catalog.varieties.find(
+                (item) => item.id === event.target.value && item.productId === sample.productId,
+              );
+              onSelectVariety(variety?.id ?? '', variety?.name ?? '');
+            }}
+            value={sample.varietyId}
+          >
+            <option value="">
+              {sample.varietyName && !sample.varietyId
+                ? `Anterior: ${sample.varietyName} · seleccionar variedad`
+                : 'Sin variedad / no corresponde'}
+            </option>
+            {catalog.varieties
+              .filter((variety) => variety.productId === sample.productId)
+              .map((variety) => (
+                <option key={variety.id} value={variety.id}>
+                  {variety.name}
+                </option>
+              ))}
+          </select>
+          <Button
+            disabled={!sample.productId}
+            onClick={() => setRegistering('variedad')}
+            variant="ghost"
+          >
+            + Registrar variedad
+          </Button>
+          {registering === 'variedad' ? (
+            <QuickProductRegistration
+              kind="variedad"
+              onClose={() => setRegistering(null)}
+              onSave={async (input) => {
+                const variety = await onCreateVariety({ ...input, productId: sample.productId });
+                onSelectVariety(variety.id, variety.name);
+              }}
+            />
+          ) : null}
         </div>
         <div className="space-y-2 md:col-span-2">
           <label htmlFor={fieldId('physical-description')}>Descripción física / condición</label>
@@ -237,9 +319,12 @@ export function SampleTraceabilityFields({
             <label htmlFor={fieldId('carrier-count')}>Número de cargadores</label>
             <input
               id={fieldId('carrier-count')}
-              min="0"
-              onChange={(event) => onChange('carrierCount', event.target.value)}
-              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
+              onChange={(event) => {
+                if (/^\d*$/.test(event.target.value)) onChange('carrierCount', event.target.value);
+              }}
               value={sample.carrierCount}
             />
           </div>
@@ -247,9 +332,12 @@ export function SampleTraceabilityFields({
             <label htmlFor={fieldId('bud-count')}>Número de yemas</label>
             <input
               id={fieldId('bud-count')}
-              min="0"
-              onChange={(event) => onChange('budCount', event.target.value)}
-              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
+              onChange={(event) => {
+                if (/^\d*$/.test(event.target.value)) onChange('budCount', event.target.value);
+              }}
               value={sample.budCount}
             />
           </div>
@@ -272,20 +360,6 @@ export function SampleTraceabilityFields({
           </div>
         </div>
       </details>
-      {index === 0 ? (
-        <>
-          <datalist id="catalog-products">
-            {catalog.products.map((product) => (
-              <option key={product.id} value={product.name} />
-            ))}
-          </datalist>
-          <datalist id="catalog-varieties">
-            {catalog.varieties.map((variety) => (
-              <option key={variety.id} value={variety.name} />
-            ))}
-          </datalist>
-        </>
-      ) : null}
     </article>
   );
 }

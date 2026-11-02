@@ -9,6 +9,7 @@ interface ResultReviewTimelineProps {
 }
 
 const actionDetails = {
+  REVIEW_REOPENED: { icon: RotateCcw, label: 'Devuelto a revisión', tone: 'text-amber-700' },
   REGISTERED: { icon: History, label: 'Resultado registrado', tone: 'text-slate-600' },
   CORRECTION_REQUESTED: {
     icon: RotateCcw,
@@ -37,7 +38,11 @@ export function ResultReviewTimeline({ events }: ResultReviewTimelineProps) {
       </div>
       <div className="mt-3 space-y-3">
         {events.map((event) => {
-          const detail = actionDetails[event.action];
+          const detail = actionDetails[event.action] ?? {
+            icon: History,
+            label: labelForSystemCode(event.action),
+            tone: 'text-slate-600',
+          };
           const Icon = detail.icon;
           return (
             <article className="rounded-xl border border-slate-200 bg-white p-3.5" key={event.id}>

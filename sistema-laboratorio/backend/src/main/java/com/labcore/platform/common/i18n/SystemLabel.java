@@ -7,6 +7,10 @@ import java.util.regex.Pattern;
 public final class SystemLabel {
   private static final Map<String, String> LABELS =
       Map.ofEntries(
+          Map.entry("RETURNED_FOR_CORRECTION", "Devuelta a la etapa anterior"),
+          Map.entry("ASSIGNMENT_CORRECTED", "Asignaciones técnicas corregidas"),
+          Map.entry("TECHNICAL_PROCESS_REOPENED", "Proceso técnico reabierto"),
+          Map.entry("REVIEW_REOPENED", "Devuelto a revisión"),
           Map.entry("ADMIN", "Administrador"),
           Map.entry("COMMERCIAL", "Atención comercial"),
           Map.entry("TECHNICAL_MANAGER", "Responsable técnico"),

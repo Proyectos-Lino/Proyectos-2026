@@ -29,6 +29,7 @@ import type { LaboratoryReportStatus } from '../../../shared/types/domain';
 import { exportReports, type ReportFilters } from '../api/reports-api';
 import { ReportPdfModal } from '../components/ReportPdfModal';
 import { useReports } from '../hooks/useReports';
+import { ReturnOperationControl } from '../../workflow/components/ReturnOperationControl';
 
 const statusLabels: Record<LaboratoryReportStatus, string> = {
   DRAFT: 'Borrador',
@@ -270,6 +271,26 @@ export function ReportsPage() {
                   </div>
                 ) : null}
 
+                {canControl && reports.selectedReport.status !== 'CANCELLED' ? (
+                  <ReturnOperationControl
+                    key={reports.selectedReport.id}
+                    endpoint={`/reports/${reports.selectedReport.id}/return-to-previous`}
+                    label={
+                      reports.selectedReport.status === 'ISSUED'
+                        ? 'Devolver a un nuevo borrador'
+                        : 'Devolver a revisión técnica'
+                    }
+                    description={
+                      reports.selectedReport.status === 'ISSUED'
+                        ? 'Se conservará esta versión y se preparará un nuevo borrador del informe.'
+                        : 'La evaluación técnica se reabrirá para revisar y validar nuevamente los resultados.'
+                    }
+                    onCompleted={() => {
+                      void reports.open(reports.selectedReport!.id);
+                      void reports.load(filters);
+                    }}
+                  />
+                ) : null}
                 <div className="flex flex-wrap gap-2">
                   <Button onClick={() => setShowPdf(true)} variant="secondary">
                     <Eye size={16} />

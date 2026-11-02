@@ -23,6 +23,9 @@ import { resultEntryStatusLabels } from '../model/result-labels';
 import { AdvancedResultFields } from './AdvancedResultFields';
 import { ResultReviewPanel } from './ResultReviewPanel';
 import { ResultReviewTimeline } from './ResultReviewTimeline';
+import { useAuth } from '../../auth/hooks/useAuth';
+import { OperationVersions } from '../../workflow/components/OperationVersions';
+import { ReturnOperationControl } from '../../workflow/components/ReturnOperationControl';
 
 interface ResultEditorModalProps {
   canRecord: boolean;
@@ -106,6 +109,7 @@ function ResultEditorContent({
   testName,
   units,
 }: Omit<ResultEditorModalProps, 'test'> & { test: WorkOrderTest }) {
+  const { hasRole } = useAuth();
   const {
     approveResult,
     applyBulkMatrixValues,
@@ -177,27 +181,31 @@ function ResultEditorContent({
     await saveMatrixProgress();
   }
 
+  const isArchived = existingResult?.status === 'INVALIDATED' || test.status === 'INVALIDATED';
   const canReview =
+    !isArchived &&
     canValidate &&
     (existingResult?.status === 'RECORDED' || existingResult?.status === 'CORRECTED');
   const validatorCanEdit = canReview && reviewDecision === 'CORRECT_AND_VALIDATE';
-  const analystCanEdit = canRecord && !canReview;
-  const fieldsDisabled = isValidated || (!analystCanEdit && !validatorCanEdit);
+  const analystCanEdit = !isArchived && canRecord && !canReview;
+  const fieldsDisabled = isArchived || isValidated || (!analystCanEdit && !validatorCanEdit);
   const isMatrixMode = template?.resultMode === 'MATRIX';
   const isMatrixDraft = existingResult?.status === 'DRAFT';
 
   return (
     <Modal
       description={
-        isValidated
-          ? 'Resultado validado y bloqueado para nuevas modificaciones.'
-          : isMatrixDraft
-            ? 'Continúa la evaluación, guarda avances parciales y finaliza cuando la matriz esté completa.'
-            : existingResult?.status === 'CORRECTION_REQUESTED'
-              ? 'Atiende la devolución, documenta el cambio y reenvía una nueva versión.'
-              : canReview
-                ? 'Compara los datos y selecciona una decisión de revisión independiente.'
-                : 'Registra valores trazables y la observación técnica correspondiente.'
+        isArchived
+          ? 'Resultado anterior invalidado por un cambio técnico. Se conserva únicamente para consulta.'
+          : isValidated
+            ? 'Resultado validado y bloqueado para nuevas modificaciones.'
+            : isMatrixDraft
+              ? 'Continúa la evaluación, guarda avances parciales y finaliza cuando la matriz esté completa.'
+              : existingResult?.status === 'CORRECTION_REQUESTED'
+                ? 'Atiende la devolución, documenta el cambio y reenvía una nueva versión.'
+                : canReview
+                  ? 'Compara los datos y selecciona una decisión de revisión independiente.'
+                  : 'Registra valores trazables y la observación técnica correspondiente.'
       }
       isOpen={isOpen}
       onClose={onClose}
@@ -206,6 +214,31 @@ function ResultEditorContent({
     >
       <form className="space-y-5" onSubmit={handleSubmit}>
         <ErrorNotice message={error} />
+        {existingResult &&
+        ['RECORDED', 'CORRECTED', 'VALIDATED'].includes(existingResult.status) &&
+        hasRole('ADMIN', 'TECHNICAL_MANAGER') ? (
+          <ReturnOperationControl
+            endpoint={`/work-order-tests/${test.id}/result/return-to-previous`}
+            label={isValidated ? 'Devolver a revisión' : 'Devolver al analista'}
+            description={
+              isValidated
+                ? 'Se conservará la validación anterior y el resultado volverá a revisión independiente.'
+                : 'El analista podrá corregir el resultado y reenviarlo con el motivo del cambio.'
+            }
+            onCompleted={() => {
+              onSaved();
+              onClose();
+            }}
+          />
+        ) : null}
+        {existingResult ? (
+          <OperationVersions
+            key={test.id}
+            type="RESULT"
+            id={test.id}
+            refreshKey={`${existingResult.status}-${existingResult.resultRevision}`}
+          />
+        ) : null}
 
         {isLoading ? (
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
@@ -223,6 +256,12 @@ function ResultEditorContent({
                 {existingResult.recordedByName}
               </p>
               <p className="mt-1 text-xs text-slate-500">{formatDate(existingResult.recordedAt)}</p>
+              {existingResult.lastRecordedByName ? (
+                <p className="mt-2 text-xs text-slate-600">
+                  Última corrección: {existingResult.lastRecordedByName} ·{' '}
+                  {existingResult.lastRecordedAt ? formatDate(existingResult.lastRecordedAt) : '—'}
+                </p>
+              ) : null}
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-slate-400">Estado</p>
@@ -443,7 +482,8 @@ function ResultEditorContent({
                   </p>
                   <p className="mt-2 text-sm leading-6 text-slate-700">{correction.reason}</p>
                   <p className="mt-2 text-xs text-slate-500">
-                    Corregido por {correction.changedByName} · {correction.changedByRole}
+                    Corregido por {correction.changedByName} ·{' '}
+                    {labelForSystemCode(correction.changedByRole)}
                   </p>
                 </article>
               ))}
@@ -519,7 +559,8 @@ function ResultEditorContent({
                   </p>
                   <p className="mt-2 text-sm leading-6 text-slate-700">{correction.reason}</p>
                   <p className="mt-2 text-xs text-slate-500">
-                    Modificado por {correction.changedByName} · {correction.changedByRole}
+                    Modificado por {correction.changedByName} ·{' '}
+                    {labelForSystemCode(correction.changedByRole)}
                   </p>
                 </article>
               ))}

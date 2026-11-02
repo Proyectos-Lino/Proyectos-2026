@@ -343,7 +343,7 @@ public class DashboardAnalyticsRepository {
             """
             SELECT AVG(EXTRACT(EPOCH FROM (rv.validated_at - re.recorded_at)) / 3600.0)
             FROM result_validation rv
-            JOIN result_entry re ON re.id = rv.result_entry_id
+            JOIN result_entry re ON re.id = rv.result_entry_id AND re.result_revision = rv.result_revision AND re.status = 'VALIDATED'
             JOIN work_order_test wot ON wot.id = re.work_order_test_id
             JOIN work_order_sample wos ON wos.id = wot.work_order_sample_id
             JOIN work_order wo ON wo.id = wos.work_order_id
@@ -366,7 +366,7 @@ public class DashboardAnalyticsRepository {
                 JOIN work_order_sample wos ON wos.work_order_id = wo.id
                 JOIN work_order_test wot ON wot.work_order_sample_id = wos.id
                 JOIN result_entry re ON re.work_order_test_id = wot.id
-                JOIN result_validation rv ON rv.result_entry_id = re.id
+                JOIN result_validation rv ON rv.result_entry_id = re.id AND rv.result_revision = re.result_revision
                 WHERE lr.status = 'ISSUED' AND %s
                 GROUP BY lr.id, lr.issued_at
             )

@@ -1,9 +1,7 @@
 package com.labcore.platform.results;
 
-import com.labcore.platform.catalog.CalculationScope;
 import com.labcore.platform.catalog.CatalogService;
 import com.labcore.platform.catalog.ResultDataType;
-import com.labcore.platform.catalog.ResultFieldKind;
 import com.labcore.platform.catalog.ResultMode;
 import com.labcore.platform.catalog.TechnicalCatalogDtos;
 import com.labcore.platform.catalog.TechnicalCatalogManagementService;
@@ -15,6 +13,8 @@ import com.labcore.platform.orders.ServiceOrderSampleTestRepository;
 import com.labcore.platform.security.ApplicationUser;
 import com.labcore.platform.security.ApplicationUserRepository;
 import com.labcore.platform.security.RoleCode;
+import com.labcore.platform.workflow.OperationType;
+import com.labcore.platform.workflow.OperationVersionService;
 import com.labcore.platform.workorders.WorkOrder;
 import com.labcore.platform.workorders.WorkOrderHistoryAction;
 import com.labcore.platform.workorders.WorkOrderSample;
@@ -51,6 +51,7 @@ public class ResultService {
   private final TechnicalCatalogManagementService technicalCatalogService;
   private final MatrixResultService matrixResultService;
   private final ResultCalculationService calculationService;
+  private final OperationVersionService versions;
 
   public ResultService(
       ResultEntryRepository entryRepository,
@@ -65,7 +66,8 @@ public class ResultService {
       CatalogService catalogService,
       TechnicalCatalogManagementService technicalCatalogService,
       MatrixResultService matrixResultService,
-      ResultCalculationService calculationService) {
+      ResultCalculationService calculationService,
+      OperationVersionService versions) {
     this.entryRepository = entryRepository;
     this.valueRepository = valueRepository;
     this.validationRepository = validationRepository;
@@ -79,6 +81,7 @@ public class ResultService {
     this.technicalCatalogService = technicalCatalogService;
     this.matrixResultService = matrixResultService;
     this.calculationService = calculationService;
+    this.versions = versions;
   }
 
   public ResultDtos.ResultResponse startMatrixExecution(
@@ -101,6 +104,14 @@ public class ResultService {
         template,
         actor.getId(),
         actionRole(actor, RoleCode.ANALYST));
+    ResultEntry startedEntry = entry;
+    versions.capture(
+        OperationType.RESULT,
+        workOrderTestId,
+        "MATRIX_STARTED",
+        "Evaluación matricial iniciada.",
+        () -> toResponse(startedEntry),
+        actorEmail);
     return toResponse(entry);
   }
 
@@ -125,6 +136,13 @@ public class ResultService {
         actor.getId(),
         actionRole(actor, RoleCode.ANALYST));
     entry.revise(trimToNull(request.analystObservation()));
+    versions.capture(
+        OperationType.RESULT,
+        workOrderTestId,
+        "MATRIX_DRAFT_SAVED",
+        request.adjustmentReason(),
+        () -> toResponse(entry),
+        actorEmail);
     return toResponse(entry);
   }
 
@@ -168,6 +186,7 @@ public class ResultService {
     }
     String observation = trimToNull(request.analystObservation());
     int targetRevision = isCorrection ? entry.getResultRevision() + 1 : entry.getResultRevision();
+    if (isCorrection) captureVersion(workOrderTestId, request.revisionReason(), actorEmail);
     boolean observationChanged =
         isCorrection && !Objects.equals(entry.getAnalystObservation(), observation);
     if (isCorrection && trimToNull(request.revisionReason()) == null) {
@@ -211,6 +230,7 @@ public class ResultService {
     ResultReviewAction reviewAction;
     if (isCorrection) {
       entry.markCorrected(observation);
+      entry.recordCorrectionAuthor(actor.getId());
       workOrderTest.markCorrected();
       reviewAction = ResultReviewAction.CORRECTED;
     } else if (isDraftCompletion) {
@@ -311,6 +331,7 @@ public class ResultService {
     ensureReviewable(entry);
     ensureIndependentReviewer(entry, actor);
     String reason = requiredReason(request.reason());
+    captureVersion(workOrderTestId, reason, actorEmail);
     String actorRole = actionRole(actor, RoleCode.VALIDATOR);
     ResultEntryStatus previousStatus = entry.getStatus();
     entry.requestCorrection(reason, actor.getId(), actorRole);
@@ -345,6 +366,7 @@ public class ResultService {
     String reason = requiredReason(request.reason());
     String actorRole = actionRole(actor, RoleCode.VALIDATOR);
     ResultContext context = resultContext(workOrderTest);
+    captureVersion(workOrderTestId, reason, actorEmail);
     TechnicalCatalogDtos.TemplateResponse template =
         entry.getResultTemplateId() == null
             ? findTemplate(workOrderTest, context.sourceTest().getTestDefinitionId())
@@ -483,11 +505,18 @@ public class ResultService {
     Map<UUID, ResultValue> valuesById =
         storedValues.stream().collect(Collectors.toMap(ResultValue::getId, Function.identity()));
     ResultValidation storedValidation =
-        validationRepository.findByResultEntryId(entry.getId()).orElse(null);
+        validationRepository
+            .findByResultEntryId(entry.getId())
+            .filter(
+                validation ->
+                    entry.getStatus() == ResultEntryStatus.VALIDATED
+                        && validation.getResultRevision() == entry.getResultRevision())
+            .orElse(null);
     List<ResultReviewHistory> reviewHistory =
         reviewHistoryRepository.findByResultEntryIdOrderByPerformedAtDesc(entry.getId());
     Set<UUID> userIds = new HashSet<>();
     userIds.add(entry.getRecordedBy());
+    if (entry.getLastRecordedBy() != null) userIds.add(entry.getLastRecordedBy());
     if (entry.getCorrectionRequestedBy() != null) {
       userIds.add(entry.getCorrectionRequestedBy());
     }
@@ -573,7 +602,10 @@ public class ResultService {
         entry.getCorrectionRequestedByRole(),
         entry.getCorrectionRequestedAt(),
         reviewHistoryResponses,
-        validation);
+        validation,
+        entry.getLastRecordedBy(),
+        userName(usersById, entry.getLastRecordedBy()),
+        entry.getLastRecordedAt());
   }
 
   private boolean replaceValues(
@@ -683,16 +715,7 @@ public class ResultService {
       if (value.measurementUnitId() != null) catalogService.getUnit(value.measurementUnitId());
     }
     if (template != null) {
-      validateTemplateFields(values, template);
-    }
-    if (resultMode == ResultMode.REPEATABLE && template != null) {
-      long readings =
-          values.stream().map(ResultDtos.ValueRequest::repetitionIndex).distinct().count();
-      if (readings < template.minimumRepetitions()
-          || (template.maximumRepetitions() != null && readings > template.maximumRepetitions())) {
-        throw new BusinessRuleViolationException(
-            "La cantidad de lecturas no cumple los límites configurados en la plantilla.");
-      }
+      ResultTemplateValueValidator.validate(values, template);
     }
   }
 
@@ -709,43 +732,6 @@ public class ResultService {
             () ->
                 new BusinessRuleViolationException(
                     "El resultado contiene un campo que no pertenece a la plantilla."));
-  }
-
-  private void validateTemplateFields(
-      List<ResultDtos.ValueRequest> values, TechnicalCatalogDtos.TemplateResponse template) {
-    Map<Integer, Set<String>> fieldsByReading =
-        values.stream()
-            .collect(
-                Collectors.groupingBy(
-                    ResultDtos.ValueRequest::repetitionIndex,
-                    Collectors.mapping(
-                        value -> value.fieldKey().trim().toLowerCase(java.util.Locale.ROOT),
-                        Collectors.toSet())));
-    Set<String> requiredPerReading =
-        template.fields().stream()
-            .filter(TechnicalCatalogDtos.TemplateFieldResponse::required)
-            .filter(field -> field.fieldKind() != ResultFieldKind.INFORMATIONAL)
-            .filter(
-                field ->
-                    field.fieldKind() != ResultFieldKind.CALCULATED
-                        || field.calculationScope() != CalculationScope.AGGREGATE)
-            .map(field -> field.fieldKey().trim().toLowerCase(java.util.Locale.ROOT))
-            .collect(Collectors.toSet());
-    if (fieldsByReading.values().stream().anyMatch(keys -> !keys.containsAll(requiredPerReading))) {
-      throw new BusinessRuleViolationException(
-          "Cada lectura debe incluir todos los campos obligatorios de la plantilla.");
-    }
-    Set<String> requiredAggregate =
-        template.fields().stream()
-            .filter(TechnicalCatalogDtos.TemplateFieldResponse::required)
-            .filter(field -> field.fieldKind() == ResultFieldKind.CALCULATED)
-            .filter(field -> field.calculationScope() == CalculationScope.AGGREGATE)
-            .map(field -> field.fieldKey().trim().toLowerCase(java.util.Locale.ROOT))
-            .collect(Collectors.toSet());
-    if (!fieldsByReading.getOrDefault(0, Set.of()).containsAll(requiredAggregate)) {
-      throw new BusinessRuleViolationException(
-          "Falta uno o más resultados calculados globales obligatorios.");
-    }
   }
 
   private TechnicalCatalogDtos.TemplateResponse findTemplate(
@@ -788,6 +774,10 @@ public class ResultService {
   }
 
   private void ensureReviewable(ResultEntry entry) {
+    if (entry.getStatus() == ResultEntryStatus.INVALIDATED) {
+      throw new BusinessRuleViolationException(
+          "El resultado invalidado se conserva únicamente para consulta.");
+    }
     if (entry.getStatus() == ResultEntryStatus.DRAFT) {
       throw new BusinessRuleViolationException(
           "La evaluación aún está en ejecución y no puede enviarse a revisión.");
@@ -802,7 +792,8 @@ public class ResultService {
   }
 
   private void ensureIndependentReviewer(ResultEntry entry, ApplicationUser actor) {
-    if (entry.getRecordedBy().equals(actor.getId())) {
+    if (entry.getRecordedBy().equals(actor.getId())
+        || actor.getId().equals(entry.getLastRecordedBy())) {
       throw new BusinessRuleViolationException(
           "La persona que ingresó el resultado no puede validarlo.");
     }
@@ -853,6 +844,54 @@ public class ResultService {
             trimToNull(comment),
             actor.getId(),
             actorRole));
+    versions.capture(
+        OperationType.RESULT,
+        entry.getWorkOrderTestId(),
+        action.name(),
+        reason,
+        () -> toResponse(entry),
+        actor.getEmail());
+  }
+
+  public void captureVersion(UUID testId, String reason, String actor) {
+    ResultEntry entry = requiredEntry(testId);
+    versions.capture(
+        OperationType.RESULT, testId, "BEFORE_CORRECTION", reason, toResponse(entry), actor);
+  }
+
+  public void returnForCorrection(
+      UUID testId, String reason, boolean reviewOnly, String actorEmail) {
+    ApplicationUser actor = currentUser(actorEmail);
+    ResultEntry entry = requiredEntry(testId);
+    if (entry.getStatus() == ResultEntryStatus.DRAFT
+        || entry.getStatus() == ResultEntryStatus.INVALIDATED
+        || entry.getStatus() == ResultEntryStatus.CORRECTION_REQUESTED) {
+      throw new BusinessRuleViolationException(
+          "El resultado no está en una etapa que permita esta devolución.");
+    }
+    WorkOrderTest test = workOrderService.getRequiredTest(testId);
+    ResultEntryStatus previous = entry.getStatus();
+    captureVersion(testId, reason, actorEmail);
+    if (reviewOnly) {
+      entry.reopenReview();
+      test.markRecorded();
+    } else {
+      entry.requestCorrection(reason, actor.getId(), actionRole(actor, RoleCode.TECHNICAL_MANAGER));
+      test.requestCorrection();
+    }
+    saveReviewHistory(
+        entry,
+        reviewOnly ? ResultReviewAction.REVIEW_REOPENED : ResultReviewAction.CORRECTION_REQUESTED,
+        previous,
+        reason,
+        null,
+        actor,
+        actionRole(actor, RoleCode.TECHNICAL_MANAGER));
+    workOrderService.synchronizeStatus(
+        requiredWorkOrderSample(test).getWorkOrderId(),
+        actorEmail,
+        WorkOrderHistoryAction.RETURNED_FOR_CORRECTION,
+        "Resultado devuelto para corrección. Motivo: " + reason);
   }
 
   private String actionRole(ApplicationUser actor, RoleCode preferredRole) {
@@ -870,6 +909,10 @@ public class ResultService {
   }
 
   private void ensureCanRecord(ApplicationUser actor, WorkOrderTest test) {
+    if (test.getStatus() == WorkOrderTestStatus.INVALIDATED) {
+      throw new BusinessRuleViolationException(
+          "El ensayo invalidado se conserva únicamente para consulta.");
+    }
     boolean isAdmin = hasRole(actor, RoleCode.ADMIN);
     if (!isAdmin && !hasRole(actor, RoleCode.ANALYST)) {
       throw new BusinessRuleViolationException(

@@ -34,7 +34,7 @@ interface TestAssignmentSelection {
 }
 
 function defaultDueDate(): string {
-  return new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16);
+  return toLocalDateTime(new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString());
 }
 
 function toLocalDateTime(value: string): string {

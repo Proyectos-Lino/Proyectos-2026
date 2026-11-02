@@ -14,6 +14,9 @@
 !/backend/Dockerfile
 !/backend/.dockerignore
 !/backend/src/
+!/backend/scripts/
+/backend/scripts/*
+!/backend/scripts/verify-correction-flow.mjs
 
 /frontend/*
 !/frontend/.gitignore
@@ -36,6 +39,7 @@
 !/frontend/scripts/
 /frontend/scripts/*
 !/frontend/scripts/build-desktop.mjs
+!/frontend/scripts/test-sample-common-data.mjs
 
 **/.git/
 **/node_modules/

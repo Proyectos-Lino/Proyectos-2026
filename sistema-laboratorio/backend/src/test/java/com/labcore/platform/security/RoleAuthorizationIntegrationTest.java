@@ -155,7 +155,9 @@ class RoleAuthorizationIntegrationTest {
                 .with(csrf())
                 .contentType("application/json")
                 .content("{\"reason\":\"Corregir identificación registrada\"}"))
-        .andExpect(status().isOk());
+        .andExpect(status().isNoContent())
+        .andExpect(
+            org.springframework.test.web.servlet.result.MockMvcResultMatchers.content().string(""));
     mockMvc
         .perform(
             post("/api/v1/service-orders/{id}/return-to-commercial", orderId)

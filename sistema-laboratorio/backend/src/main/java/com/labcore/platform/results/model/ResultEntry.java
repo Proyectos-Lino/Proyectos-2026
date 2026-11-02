@@ -34,6 +34,8 @@ public class ResultEntry extends BaseEntity {
   private UUID recordedBy;
 
   private Instant recordedAt;
+  private UUID lastRecordedBy;
+  private Instant lastRecordedAt;
 
   @Column(name = "result_revision")
   private int resultRevision = 1;
@@ -144,6 +146,19 @@ public class ResultEntry extends BaseEntity {
     status = ResultEntryStatus.CORRECTED;
   }
 
+  public void recordCorrectionAuthor(UUID actorId) {
+    lastRecordedBy = actorId;
+    lastRecordedAt = Instant.now();
+  }
+
+  public UUID getLastRecordedBy() {
+    return lastRecordedBy;
+  }
+
+  public Instant getLastRecordedAt() {
+    return lastRecordedAt;
+  }
+
   public void requestCorrection(String reason, UUID reviewerId, String reviewerRole) {
     status = ResultEntryStatus.CORRECTION_REQUESTED;
     correctionRequestReason = reason;
@@ -159,6 +174,11 @@ public class ResultEntry extends BaseEntity {
 
   public void validate() {
     status = ResultEntryStatus.VALIDATED;
+  }
+
+  public void reopenReview() {
+    status = ResultEntryStatus.RECORDED;
+    resultRevision++;
   }
 
   public void invalidate(String reason, String actor) {

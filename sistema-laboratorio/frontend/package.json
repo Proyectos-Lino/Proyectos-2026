@@ -5,6 +5,7 @@
   "type": "module",
   "main": "desktop/main.cjs",
   "scripts": {
+    "test": "node scripts/test-sample-common-data.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -17,7 +18,7 @@
   },
   "build": {
     "appId": "pe.labcore.laboratorio.desktop",
-    "productName": "LabCore Laboratorio",
+    "productName": "LabFlow",
     "directories": {
       "output": "release"
     },
@@ -31,7 +32,7 @@
       "target": [
         "portable"
       ],
-      "artifactName": "LabCore-Laboratorio-${version}-Windows-${arch}.${ext}"
+      "artifactName": "LabFlow-${version}-Windows-${arch}.${ext}"
     }
   },
   "dependencies": {

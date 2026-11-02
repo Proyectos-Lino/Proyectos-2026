@@ -46,6 +46,7 @@ export function WorkOrdersPage() {
     isLoading,
     isSaving,
     loadHistory,
+    loadWorkOrders,
     openWorkOrder,
     openDocument,
     responsibleUsers,
@@ -101,6 +102,7 @@ export function WorkOrdersPage() {
           workOrders={workOrders}
         />
         <WorkOrderDetail
+          analysts={analysts}
           canManageWorkOrders={canManageWorkOrders}
           canRecordResults={canRecordResults}
           canValidateResults={canValidateResults}
@@ -120,6 +122,7 @@ export function WorkOrdersPage() {
             }
           }}
           onRefresh={() => {
+            void loadWorkOrders();
             if (selectedWorkOrder) {
               void openWorkOrder(selectedWorkOrder.id);
             }
@@ -156,11 +159,7 @@ export function WorkOrdersPage() {
           if (!returningWorkOrder) {
             return Promise.resolve(false);
           }
-          return returnSelectedOrderToCommercial(
-            returningWorkOrder.id,
-            serviceOrderId,
-            reason,
-          );
+          return returnSelectedOrderToCommercial(returningWorkOrder.id, serviceOrderId, reason);
         }}
         workOrder={returningWorkOrder}
       />

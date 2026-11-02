@@ -201,7 +201,9 @@ class ServiceOrderServiceTest {
             null,
             false,
             null,
-            java.util.List.of(requestedTest, requestedTest));
+            java.util.List.of(requestedTest, requestedTest),
+            null,
+            null);
 
     assertThatThrownBy(
             () ->
@@ -250,6 +252,7 @@ class ServiceOrderServiceTest {
         technicalSampleRepository,
         workflowEvaluator,
         documentService,
-        correctionImpactService);
+        correctionImpactService,
+        mock(com.labcore.platform.workflow.OperationVersionService.class));
   }
 }
