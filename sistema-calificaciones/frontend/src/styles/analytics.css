@@ -1,0 +1,55 @@
+.analytics-scope { padding: 25px 28px; }
+.analytics-scope h2 { margin: 5px 0 8px; }
+.analytics-scope p { color: #60777a; font-size: 13px; }
+.analytics-scope-controls { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(160px, 1fr) auto; gap: 16px; align-items: end; margin-top: 22px; }
+.analytics-export-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid #e7eee8; padding-top: 20px; margin-top: 22px; }
+.analytics-export-actions > span { font-size: 12px; color: #5d7772; }
+.analytics-method { margin: 0; color: #677e7c; font-size: 12px; line-height: 1.65; max-width: 1000px; }
+.analytics-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.analytics-metrics article { padding: 23px; display: grid; gap: 12px; border: 1px solid #dfe8e1; border-radius: 17px; background: #fff; }
+.analytics-metrics article:first-child { background: #173e38; border-color: #173e38; }
+.analytics-metrics span { color: #678079; font-size: 12px; font-weight: 650; }
+.analytics-metrics strong { color: #173e38; font-size: clamp(22px, 2.7vw, 33px); letter-spacing: -.04em; line-height: 1.15; }
+.analytics-metrics small { color: #748982; font-size: 11px; line-height: 1.5; }
+.analytics-metrics em { color: #98aaa1; font-style: normal; font-size: 18px; }
+.analytics-metrics article:first-child span, .analytics-metrics article:first-child small { color: #b5d1c4; }
+.analytics-metrics article:first-child strong { color: #f1faf4; }
+.analytics-status-strip { display: flex; flex-wrap: wrap; gap: 18px 32px; padding: 0 4px; }
+.analytics-status-strip span { display: flex; gap: 12px; color: #71867e; font-size: 12px; }
+.analytics-status-strip strong { color: #234d42; }
+.analytics-charts { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 20px; }
+.analytics-chart { min-width: 0; padding: 26px; }
+.analytics-chart h2 { margin: 5px 0 10px; }
+.analytics-histogram { width: 100%; margin-top: 14px; }
+.analytics-histogram-scroll { overflow-x: auto; }
+.analytics-axis { fill: #778b83; font-size: 11px; }
+.analytics-bar-count { fill: #284f43; font-size: 12px; font-weight: 700; }
+.analytics-chart-note { color: #7d9086; font-size: 11px; line-height: 1.6; }
+.analytics-approval-bar { display: flex; overflow: hidden; border-radius: 9px; height: 26px; background: #edf2ee; margin: 32px 0 23px; }
+.analytics-legend { display: grid; gap: 16px; margin-bottom: 26px; }
+.analytics-legend > div { display: flex; justify-content: space-between; gap: 15px; font-size: 12px; color: #5e786b; }
+.analytics-legend span { display: inline-flex; align-items: center; gap: 9px; }
+.analytics-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; }
+.analytics-legend strong { color: #294e3e; }
+.analytics-timestamp { color: #8b9b92; font-size: 10px; margin: -5px 0 0; text-align: right; }
+.analytics-table-filters { display: flex; gap: 12px; padding: 0 25px 20px; flex-wrap: wrap; }
+.analytics-table-filters .search-field { min-width: 220px; }
+.analytics-table-note { padding: 0 25px 15px; margin: 0; font-size: 11px; color: #7a8f82; line-height: 1.6; }
+.analytics-error-rate { min-width: 95px; display: grid; gap: 6px; }
+.analytics-error-rate strong { font-size: 12px; color: #9c5f34; }
+.analytics-error-rate > span { height: 4px; background: #f4ebe2; border-radius: 3px; overflow: hidden; }
+.analytics-error-rate i { display: block; height: 100%; background: #c58958; border-radius: 3px; }
+@media (max-width: 1200px) {
+  .analytics-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .analytics-charts { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .analytics-histogram { min-width: 600px; }
+  .analytics-scope, .analytics-chart { padding: 20px; }
+  .analytics-scope-controls { grid-template-columns: 1fr; }
+  .analytics-metrics { grid-template-columns: 1fr; }
+  .analytics-metrics article { padding: 20px; }
+  .analytics-table-filters { flex-direction: column; padding: 0 20px 18px; }
+  .analytics-table-filters .search-field { min-width: 0; }
+  .analytics-export-actions .button { width: 100%; }
+}

@@ -1,0 +1,4 @@
+* text=auto
+Dockerfile text eol=lf
+*.template text eol=lf
+backend/mvnw text eol=lf
