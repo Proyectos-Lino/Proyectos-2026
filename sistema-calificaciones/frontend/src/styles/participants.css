@@ -1,0 +1,24 @@
+.participant-empty { padding: 50px 28px; text-align: center; }
+.participant-empty > svg { margin: 0 auto 18px; color: #20816b; }
+.participant-empty h2 { font-size: 22px; color: #193f46; }
+.participant-empty p { color: #60787e; max-width: 600px; margin: 15px auto 25px; line-height: 1.7; }
+.participant-context { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; padding: 18px 22px; border: 1px solid #dae8e2; border-radius: 12px; background: #fff; font-size: 13px; color: #4d686e; }
+.participant-context .text-link { margin-left: auto; }
+.participant-person-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.participant-person-fields legend { font-weight: 700; margin: 12px 0 15px; color: #244b52; }
+.participant-person-fields:disabled { opacity: .72; }
+.participant-group-reference { padding: 18px; border: 1px solid #d8e7de; border-radius: 12px; background: #f5faf7; color: #305a55; }
+.participant-group-reference p { font-size: 13px; line-height: 1.6; margin: 9px 0 14px; }
+.participant-group-reference ul { list-style: none; margin: 0; padding: 0; max-height: 180px; overflow: auto; display: grid; gap: 7px; }
+.participant-group-reference li { display: flex; align-items: baseline; gap: 14px; font-size: 13px; }
+.participant-group-reference code { background: #e5f1e9; border-radius: 5px; padding: 3px 7px; flex: none; }
+.participant-import-filters { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.participant-import-counts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.participant-import-counts > div { padding: 16px; border: 1px solid #dce8e1; border-radius: 10px; background: #f6faf8; }
+.participant-import-counts span { display: block; color: #607a7d; font-size: 12px; margin-bottom: 10px; }
+.participant-import-counts strong { font-size: 25px; color: #164c49; }
+.participant-import-table td:last-child { min-width: 210px; max-width: 340px; white-space: normal; line-height: 1.6; }
+.participant-import-scroll { max-height: min(32dvh, 300px); overflow: auto; }
+.participant-import-table th { position: sticky; top: 0; background: #f5f9f7; z-index: 1; }
+.participant-import-issue { color: #a33b2f; font-weight: 700; }
+@media (max-width: 600px) { .participant-import-filters { grid-template-columns: 1fr; } .participant-import-counts { grid-template-columns: repeat(2,minmax(0,1fr)); } }

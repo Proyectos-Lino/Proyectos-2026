@@ -1,0 +1,8 @@
+**/.env
+**/.env.*
+**/application-local.properties
+backend/config/
+backend/target/
+frontend/node_modules/
+frontend/dist/
+*.log
