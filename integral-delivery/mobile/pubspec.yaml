@@ -1,0 +1,18 @@
+name: integral_delivery
+description: Aplicación móvil integral con servicio de delivery y gestión en tiempo real.
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ^3.13.7
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
