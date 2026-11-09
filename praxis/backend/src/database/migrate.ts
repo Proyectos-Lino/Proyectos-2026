@@ -21,4 +21,4 @@ async function main() {
     await db.onModuleDestroy();
   }
 }
-main().catch(() => { console.error('No se pudo aplicar el esquema. Comprueba DATABASE_URL y PostgreSQL con pgvector.'); process.exitCode = 1; });
+main().catch((error) => { console.error('ERROR REAL DE MIGRACION:', error); process.exitCode = 1; });
