@@ -24,7 +24,7 @@ services:
     env_file: .env
     environment:
       DATABASE_DRIVER: postgres
-      DATABASE_URL: postgresql://docente:${POSTGRES_PASSWORD}@postgres:5432/docente
+      DATABASE_URL: ${DATABASE_URL:?Configura DATABASE_URL}
       STORAGE_DRIVER: cloudinary
       HOST: 0.0.0.0
       NODE_ENV: production
@@ -33,9 +33,9 @@ services:
       TRUST_PROXY: 1
     volumes:
       - praxis_storage:/app/storage
-    depends_on:
-      postgres:
-        condition: service_healthy
+    networks:
+      - default
+      - dokploy-network
     mem_limit: 1g
   frontend:
     build:
@@ -53,3 +53,6 @@ services:
 volumes:
   praxis_pg:
   praxis_storage:
+networks:
+  dokploy-network:
+    external: true
