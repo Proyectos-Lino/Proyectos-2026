@@ -60,7 +60,13 @@ const server = http.createServer(async (req, res) => {
       if (ext === '.svg') contentType = 'image/svg+xml';
       if (ext === '.woff2') contentType = 'font/woff2';
       if (ext === '.png') contentType = 'image/png';
-      res.writeHead(200, { 'Content-Type': contentType });
+      const headers = { 'Content-Type': contentType };
+      if (ext === '.html') {
+        headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+        headers['Pragma'] = 'no-cache';
+        headers['Expires'] = '0';
+      }
+      res.writeHead(200, headers);
       return fs.createReadStream(staticPath).pipe(res);
     }
 
