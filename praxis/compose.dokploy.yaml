@@ -3,21 +3,6 @@
 # - Domain: Dokploy → Domains tab → service "frontend", port 3000, HTTPS with Let's Encrypt.
 #   Traefik (installed by Dokploy) terminates HTTPS; no host ports are published here.
 services:
-  postgres:
-    image: pgvector/pgvector:pg17
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: docente
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configura POSTGRES_PASSWORD}
-      POSTGRES_DB: docente
-    volumes:
-      - praxis_pg:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U docente -d docente"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-    mem_limit: 512m
   backend:
     build: ./backend
     restart: unless-stopped
@@ -51,7 +36,6 @@ services:
       - backend
     mem_limit: 768m
 volumes:
-  praxis_pg:
   praxis_storage:
 networks:
   dokploy-network:
