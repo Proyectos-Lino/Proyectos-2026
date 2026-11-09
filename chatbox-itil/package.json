@@ -1,7 +1,7 @@
 {
-  "name": "chat-box--itil",
+  "name": "bitac",
   "version": "1.0.0",
-  "description": "Sistema de Mesa de Ayuda Interna (Service Desk) estructurado bajo los lineamientos de ITIL, disenado para ser operado exclusivamente por agentes de soporte.",
+  "description": "BITAC - Base de Incidentes y Trazabilidad con Asistencia Conversacional bajo buenas practicas ITIL, disenado para soporte interno.",
   "main": "server.js",
   "bin": "server.js",
   "directories": {

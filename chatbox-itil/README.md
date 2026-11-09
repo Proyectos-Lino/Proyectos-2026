@@ -1,7 +1,7 @@
-# Mesa de Ayuda ITIL con Asistente de IA
+# BITAC — Base de Incidentes y Trazabilidad con Asistencia Conversacional
 
 ## Descripcion General
-Sistema de Mesa de Ayuda interna (Service Desk) estructurado bajo los lineamientos y buenas practicas del marco de trabajo ITIL. Este sistema esta disenado exclusivamente para el uso del personal de soporte tecnico e incorpora un Motor de Asistencia basado en Inteligencia Artificial Generativa.
+BITAC (Base de Incidentes y Trazabilidad con Asistencia Conversacional) es un sistema de Mesa de Ayuda interna (Service Desk) estructurado bajo los lineamientos y buenas practicas del marco de trabajo ITIL. Este sistema esta disenado exclusivamente para el uso del personal de soporte tecnico (Niveles 1 y 2) e incorpora un Asistente Cognitivo basado en Inteligencia Artificial Generativa.
 
 El diseno arquitectonico se inspira conceptualmente en la investigacion "Chatbot ITIL en SUNARP" de Yauricasa Rodriguez, pero con una adaptacion orientada al cliente interno (Agentes de Nivel 1 y 2). El asistente de IA actua como soporte cognitivo del agente, permitiendo consultas rapidas a la base de conocimiento institucional y sugiriendo flujos de resolucion o derivacion.
 
@@ -58,8 +58,9 @@ La entrega actual corresponde únicamente al sistema central e incluye `delivera
 El ZIP distribuible no incluye la clave privada de Gemini. Configura `.env` en el equipo de destino y conserva todas las carpetas junto al EXE. Consulta `deliverables/VERIFICACION.md` para los resultados y límites de esta revisión.
 
 ## Derechos de Autor y Propiedad Intelectual
-Software disenado y estructurado con el fin de cumplir los requerimientos de registro de propiedad intelectual (Indecopi). 
-Queda prohibida su reproduccion, distribucion o modificacion sin autorizacion expresa del autor.
+Software disenado y estructurado con el fin de cumplir los requerimientos de registro de propiedad intelectual ante Indecopi (Direccion de Derecho de Autor).
 
-**Version:** 1.0.0
-**Licencia:** Propietaria. Todos los derechos reservados.
+- **Denominacion de la Obra:** BITAC v1.0 — Base de Incidentes y Trazabilidad con Asistencia Conversacional
+- **Naturaleza de la Obra:** Soporte logico / Software de Mesa de Ayuda ITIL
+- **Version:** 1.0.0
+- **Licencia:** Propietaria. Todos los derechos reservados.
