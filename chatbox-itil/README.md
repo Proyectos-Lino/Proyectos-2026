@@ -63,4 +63,4 @@ Software disenado y estructurado con el fin de cumplir los requerimientos de reg
 - **Denominacion de la Obra:** BITAC v1.0 — Base de Incidentes y Trazabilidad con Asistencia Conversacional
 - **Naturaleza de la Obra:** Soporte logico / Software de Mesa de Ayuda ITIL
 - **Version:** 1.0.0
-- **Licencia:** Propietaria. Todos los derechos reservados.
+- **Licencia:** Propietaria. Todos los derechos reservados (ver archivo `LICENSE`). Las dependencias de terceros conservan sus propias licencias.

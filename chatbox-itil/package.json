@@ -1,6 +1,7 @@
 {
   "name": "bitac",
   "version": "1.0.0",
+  "private": true,
   "description": "BITAC - Base de Incidentes y Trazabilidad con Asistencia Conversacional bajo buenas practicas ITIL, disenado para soporte interno.",
   "main": "server.js",
   "bin": "server.js",
@@ -16,8 +17,8 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Los autores de BITAC",
+  "license": "UNLICENSED",
   "dependencies": {
     "@google/genai": "^2.24.0",
     "mammoth": "^1.12.2",

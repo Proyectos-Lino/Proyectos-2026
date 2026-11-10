@@ -3,9 +3,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
-const out = path.join(root, 'deliverables', 'Chatbox-ITIL-1.0.0-windows-x64');
+const out = path.join(root, 'deliverables', 'BITAC-1.0.0-windows-x64');
 const work = path.join(root, '.tmp', 'sea-release');
-const exe = path.join(out, 'chatbox-itil.exe');
+const exe = path.join(out, 'bitac.exe');
 (async () => {
   if (process.platform !== 'win32' || process.arch !== 'x64') throw new Error('Construir con Node Windows x64.');
   fs.mkdirSync(work, { recursive: true }); fs.mkdirSync(out, { recursive: true });

@@ -1,21 +1,28 @@
-MIT License
+BITAC - Base de Incidentes y Trazabilidad con Asistencia Conversacional
+Version 1.0.0
 
-Copyright (c) 2026 
+Copyright (c) 2026 Los autores de BITAC. Todos los derechos reservados.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+LICENCIA PROPIETARIA
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Este software, su codigo fuente, su documentacion, el diseno de su interfaz
+y su estructura de datos son obras protegidas por el Decreto Legislativo
+N.o 822, Ley sobre el Derecho de Autor del Peru, y por los tratados
+internacionales aplicables.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Queda prohibida, sin autorizacion previa y por escrito de los titulares,
+la reproduccion, distribucion, modificacion, comunicacion publica,
+sublicencia o venta, total o parcial, de esta obra por cualquier medio.
+
+Se permite unicamente la ejecucion y evaluacion de la copia entregada por
+los titulares, con fines academicos o de revision, sin modificarla ni
+redistribuirla.
+
+Los componentes de terceros incluidos en la distribucion (dependencias de
+codigo abierto y el entorno de ejecucion Node.js) se rigen por sus propias
+licencias, cuyos avisos se conservan en la carpeta node_modules y en los
+archivos DEPENDENCIAS.txt y NODE-LICENSE.txt. Esta licencia no modifica
+los derechos que dichas licencias otorgan sobre esos componentes.
+
+EL SOFTWARE SE ENTREGA "TAL CUAL", SIN GARANTIAS DE NINGUN TIPO, EXPRESAS O
+IMPLICITAS. LOS TITULARES NO SERAN RESPONSABLES POR DANOS DERIVADOS DE SU USO.
