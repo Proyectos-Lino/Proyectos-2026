@@ -49,7 +49,10 @@ export interface Statistics {
 
 export interface Group { id: number; evaluationId: number; code: string; name: string; capacity: number | null }
 export interface Form { id: number; evaluationId: number; code: string; questions: number; options: number }
-export interface Rule { id: number; evaluationId: number; version: number; correct: number; incorrect: number; blank: number; passingScore: number | null }
+export interface Rule {
+  id: number; evaluationId: number; version: number; correct: number; incorrect: number; blank: number
+  passingScore: number | null; officialFormula: string | null
+}
 export interface RankingPolicy {
   id: number; evaluationId: number; version: number
   scope: 'GLOBAL' | 'GRUPO'
@@ -78,6 +81,8 @@ export interface Exam {
   incorrect: number | null
   blank: number | null
   score: number | null
+  officialScore: number | null
+  officialFormula: string | null
   position: number | null
   passed: boolean | null
   createdAt: string
@@ -91,6 +96,7 @@ export interface ExamExplanation {
   sheetId: number; formCode: string; questions: number; keyVersion: number; ruleVersion: number
   correctPoints: number; incorrectPoints: number; blankPoints: number; minimumScore: number | null
   sectionVersion: number | null; score: number; sections: SectionScore[]
+  officialScore: number | null; officialFormula: string | null
 }
 export interface RankingDecision {
   id: number; policyVersion: number; scope: RankingPolicy['scope']
@@ -125,7 +131,11 @@ export interface Preparation { status: Evaluation['status']; approved: boolean; 
 export interface Review { id: number; sheetId: number; status: string; reason: string; resolution: string | null; openedAt: string; assigneeId: number | null; assigneeName: string | null; openedByName: string | null; resolvedByName: string | null; resolvedAt: string | null }
 export interface ReviewCase { id: number; sheetId: number; participantCode: string; participantName: string; sheetCode: string | null; status: string; reason: string; assigneeId: number | null; assigneeName: string | null; openedAt: string }
 export interface Assignee { id: number; name: string; role: string }
-export interface ResultVersion { id: number; version: number; keyVersion: number; ruleVersion: number; sectionVersion: number | null; correct: number; incorrect: number; blank: number; score: number; reason: string; calculatedAt: string }
+export interface ResultVersion {
+  id: number; version: number; keyVersion: number; ruleVersion: number; sectionVersion: number | null
+  correct: number; incorrect: number; blank: number; score: number; reason: string; calculatedAt: string
+  officialScore: number | null; officialFormula: string | null
+}
 export interface ResultVersionDetail { version: ResultVersion; responses: string[]; key: string[]; correctPoints: number; incorrectPoints: number; blankPoints: number; sections: SectionScore[] }
 export interface AuditEvent { id: number; userId: number | null; userName: string | null; action: string; entity: string; entityId: number | null; details: string; occurredAt: string; sheetId: number | null }
 export interface PublicationPolicy { showScore: boolean; showPosition: boolean; showPassed: boolean; showCounts: boolean; visibleFrom: string | null; visibleUntil: string | null; approvedBy: number | null; approvedAt: string | null; publishedBy: number | null; publishedAt: string | null; configured: boolean }

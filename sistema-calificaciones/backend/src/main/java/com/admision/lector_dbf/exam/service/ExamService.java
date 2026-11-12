@@ -56,7 +56,8 @@ public class ExamService {
             List<SectionScore> sections = json.readValue(data.sectionDetails(), new TypeReference<>() {});
             return new ExamModels.Explanation(data.sheetId(), data.formCode(), data.questions(),
                     data.keyVersion(), data.ruleVersion(), data.correctPoints(), data.incorrectPoints(),
-                    data.blankPoints(), data.minimumScore(), data.sectionVersion(), data.score(), sections);
+                    data.blankPoints(), data.minimumScore(), data.sectionVersion(), data.score(), sections,
+                    data.officialScore(), data.officialFormula());
         } catch (JsonProcessingException exception) {
             throw new IllegalStateException("El desglose de calificación no se pudo leer", exception);
         }

@@ -196,9 +196,19 @@ public class EvaluationService {
         long userId = access.require(org, auth, "ADMINISTRADOR", "OPERADOR").id();
         publications.assertMutable(org, id);
         evaluations.require(org, id);
-        long ruleId = evaluations.createRule(id, request.correct(), request.incorrect(), request.blank(), request.passingScore(), userId);
+        String formula = request.officialFormula() == null ? null : request.officialFormula().trim();
+        OfficialScoreFormula.compile(formula);
+        long ruleId = evaluations.createRule(id, request.correct(), request.incorrect(), request.blank(),
+                request.passingScore(), formula, userId);
         audit.record(org, id, userId, "REGLA_CREADA", "REGLA", ruleId, "{}");
         return ruleId;
+    }
+
+    public java.math.BigDecimal previewOfficialScore(long org, long id, String formula,
+            java.math.BigDecimal originalScore, Authentication auth) {
+        access.require(org, auth, "ADMINISTRADOR", "OPERADOR");
+        evaluations.require(org, id);
+        return OfficialScoreFormula.compile(formula).apply(originalScore);
     }
 
     public Rule rule(long org, long id, Authentication auth) {

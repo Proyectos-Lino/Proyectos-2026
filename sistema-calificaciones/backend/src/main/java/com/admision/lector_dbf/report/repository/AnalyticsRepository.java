@@ -20,7 +20,7 @@ public class AnalyticsRepository {
     private static final String BASE = """
             WITH base AS (
                 SELECT i.id AS registration_id,i.grupo_id,h.id AS sheet_id,h.estado,h.formulario_id,
-                       h.respuestas,r.id AS result_id,r.clave_id,r.puntaje,r.aprobado
+                       h.respuestas,r.id AS result_id,r.clave_id,coalesce(r.nota_oficial,r.puntaje) AS puntaje,r.aprobado
                 FROM inscripciones i JOIN evaluaciones e ON e.id=i.evaluacion_id
                 LEFT JOIN hojas_respuesta h ON h.inscripcion_id=i.id
                 LEFT JOIN resultados r ON r.hoja_id=h.id
@@ -80,7 +80,8 @@ public class AnalyticsRepository {
 
     private static final String RESULT_EXPORT = """
             SELECT h.id,i.codigo_externo AS codigo,concat_ws(' ',p.nombres,p.apellidos) AS participant,g.nombre AS group_name,
-                   f.codigo AS form_code,h.estado,r.correctas,r.incorrectas,r.blancas,r.puntaje,r.posicion,r.aprobado,
+                   f.codigo AS form_code,h.estado,r.correctas,r.incorrectas,r.blancas,
+                   coalesce(r.nota_oficial,r.puntaje) AS puntaje,r.posicion,r.aprobado,
                    k.version AS key_version,rc.version AS rule_version,
                    (SELECT max(v.version) FROM versiones_resultado v WHERE v.resultado_id=r.id) AS score_version
             FROM hojas_respuesta h JOIN evaluaciones e ON e.id=h.evaluacion_id

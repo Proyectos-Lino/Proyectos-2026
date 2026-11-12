@@ -22,7 +22,12 @@ public final class EvaluationModels {
     public record AnswerKey(long id, long formId, int version, String answers) {}
 
     public record Rule(long id, long evaluationId, int version, BigDecimal correct,
-                       BigDecimal incorrect, BigDecimal blank, BigDecimal passingScore) {}
+                       BigDecimal incorrect, BigDecimal blank, BigDecimal passingScore, String officialFormula) {
+        public Rule(long id, long evaluationId, int version, BigDecimal correct, BigDecimal incorrect,
+                    BigDecimal blank, BigDecimal passingScore) {
+            this(id, evaluationId, version, correct, incorrect, blank, passingScore, null);
+        }
+    }
 
     public record Participant(long id, long organizationId, String code, String names,
                               String surnames, String document, String email, boolean automatic) {}

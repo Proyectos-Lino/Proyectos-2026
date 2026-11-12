@@ -25,6 +25,7 @@ export function RuleSection({ org, evaluationId, canEdit }: { org: number; evalu
       <span>Correcta {scoreFormatter.format(rule.correct)} · Incorrecta {scoreFormatter.format(rule.incorrect)} · Blanca {scoreFormatter.format(rule.blank)}
         {rule.passingScore !== null ? ` · Mínima ${scoreFormatter.format(rule.passingScore)}` : ' · Sin nota mínima'}</span></div>
       : !loading && <p className="muted-copy">Todavía no se ha definido una regla.</p>}
+    {rule?.officialFormula && <p className="muted-copy">Nota oficial con <code>{rule.officialFormula}</code></p>}
     {canEdit && <button type="button" className="button button--secondary" onClick={() => setOpen(true)}>
       {rule ? 'Crear nueva versión' : 'Configurar puntajes'}</button>}
     {message && <Notice tone="success">{message}</Notice>}

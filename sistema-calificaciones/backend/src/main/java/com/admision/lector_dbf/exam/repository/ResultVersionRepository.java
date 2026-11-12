@@ -38,19 +38,19 @@ public class ResultVersionRepository {
                         Score score, String reason, long userId) {
         db.sql("UPDATE resultados SET clave_id=:key,regla_id=:rule,configuracion_seccion_id=:sections,"
                 + "detalle_secciones=CAST(:details AS jsonb),correctas=:correct,incorrectas=:incorrect,"
-                + "blancas=:blank,puntaje=:score,calculado_en=now() WHERE id=:result")
+                + "blancas=:blank,puntaje=:score,nota_oficial=:official,calculado_en=now() WHERE id=:result")
                 .param("key", keyId).param("rule", ruleId).param("sections", sectionId)
                 .param("details", details).param("correct", score.correct()).param("incorrect", score.incorrect())
-                .param("blank", score.blank()).param("score", score.points()).param("result", source.resultId()).update();
+                .param("blank", score.blank()).param("score", score.points()).param("official", score.officialScore()).param("result", source.resultId()).update();
         return db.sql("INSERT INTO versiones_resultado(resultado_id,version,clave_id,regla_id,configuracion_seccion_id,"
-                + "detalle_secciones,correctas,incorrectas,blancas,puntaje,motivo,calculada_por) "
+                + "detalle_secciones,correctas,incorrectas,blancas,puntaje,nota_oficial,motivo,calculada_por) "
                 + "SELECT :result,coalesce(max(version),0)+1,:key,:rule,:sections,CAST(:details AS jsonb),"
-                + ":correct,:incorrect,:blank,:score,:reason,:user FROM versiones_resultado "
+                + ":correct,:incorrect,:blank,:score,:official,:reason,:user FROM versiones_resultado "
                 + "WHERE resultado_id=:result RETURNING id")
                 .param("result", source.resultId()).param("key", keyId).param("rule", ruleId)
                 .param("sections", sectionId).param("details", details)
                 .param("correct", score.correct()).param("incorrect", score.incorrect())
-                .param("blank", score.blank()).param("score", score.points())
+                .param("blank", score.blank()).param("score", score.points()).param("official", score.officialScore())
                 .param("reason", reason).param("user", userId).query(Long.class).single();
     }
 
@@ -64,21 +64,22 @@ public class ResultVersionRepository {
         long total = db.sql("SELECT count(*)" + source).param("organization", organizationId)
                 .param("evaluation", evaluationId).param("sheet", sheetId).query(Long.class).single();
         List<ResultVersion> items = db.sql("SELECT v.id,v.version,k.version,rc.version,cs.version,v.correctas,"
-                        + "v.incorrectas,v.blancas,v.puntaje,v.motivo,v.calculada_en" + source
+                        + "v.incorrectas,v.blancas,v.puntaje,v.motivo,v.calculada_en,v.nota_oficial,rc.formula_nota_oficial" + source
                         + " ORDER BY v.version DESC LIMIT :size OFFSET :offset")
                 .param("organization", organizationId).param("evaluation", evaluationId).param("sheet", sheetId)
                 .param("size", size).param("offset", page * size)
                 .query((rs, row) -> new ResultVersion(rs.getLong(1), rs.getInt(2), rs.getInt(3),
                         rs.getInt(4), (Integer) rs.getObject(5), rs.getInt(6), rs.getInt(7),
                         rs.getInt(8), rs.getBigDecimal(9), rs.getString(10),
-                        rs.getObject(11, OffsetDateTime.class))).list();
+                        rs.getObject(11, OffsetDateTime.class), rs.getBigDecimal(12), rs.getString(13))).list();
         return PageResult.of(items, page, size, total);
     }
 
     public Optional<DetailSource> detail(long organizationId, long evaluationId, long sheetId, long versionId) {
         return db.sql("SELECT v.id,v.version,k.version,rc.version,cs.version,v.correctas,v.incorrectas,"
                 + "v.blancas,v.puntaje,v.motivo,v.calculada_en,h.respuestas::text,k.respuestas::text,"
-                + "v.detalle_secciones::text,rc.puntos_correcta,rc.puntos_incorrecta,rc.puntos_blanca "
+                + "v.detalle_secciones::text,rc.puntos_correcta,rc.puntos_incorrecta,rc.puntos_blanca,"
+                + "v.nota_oficial,rc.formula_nota_oficial "
                 + "FROM versiones_resultado v JOIN resultados r ON r.id=v.resultado_id "
                 + "JOIN hojas_respuesta h ON h.id=r.hoja_id JOIN evaluaciones e ON e.id=h.evaluacion_id "
                 + "JOIN claves_respuesta k ON k.id=v.clave_id JOIN reglas_calificacion rc ON rc.id=v.regla_id "
@@ -89,7 +90,8 @@ public class ResultVersionRepository {
                 .query((rs, row) -> new DetailSource(new ResultVersion(rs.getLong(1), rs.getInt(2),
                         rs.getInt(3), rs.getInt(4), (Integer) rs.getObject(5), rs.getInt(6),
                         rs.getInt(7), rs.getInt(8), rs.getBigDecimal(9), rs.getString(10),
-                        rs.getObject(11, OffsetDateTime.class)), rs.getString(12), rs.getString(13),
+                        rs.getObject(11, OffsetDateTime.class), rs.getBigDecimal(18), rs.getString(19)),
+                        rs.getString(12), rs.getString(13),
                         rs.getString(14), rs.getBigDecimal(15), rs.getBigDecimal(16), rs.getBigDecimal(17))).optional();
     }
 }

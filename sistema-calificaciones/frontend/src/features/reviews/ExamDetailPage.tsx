@@ -80,7 +80,10 @@ export function ExamDetailPage() {
       <div><span>Correctas</span><strong>{exam.correct ?? '—'}</strong></div>
       <div><span>Incorrectas</span><strong>{exam.incorrect ?? '—'}</strong></div>
       <div><span>Blancas</span><strong>{exam.blank ?? '—'}</strong></div>
-      <div><span>Puntaje / puesto</span><strong>{exam.score === null ? '—' : scoreFormatter.format(exam.score)} / {exam.position ?? '—'}</strong></div>
+      <div><span>{exam.officialScore == null ? 'Puntaje / puesto' : 'Nota oficial / puesto'}</span>
+        <strong>{exam.score === null ? '—' : scoreFormatter.format(exam.officialScore ?? exam.score)} / {exam.position ?? '—'}</strong>
+        {exam.officialScore != null && exam.score !== null && <small>Puntaje original {scoreFormatter.format(exam.score)}</small>}
+      </div>
     </div>
     <section className="surface-card form-section">
       <p className="section-kicker">DECISIÓN ACTUAL</p>

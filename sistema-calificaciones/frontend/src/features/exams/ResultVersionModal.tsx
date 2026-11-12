@@ -20,6 +20,9 @@ export function ResultVersionModal({ org, evaluation, sheet, version, onClose }:
         <p><strong>{scoreFormatter.format(data.version.score)} puntos</strong> · Clave v{data.version.keyVersion}
           · Regla v{data.version.ruleVersion}{data.version.sectionVersion && ` · Secciones v${data.version.sectionVersion}`}</p>
         <p className="muted-copy">Motivo: {data.version.reason}</p>
+        {data.version.officialScore != null && <p>
+          <strong>Nota oficial · {scoreFormatter.format(data.version.officialScore)}</strong> · <code>{data.version.officialFormula}</code>
+        </p>}
         {data.sections.length ? <div className="score-breakdown">{data.sections.map((section) => <div key={section.code}>
           <strong>{section.name}</strong><span>Preguntas {section.fromQuestion}–{section.toQuestion}</span>
           <span>{section.correct} correctas · {section.incorrect} incorrectas · {section.blank} blancas</span>

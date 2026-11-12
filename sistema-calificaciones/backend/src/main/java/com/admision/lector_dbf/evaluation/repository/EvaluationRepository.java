@@ -169,15 +169,28 @@ public class EvaluationRepository {
 
     public long createRule(long evaluationId, BigDecimal correct, BigDecimal incorrect,
                            BigDecimal blank, BigDecimal passingScore, long userId) {
-        return db.sql("INSERT INTO reglas_calificacion(evaluacion_id,version,puntos_correcta,puntos_incorrecta,puntos_blanca,minima_aprobacion,creada_por) SELECT :evaluation,coalesce(max(version),0)+1,:correct,:incorrect,:blank,:passing,:user FROM reglas_calificacion WHERE evaluacion_id=:evaluation RETURNING id")
-                .param("evaluation", evaluationId).param("correct", correct).param("incorrect", incorrect)
-                .param("blank", blank).param("passing", passingScore).param("user", userId).query(Long.class).single();
+        return createRule(evaluationId, correct, incorrect, blank, passingScore, null, userId);
+    }
+
+    public long createRule(long evaluationId, BigDecimal correct, BigDecimal incorrect,
+                           BigDecimal blank, BigDecimal passingScore, String officialFormula, long userId) {
+        return db.sql("""
+                INSERT INTO reglas_calificacion(evaluacion_id,version,puntos_correcta,puntos_incorrecta,
+                    puntos_blanca,minima_aprobacion,formula_nota_oficial,creada_por)
+                SELECT :evaluation,coalesce(max(version),0)+1,:correct,:incorrect,:blank,:passing,:formula,:user
+                FROM reglas_calificacion WHERE evaluacion_id=:evaluation RETURNING id
+                """).param("evaluation", evaluationId).param("correct", correct).param("incorrect", incorrect)
+                .param("blank", blank).param("passing", passingScore).param("formula", officialFormula)
+                .param("user", userId).query(Long.class).single();
     }
 
     public Optional<Rule> latestRule(long evaluationId) {
-        return db.sql("SELECT id,evaluacion_id,version,puntos_correcta,puntos_incorrecta,puntos_blanca,minima_aprobacion FROM reglas_calificacion WHERE evaluacion_id=:evaluation ORDER BY version DESC LIMIT 1")
-                .param("evaluation", evaluationId).query((rs, row) -> new Rule(rs.getLong(1), rs.getLong(2), rs.getInt(3),
-                        rs.getBigDecimal(4), rs.getBigDecimal(5), rs.getBigDecimal(6), rs.getBigDecimal(7))).optional();
+        return db.sql("""
+                SELECT id,evaluacion_id,version,puntos_correcta,puntos_incorrecta,puntos_blanca,
+                       minima_aprobacion,formula_nota_oficial
+                FROM reglas_calificacion WHERE evaluacion_id=:evaluation ORDER BY version DESC LIMIT 1
+                """).param("evaluation", evaluationId).query((rs, row) -> new Rule(rs.getLong(1), rs.getLong(2), rs.getInt(3),
+                        rs.getBigDecimal(4), rs.getBigDecimal(5), rs.getBigDecimal(6), rs.getBigDecimal(7), rs.getString(8))).optional();
     }
 
     public long createParticipant(long organizationId, String code, String names, String surnames, String document) {

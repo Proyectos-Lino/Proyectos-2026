@@ -5,4 +5,5 @@ import java.time.OffsetDateTime;
 
 public record ResultVersion(long id, int version, int keyVersion, int ruleVersion,
                             Integer sectionVersion, int correct, int incorrect, int blank,
-                            BigDecimal score, String reason, OffsetDateTime calculatedAt) {}
+                            BigDecimal score, String reason, OffsetDateTime calculatedAt,
+                            BigDecimal officialScore, String officialFormula) {}

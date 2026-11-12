@@ -45,8 +45,12 @@ export function ResultExplanationSection({ org, evaluationId, sheetId, evaluatio
           <b>{scoreFormatter.format(section.points)} puntos</b>
         </div>)}
       </div> : <p className="muted-copy">Puntajes: correcta {scoreFormatter.format(explanation.correctPoints)}, incorrecta {scoreFormatter.format(explanation.incorrectPoints)}, blanca {scoreFormatter.format(explanation.blankPoints)}.</p>}
-      <div className="info-row"><strong>Puntaje final: {scoreFormatter.format(explanation.score)}</strong>
+      <div className="info-row"><strong>{explanation.officialScore == null ? 'Puntaje final' : 'Puntaje original'} · {scoreFormatter.format(explanation.score)}</strong>
         <span>Nota mínima de la regla: {explanation.minimumScore === null ? 'sin definir' : scoreFormatter.format(explanation.minimumScore)}</span></div>
+      {explanation.officialScore != null && <div className="info-row">
+        <strong>Nota oficial · {scoreFormatter.format(explanation.officialScore)}</strong>
+        <code>{explanation.officialFormula}</code>
+      </div>}
     </>}
     <h3 className="result-history__title">Historial de puestos y {language.heading.toLowerCase()}</h3>
     <p className="muted-copy">Se registra una nueva decisión cuando cambian el puesto, el resultado, las vacantes o los criterios aplicados.</p>
@@ -67,7 +71,7 @@ export function ResultExplanationSection({ org, evaluationId, sheetId, evaluatio
     <p className="muted-copy">Cada recálculo conserva la clave, regla, secciones, conteos y motivo utilizados.</p>
     {versionError && <Notice tone="error">{versionError}</Notice>}
     <div className="result-history">{versions?.items.map((version) => <article key={version.id}>
-      <div><strong>Versión {version.version} · {scoreFormatter.format(version.score)} puntos</strong>
+      <div><strong>Versión {version.version} · {scoreFormatter.format(version.officialScore ?? version.score)} {version.officialScore == null ? 'puntos' : 'de nota oficial'}</strong>
         <span>{timestamp.format(new Date(version.calculatedAt))}</span></div>
       <p>Clave v{version.keyVersion} · Regla v{version.ruleVersion}
         {version.sectionVersion ? ` · Secciones v${version.sectionVersion}` : ''}</p>

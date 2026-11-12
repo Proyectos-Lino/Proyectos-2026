@@ -27,16 +27,16 @@ public class ResultsPdfRenderer {
                 for (var group:report.groups()) {
                     if (!first) document.newPage(); first=false;
                     introduction(document,report,group.name(),group.capacity());
-                    resultTable(document,report.exams().stream().filter(e -> Objects.equals(e.groupId(),group.id())).toList(),false,evaluation.type(),
+                    resultTable(document,report.exams().stream().filter(e -> Objects.equals(e.groupId(),group.id())).toList(),false,report.officialScoring(),evaluation.type(),
                             groupLabel(evaluation.groupType())+": "+group.name()+" | Vacantes: "+(group.capacity()==null ? "Sin definir" : group.capacity()));
                 }
                 List<Exam> unassigned=report.exams().stream().filter(e -> e.groupId()==null).toList();
-                if (!unassigned.isEmpty()) { document.newPage(); introduction(document,report,"Sin grupo",null); resultTable(document,unassigned,false,evaluation.type(),"Sin grupo"); }
+                if (!unassigned.isEmpty()) { document.newPage(); introduction(document,report,"Sin grupo",null); resultTable(document,unassigned,false,report.officialScoring(),evaluation.type(),"Sin grupo"); }
             } else {
                 introduction(document,report,null,report.policy()==null ? null : report.policy().globalCapacity());
                 List<Exam> ranked=report.exams().stream().sorted(Comparator.comparing(Exam::position,Comparator.nullsLast(Comparator.naturalOrder()))
-                        .thenComparing(Exam::score,Comparator.nullsLast(Comparator.reverseOrder())).thenComparingLong(Exam::id)).toList();
-                resultTable(document,ranked,true,evaluation.type(),"Ranking general de la evaluación");
+                        .thenComparing(Exam::rankingScore,Comparator.nullsLast(Comparator.reverseOrder())).thenComparingLong(Exam::id)).toList();
+                resultTable(document,ranked,true,report.officialScoring(),evaluation.type(),"Ranking general de la evaluación");
             }
             InstitutionalPdf.signature(document,report.organization());
             return pdf.finish();
@@ -51,12 +51,15 @@ public class ResultsPdfRenderer {
         Paragraph info=new Paragraph(details,InstitutionalPdf.font(10,true)); info.setSpacingAfter(8); document.add(info);
     }
 
-    private void resultTable(Document document,List<Exam> exams,boolean showGroup,String type,String section) {
-        PdfPTable table=InstitutionalPdf.table(showGroup ? new float[]{.4f,1.1f,2.7f,1.35f,.65f,1f,.85f,1.5f} : new float[]{.45f,1.05f,3.45f,.65f,1f,.85f,1.5f});
+    private void resultTable(Document document,List<Exam> exams,boolean showGroup,boolean officialScoring,String type,String section) {
+        float scoreWidth = officialScoring ? 1.35f : 1f;
+        PdfPTable table=InstitutionalPdf.table(showGroup
+                ? new float[]{.4f,1.1f,2.7f,1.35f,.65f,scoreWidth,.85f,1.5f}
+                : new float[]{.45f,1.05f,3.45f,.65f,scoreWidth,.85f,1.5f});
         table.setSplitRows(false);
         List<String> headings=new ArrayList<>(List.of("N°","Código","Participante"));
         if (showGroup) headings.add("Grupo");
-        headings.addAll(List.of("Tema","Puntaje","Puesto","Condición"));
+        headings.addAll(List.of("Tema",officialScoring ? "Nota oficial" : "Puntaje","Puesto","Condición"));
         PdfPCell group=InstitutionalPdf.cell(section,true); group.setColspan(headings.size()); table.addCell(group);
         for (String heading:headings) table.addCell(InstitutionalPdf.cell(heading,true));
         table.setHeaderRows(2);
@@ -65,7 +68,8 @@ public class ResultsPdfRenderer {
             index++;
             List<String> values=new ArrayList<>(List.of(Integer.toString(index),exam.participantCode(),exam.participantName()));
             if (showGroup) values.add(exam.groupName());
-            values.add(exam.formCode()); values.add(exam.score()==null ? "-" : exam.score().toPlainString());
+            var score = officialScoring ? exam.officialScore() : exam.score();
+            values.add(exam.formCode()); values.add(score == null ? "-" : score.toPlainString());
             values.add(exam.position()==null ? "-" : exam.position().toString()); values.add(condition(exam,type));
             for (int column=0;column<values.size();column++) {
                 PdfPCell cell=InstitutionalPdf.cell(values.get(column),false);

@@ -1,6 +1,7 @@
 package com.admision.lector_dbf.exam.service;
 
 import com.admision.lector_dbf.audit.repository.AuditRepository;
+import com.admision.lector_dbf.evaluation.model.EvaluationModels.Rule;
 import com.admision.lector_dbf.evaluation.repository.EvaluationRepository;
 import com.admision.lector_dbf.evaluation.repository.SectionConfigurationRepository;
 import com.admision.lector_dbf.exam.model.ResultVersion;
@@ -78,8 +79,10 @@ public class ResultVersionService {
         if (reason == null || reason.isBlank()) throw ApiException.badRequest("Indica el motivo del recálculo");
         List<Long> sheets = versions.sheetIds(evaluation);
         if (sheets.isEmpty()) throw ApiException.conflict("No hay resultados para recalcular");
+        Rule rule = evaluations.latestRule(evaluation)
+                .orElseThrow(() -> ApiException.conflict("Falta la regla de calificación"));
         try {
-            for (long sheet : sheets) recalculateOne(org, evaluation, sheet, reason.trim(), userId);
+            for (long sheet : sheets) recalculateOne(org, evaluation, sheet, reason.trim(), userId, rule);
         } catch (JsonProcessingException exception) {
             throw new IllegalStateException("No se pudieron leer las respuestas guardadas", exception);
         }
@@ -89,14 +92,12 @@ public class ResultVersionService {
         return sheets.size();
     }
 
-    private void recalculateOne(long org, long evaluation, long sheet, String reason, long userId)
+    private void recalculateOne(long org, long evaluation, long sheet, String reason, long userId, Rule rule)
             throws JsonProcessingException {
         ResultVersionRepository.Source source = versions.source(org, evaluation, sheet)
                 .orElseThrow(() -> ApiException.notFound("Resultado"));
         var key = evaluations.latestKey(source.formId())
                 .orElseThrow(() -> ApiException.conflict("Falta la clave del tema"));
-        var rule = evaluations.latestRule(evaluation)
-                .orElseThrow(() -> ApiException.conflict("Falta la regla de calificación"));
         var section = sections.latest(source.formId()).orElse(null);
         List<String> answers = json.readValue(source.answers(), new TypeReference<>() {});
         List<String> keyAnswers = json.readValue(key.answers(), new TypeReference<>() {});

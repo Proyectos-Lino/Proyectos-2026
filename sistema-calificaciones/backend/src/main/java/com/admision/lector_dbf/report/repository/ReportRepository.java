@@ -6,6 +6,8 @@ import com.admision.lector_dbf.report.model.ResultsReport;
 import com.admision.lector_dbf.account.repository.OrganizationProfileRepository;
 import com.admision.lector_dbf.evaluation.repository.RankingPolicyRepository;
 import org.springframework.stereotype.Repository;
+import com.admision.lector_dbf.shared.ApiException;
+import java.util.Objects;
 
 @Repository
 public class ReportRepository {
@@ -21,8 +23,14 @@ public class ReportRepository {
     }
 
     public ResultsReport results(long organizationId, long evaluationId) {
-        return new ResultsReport(evaluations.require(organizationId, evaluationId),
-                exams.allForPdf(organizationId, evaluationId),organizations.get(organizationId),
-                organizations.logo(organizationId).map(l -> l.content()).orElse(null),policies.latest(evaluationId).orElse(null),evaluations.groups(evaluationId));
+        var evaluation = evaluations.require(organizationId, evaluationId);
+        var rows = exams.allForPdf(organizationId, evaluationId);
+        String formula = evaluations.latestRule(evaluationId).map(rule -> rule.officialFormula()).orElse(null);
+        if (rows.stream().anyMatch(row -> row.score() != null
+                && (!Objects.equals(formula, row.officialFormula()) || (formula != null && row.officialScore() == null))))
+            throw ApiException.conflict("Recalcula los resultados con la fórmula vigente antes de descargar el PDF");
+        return new ResultsReport(evaluation, rows, organizations.get(organizationId),
+                organizations.logo(organizationId).map(l -> l.content()).orElse(null),
+                policies.latest(evaluationId).orElse(null), evaluations.groups(evaluationId), formula != null);
     }
 }

@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react'
 import { ArrowLeft, Download, Search } from 'lucide-react'
 import { Link, useParams, useLocation } from 'react-router'
 import { evaluationsApi } from '../../api/evaluations'
+import { ApiError } from '../../api/client'
 import { examsApi } from '../../api/exams'
 import { useAuth } from '../../auth/useAuth'
 import { Pagination } from '../../components/Pagination'
@@ -34,6 +35,12 @@ export function ExamsPage() {
   const { data, loading, error, reload } = useResource(load)
   const loadEvaluation = useCallback(() => evaluationsApi.overview(org, id), [org, id])
   const { data: evaluation } = useResource(loadEvaluation)
+  const loadRule = useCallback(async () => {
+    try { return await evaluationsApi.rule(org, id) }
+    catch (cause) { if (cause instanceof ApiError && cause.status === 404) return null; throw cause }
+  }, [org, id])
+  const { data: rule } = useResource(loadRule)
+  const showOfficialScore = Boolean(rule?.officialFormula || data?.items.some((exam) => exam.officialScore != null))
   const label = groupLabel(evaluation?.groupType)
   const language = resultLanguage(evaluation?.type)
   const loadGroups = useCallback(() => evaluationsApi.groups(org, id), [org, id])
@@ -72,7 +79,8 @@ export function ExamsPage() {
             </select></label>
           <label className="select-field"><span className="sr-only">Orden</span>
             <select value={order} onChange={(event) => { setOrder(event.target.value); setPage(0) }}>
-              <option value="puntaje-desc">Mayor puntaje</option><option value="puntaje-asc">Menor puntaje</option>
+              <option value="puntaje-desc">{showOfficialScore ? 'Mayor nota oficial' : 'Mayor puntaje'}</option>
+              <option value="puntaje-asc">{showOfficialScore ? 'Menor nota oficial' : 'Menor puntaje'}</option>
               <option value="fecha-desc">Más recientes</option>
             </select></label>
         </div>
@@ -81,13 +89,16 @@ export function ExamsPage() {
       {loading && <p className="loading-inline">Consultando exámenes…</p>}
       {data && <><div className="table-scroll" aria-busy={loading} inert={loading}><table className="data-table">
         <thead><tr><th>Código / participante</th><th>{label}</th><th>Tema</th><th>Correctas</th>
-          <th>Incorrectas</th><th>Blancas</th><th>Puntaje</th><th>Puesto</th><th>{language.heading}</th><th>Estado</th><th>Acción</th></tr></thead>
+          <th>Incorrectas</th><th>Blancas</th><th>{showOfficialScore ? 'Puntaje original' : 'Puntaje'}</th>
+          {showOfficialScore && <th>Nota oficial</th>}
+          <th>Puesto</th><th>{language.heading}</th><th>Estado</th><th>Acción</th></tr></thead>
         <tbody>{data.items.map((exam) => <tr key={exam.id}>
           <td><strong className="table-title">{exam.participantName}</strong>
             <span className="table-subtitle">{exam.participantCode} · Hoja {exam.sheetCode ?? '—'}</span></td>
           <td>{exam.groupName ?? '—'}</td><td>{exam.formCode}</td>
           <td>{exam.correct ?? '—'}</td><td>{exam.incorrect ?? '—'}</td><td>{exam.blank ?? '—'}</td>
           <td><strong className="score-value">{exam.score === null ? '—' : scoreFormatter.format(exam.score)}</strong></td>
+          {showOfficialScore && <td><strong className="score-value">{exam.officialScore == null ? '—' : scoreFormatter.format(exam.officialScore)}</strong></td>}
           <td>{exam.position ?? '—'}</td><td>{exam.passed === null ? '—' : exam.passed ? 'Sí' : 'No'}</td>
           <td><StatusBadge status={exam.status} /></td>
           <td><Link className="text-link" state={{ ...location.state, fromCases: false }} to={`/evaluaciones/${id}/examenes/${exam.id}${location.search}`}>Revisar</Link></td>

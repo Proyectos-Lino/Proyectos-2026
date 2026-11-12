@@ -7,4 +7,5 @@ import com.admision.lector_dbf.account.model.OrganizationProfile;
 import com.admision.lector_dbf.evaluation.model.ScoringModels.RankingPolicy;
 
 public record ResultsReport(EvaluationModels.Evaluation evaluation, List<ExamModels.Exam> exams,
-                            OrganizationProfile organization,byte[] logo,RankingPolicy policy,List<EvaluationModels.Group> groups) {}
+                            OrganizationProfile organization,byte[] logo,RankingPolicy policy,List<EvaluationModels.Group> groups,
+                            boolean officialScoring) {}

@@ -35,8 +35,11 @@ export const evaluationsApi = {
   saveKey: (org: number, id: number, formId: number, answers: string[]) =>
     api<{ id: number }>(`${item(org, id)}/formularios/${formId}/clave`, { method: 'PUT', body: JSON.stringify({ answers }) }),
   rule: (org: number, id: number) => api<Rule>(`${item(org, id)}/reglas/actual`),
-  saveRule: (org: number, id: number, payload: { correct: number; incorrect: number; blank: number; passingScore: number | null }) =>
+  saveRule: (org: number, id: number, payload: Omit<Rule, 'id' | 'evaluationId' | 'version'>) =>
     api<{ id: number }>(`${item(org, id)}/reglas`, { method: 'POST', body: JSON.stringify(payload) }),
+  previewOfficialScore: (org: number, id: number, formula: string, originalScore: number) =>
+    api<{ officialScore: number }>(`${item(org, id)}/reglas/vista-previa-nota`,
+      { method: 'POST', body: JSON.stringify({ formula, originalScore }) }),
   policy: (org: number, id: number) => api<RankingPolicy>(`${item(org, id)}/politica-resultados`),
   savePolicy: (org: number, id: number, payload: Omit<RankingPolicy, 'id' | 'evaluationId' | 'version'>) =>
     api<RankingPolicy>(`${item(org, id)}/politica-resultados`, { method: 'POST', body: JSON.stringify(payload) }),

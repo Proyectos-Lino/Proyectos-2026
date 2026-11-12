@@ -86,19 +86,19 @@ public class ImportRepository {
     public void createResult(long evaluationId, long sheetId, long formId, long keyId, long ruleId,
                              Long sectionConfigurationId, String sectionDetails, ImportModels.Score score) {
         long resultId = db.sql("INSERT INTO resultados(evaluacion_id,hoja_id,formulario_id,clave_id,regla_id,configuracion_seccion_id,"
-                + "detalle_secciones,correctas,incorrectas,blancas,puntaje) "
-                + "VALUES (:evaluation,:sheet,:form,:key,:rule,:sections,CAST(:details AS jsonb),:correct,:incorrect,:blank,:points) RETURNING id")
+                + "detalle_secciones,correctas,incorrectas,blancas,puntaje,nota_oficial) "
+                + "VALUES (:evaluation,:sheet,:form,:key,:rule,:sections,CAST(:details AS jsonb),:correct,:incorrect,:blank,:points,:official) RETURNING id")
                 .param("evaluation", evaluationId).param("sheet", sheetId).param("form", formId)
                 .param("key", keyId).param("rule", ruleId).param("sections", sectionConfigurationId)
                 .param("details", sectionDetails).param("correct", score.correct())
                 .param("incorrect", score.incorrect()).param("blank", score.blank())
-                .param("points", score.points()).query(Long.class).single();
+                .param("points", score.points()).param("official", score.officialScore()).query(Long.class).single();
         db.sql("INSERT INTO versiones_resultado(resultado_id,version,clave_id,regla_id,configuracion_seccion_id,"
-                + "detalle_secciones,correctas,incorrectas,blancas,puntaje,motivo) VALUES "
-                + "(:result,1,:key,:rule,:sections,CAST(:details AS jsonb),:correct,:incorrect,:blank,:points,'Calificación inicial')")
+                + "detalle_secciones,correctas,incorrectas,blancas,puntaje,nota_oficial,motivo) VALUES "
+                + "(:result,1,:key,:rule,:sections,CAST(:details AS jsonb),:correct,:incorrect,:blank,:points,:official,'Calificación inicial')")
                 .param("result", resultId).param("key", keyId).param("rule", ruleId)
                 .param("sections", sectionConfigurationId).param("details", sectionDetails)
                 .param("correct", score.correct()).param("incorrect", score.incorrect())
-                .param("blank", score.blank()).param("points", score.points()).update();
+                .param("blank", score.blank()).param("points", score.points()).param("official", score.officialScore()).update();
     }
 }

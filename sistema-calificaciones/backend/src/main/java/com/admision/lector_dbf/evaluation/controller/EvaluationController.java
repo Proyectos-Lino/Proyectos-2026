@@ -119,6 +119,13 @@ public class EvaluationController {
         return created(service.saveRule(organizationId, evaluationId, request, auth));
     }
 
+    @PostMapping("/evaluaciones/{evaluationId}/reglas/vista-previa-nota")
+    public Map<String, java.math.BigDecimal> previewOfficialScore(@PathVariable long organizationId,
+            @PathVariable long evaluationId, @Valid @RequestBody PreviewOfficialScore request, Authentication auth) {
+        return Map.of("officialScore", service.previewOfficialScore(organizationId, evaluationId,
+                request.formula(), request.originalScore(), auth));
+    }
+
     @GetMapping("/evaluaciones/{evaluationId}/reglas/actual")
     public Rule rule(@PathVariable long organizationId, @PathVariable long evaluationId, Authentication auth) {
         return service.rule(organizationId, evaluationId, auth);

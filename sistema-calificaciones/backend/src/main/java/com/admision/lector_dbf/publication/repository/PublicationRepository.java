@@ -129,7 +129,7 @@ public class PublicationRepository {
 
     public Optional<PublicResult> lookup(String hash) {
         return db.sql("SELECT e.nombre,i.codigo_externo,concat_ws(' ',p.nombres,p.apellidos),f.codigo,"
-                + "CASE WHEN cp.mostrar_puntaje THEN r.puntaje END,"
+                + "CASE WHEN cp.mostrar_puntaje THEN coalesce(r.nota_oficial,r.puntaje) END,"
                 + "CASE WHEN cp.mostrar_puesto THEN r.posicion END,"
                 + "CASE WHEN cp.mostrar_aprobacion THEN r.aprobado END,"
                 + "CASE WHEN cp.mostrar_conteos THEN r.correctas END,"

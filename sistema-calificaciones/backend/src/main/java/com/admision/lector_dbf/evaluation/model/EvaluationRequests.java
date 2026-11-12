@@ -22,7 +22,10 @@ public final class EvaluationRequests {
     public record SaveKey(@NotNull List<@NotNull String> answers) {}
 
     public record SaveRule(@NotNull @DecimalMin("0") BigDecimal correct, @NotNull BigDecimal incorrect,
-                           @NotNull BigDecimal blank, BigDecimal passingScore) {}
+                           @NotNull BigDecimal blank, BigDecimal passingScore, String officialFormula) {}
+
+    public record PreviewOfficialScore(@NotNull @Digits(integer = 10, fraction = 4) BigDecimal originalScore,
+                                       @NotBlank @Size(max = 200) String formula) {}
 
     public record CreateParticipant(@NotBlank @Size(max=80) String code, @NotBlank @Size(max=160) String names,
                                     @Size(max=160) String surnames, @Size(max=40) String document,

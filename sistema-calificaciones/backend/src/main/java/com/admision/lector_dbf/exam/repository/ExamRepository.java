@@ -15,10 +15,11 @@ import java.util.Optional;
 
 @Repository
 public class ExamRepository {
+    private static final String RANKING_SCORE = "coalesce(r.nota_oficial,r.puntaje)";
     private static final String FROM = " FROM hojas_respuesta h JOIN evaluaciones e ON e.id=h.evaluacion_id "
             + "JOIN formularios f ON f.id=h.formulario_id JOIN inscripciones i ON i.id=h.inscripcion_id "
             + "JOIN participantes p ON p.id=i.participante_id LEFT JOIN grupos_evaluacion g ON g.id=i.grupo_id "
-            + "LEFT JOIN resultados r ON r.hoja_id=h.id ";
+            + "LEFT JOIN resultados r ON r.hoja_id=h.id LEFT JOIN reglas_calificacion rc ON rc.id=r.regla_id ";
     private static final String FILTER = " WHERE e.organizacion_id=:organization AND h.evaluacion_id=:evaluation "
             + "AND (:code='' OR lower(i.codigo_externo) LIKE lower(:code) OR lower(concat_ws(' ',p.nombres,p.apellidos)) LIKE lower(:code) "
             + "OR lower(coalesce(h.codigo_hoja,'')) LIKE lower(:code)) "
@@ -38,23 +39,24 @@ public class ExamRepository {
                 (Integer) rs.getObject("correctas"), (Integer) rs.getObject("incorrectas"),
                 (Integer) rs.getObject("blancas"), rs.getBigDecimal("puntaje"),
                 (Integer) rs.getObject("posicion"), (Boolean) rs.getObject("aprobado"),
-                rs.getObject("creada_en", OffsetDateTime.class),(Long)rs.getObject("grupo_id"));
+                rs.getObject("creada_en", OffsetDateTime.class),(Long)rs.getObject("grupo_id"),
+                rs.getBigDecimal("nota_oficial"), rs.getString("formula_nota_oficial"));
     }
 
     private String select() {
         return "SELECT h.id,h.evaluacion_id,h.codigo_hoja,i.codigo_externo AS codigo_participante,"
                 + "concat_ws(' ',p.nombres,p.apellidos) AS nombre_participante,g.nombre AS nombre_grupo,"
                 + "f.codigo AS codigo_formulario,h.estado,h.observacion,r.correctas,r.incorrectas,r.blancas,"
-                + "r.puntaje,r.posicion,r.aprobado,h.creada_en,i.grupo_id";
+                + "r.puntaje,r.posicion,r.aprobado,h.creada_en,i.grupo_id,r.nota_oficial,rc.formula_nota_oficial";
     }
 
     public Page<Exam> page(long organizationId, long evaluationId, String code, Long groupId,
                            String status, int page, int size, String order) {
         String search = code.isBlank() ? "" : "%" + code.trim() + "%";
         String sort = switch (order) {
-            case "puntaje-asc" -> " ORDER BY r.puntaje ASC NULLS LAST,h.id";
+            case "puntaje-asc" -> " ORDER BY " + RANKING_SCORE + " ASC NULLS LAST,h.id";
             case "fecha-desc" -> " ORDER BY h.creada_en DESC,h.id DESC";
-            default -> " ORDER BY r.puntaje DESC NULLS LAST,h.id";
+            default -> " ORDER BY " + RANKING_SCORE + " DESC NULLS LAST,h.id";
         };
         long total = db.sql("SELECT count(*)" + FROM + FILTER).param("organization", organizationId)
                 .param("evaluation", evaluationId).param("code", search).param("groupId", groupId)
@@ -73,7 +75,7 @@ public class ExamRepository {
     }
 
     public List<Exam> allForPdf(long organizationId, long evaluationId) {
-        return db.sql(select() + FROM + " WHERE e.organizacion_id=:organization AND h.evaluacion_id=:evaluation ORDER BY g.nombre NULLS FIRST,r.posicion NULLS LAST,r.puntaje DESC,h.id")
+        return db.sql(select() + FROM + " WHERE e.organizacion_id=:organization AND h.evaluacion_id=:evaluation ORDER BY g.nombre NULLS FIRST,r.posicion NULLS LAST," + RANKING_SCORE + " DESC NULLS LAST,h.id")
                 .param("organization", organizationId).param("evaluation", evaluationId)
                 .query((rs, row) -> map(rs)).list();
     }
@@ -83,28 +85,31 @@ public class ExamRepository {
                 .orElseThrow(() -> ApiException.conflict("Configura la política de resultados"));
         String partition = "GRUPO".equals(policy.scope()) ? "i.grupo_id" : "1";
         String capacity = "GRUPO".equals(policy.scope()) ? "g.cupo" : ":capacity";
-        String order = switch (policy.tieBreak()) {
-            case "CORRECTAS" -> "r.puntaje DESC,r.correctas DESC,r.incorrectas ASC,i.codigo_externo,h.id";
-            case "MENOS_INCORRECTAS" -> "r.puntaje DESC,r.incorrectas ASC,r.correctas DESC,i.codigo_externo,h.id";
-            case "CODIGO" -> "r.puntaje DESC,i.codigo_externo,h.id";
-            default -> "r.puntaje DESC";
+        String order = RANKING_SCORE + " DESC" + switch (policy.tieBreak()) {
+            case "CORRECTAS" -> ",r.correctas DESC,r.incorrectas ASC,i.codigo_externo,h.id";
+            case "MENOS_INCORRECTAS" -> ",r.incorrectas ASC,r.correctas DESC,i.codigo_externo,h.id";
+            case "CODIGO" -> ",i.codigo_externo,h.id";
+            default -> "";
         };
         String function = "COMPARTIR_PUESTO".equals(policy.tieBreak()) ? "rank()" : "row_number()";
         String passed = switch (policy.approvalMode()) {
             case "NINGUNA" -> "NULL";
-            case "MINIMA" -> "CASE WHEN ranked.minimum IS NULL THEN NULL ELSE ranked.puntaje>=ranked.minimum END";
+            case "MINIMA" -> "CASE WHEN ranked.minimum IS NULL THEN NULL ELSE ranked.score>=ranked.minimum END";
             case "VACANTES" -> "CASE WHEN ranked.capacity IS NULL THEN NULL ELSE ranked.place<=ranked.capacity END";
             case "AMBAS" -> "CASE WHEN ranked.capacity IS NULL OR ranked.minimum IS NULL THEN NULL "
-                    + "ELSE ranked.place<=ranked.capacity AND ranked.puntaje>=ranked.minimum END";
+                    + "ELSE ranked.place<=ranked.capacity AND ranked.score>=ranked.minimum END";
             default -> "CASE WHEN ranked.capacity IS NOT NULL THEN ranked.place<=ranked.capacity "
-                    + "WHEN ranked.minimum IS NOT NULL THEN ranked.puntaje>=ranked.minimum ELSE NULL END";
+                    + "WHEN ranked.minimum IS NOT NULL THEN ranked.score>=ranked.minimum ELSE NULL END";
         };
+        if (!"NINGUNA".equals(policy.approvalMode())) {
+            passed = "CASE WHEN ranked.minimum=0 AND ranked.nota_oficial<=0 THEN false ELSE " + passed + " END";
+        }
         db.sql("UPDATE resultados r SET posicion=NULL, aprobado=NULL FROM hojas_respuesta h WHERE r.hoja_id=h.id AND h.evaluacion_id=:evaluation")
                 .param("evaluation", evaluationId).update();
         db.sql("""
                 WITH ranked AS (
                     SELECT r.id, %s OVER (PARTITION BY %s ORDER BY %s) AS place,
-                           %s AS capacity, rc.minima_aprobacion AS minimum, r.puntaje
+                           %s AS capacity, rc.minima_aprobacion AS minimum, %s AS score, r.nota_oficial
                     FROM resultados r JOIN hojas_respuesta h ON h.id=r.hoja_id
                     JOIN inscripciones i ON i.id=h.inscripcion_id JOIN participantes p ON p.id=i.participante_id
                     LEFT JOIN grupos_evaluacion g ON g.id=i.grupo_id
@@ -112,7 +117,7 @@ public class ExamRepository {
                     WHERE h.evaluacion_id=:evaluation AND h.estado='VALIDADA'
                 )
                 UPDATE resultados r SET posicion=ranked.place,aprobado=%s FROM ranked WHERE r.id=ranked.id
-                """.formatted(function, partition, order, capacity, passed))
+                """.formatted(function, partition, order, capacity, RANKING_SCORE, passed))
                 .param("evaluation", evaluationId).param("capacity", policy.globalCapacity()).update();
         recordDecisions(evaluationId, policy, capacity);
     }
@@ -121,7 +126,8 @@ public class ExamRepository {
         return db.sql("""
                 SELECT h.id,f.codigo,f.numero_preguntas,k.version AS clave_version,rc.version AS regla_version,
                        rc.puntos_correcta,rc.puntos_incorrecta,rc.puntos_blanca,rc.minima_aprobacion,
-                       cs.version AS seccion_version,r.puntaje,r.detalle_secciones::text AS detalle
+                       cs.version AS seccion_version,r.puntaje,r.detalle_secciones::text AS detalle,
+                       r.nota_oficial,rc.formula_nota_oficial
                 FROM hojas_respuesta h JOIN evaluaciones e ON e.id=h.evaluacion_id
                 JOIN resultados r ON r.hoja_id=h.id JOIN formularios f ON f.id=r.formulario_id
                 JOIN claves_respuesta k ON k.id=r.clave_id JOIN reglas_calificacion rc ON rc.id=r.regla_id
@@ -131,7 +137,7 @@ public class ExamRepository {
                 .query((rs, row) -> new ExplanationData(rs.getLong(1), rs.getString(2), rs.getInt(3),
                         rs.getInt(4), rs.getInt(5), rs.getBigDecimal(6), rs.getBigDecimal(7),
                         rs.getBigDecimal(8), rs.getBigDecimal(9), (Integer) rs.getObject(10),
-                        rs.getBigDecimal(11), rs.getString(12))).optional();
+                        rs.getBigDecimal(11), rs.getString(12), rs.getBigDecimal(13), rs.getString(14))).optional();
     }
 
     public PageResult<RankingDecision> decisions(long organizationId, long evaluationId,
@@ -164,6 +170,10 @@ public class ExamRepository {
             case "VACANTES_O_MINIMA" -> "CASE WHEN " + capacity + " IS NULL THEN rc.minima_aprobacion ELSE NULL END";
             default -> "NULL";
         };
+        if (!"NINGUNA".equals(policy.approvalMode())) {
+            appliedMinimum = "CASE WHEN r.nota_oficial IS NOT NULL AND rc.minima_aprobacion=0 THEN 0 ELSE "
+                    + appliedMinimum + " END";
+        }
         db.sql("""
                 INSERT INTO decisiones_resultado(evaluacion_id,resultado_id,politica_id,posicion,aprobado,cupo_aplicado,minima_aplicada)
                 SELECT :evaluation,r.id,:policy,r.posicion,r.aprobado,%s,%s

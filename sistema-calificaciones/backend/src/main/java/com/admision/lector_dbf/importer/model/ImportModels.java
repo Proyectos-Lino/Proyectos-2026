@@ -23,9 +23,10 @@ public final class ImportModels {
                                BigDecimal correctPoints, BigDecimal incorrectPoints,
                                BigDecimal blankPoints, BigDecimal points) {}
 
-    public record Score(int correct, int incorrect, int blank, BigDecimal points, List<SectionScore> sections) {
+    public record Score(int correct, int incorrect, int blank, BigDecimal points, List<SectionScore> sections,
+                        BigDecimal officialScore) {
         public Score(int correct, int incorrect, int blank, BigDecimal points) {
-            this(correct, incorrect, blank, points, List.of());
+            this(correct, incorrect, blank, points, List.of(), null);
         }
     }
 

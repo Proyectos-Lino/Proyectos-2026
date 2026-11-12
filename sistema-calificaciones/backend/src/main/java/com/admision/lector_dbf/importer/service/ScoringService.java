@@ -2,12 +2,14 @@ package com.admision.lector_dbf.importer.service;
 
 import com.admision.lector_dbf.evaluation.model.EvaluationModels;
 import com.admision.lector_dbf.evaluation.model.ScoringModels.Section;
+import com.admision.lector_dbf.evaluation.service.OfficialScoreFormula;
 
 import com.admision.lector_dbf.importer.model.ImportModels.*;
 import com.admision.lector_dbf.shared.ApiException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,11 +31,18 @@ public class ScoringService {
                 details.add(part);
                 correct += part.correct(); incorrect += part.incorrect(); blank += part.blank(); points = points.add(part.points());
             }
-            return new Score(correct, incorrect, blank, points, details);
+            return result(rule, correct, incorrect, blank, points, details);
         }
         SectionScore total = scoreRange(responses, key, 0, key.size(), null, null,
                 rule.correct(), rule.incorrect(), rule.blank());
-        return new Score(total.correct(), total.incorrect(), total.blank(), total.points());
+        return result(rule, total.correct(), total.incorrect(), total.blank(), total.points(), List.of());
+    }
+
+    private Score result(EvaluationModels.Rule rule, int correct, int incorrect, int blank,
+                         BigDecimal points, List<SectionScore> sections) {
+        BigDecimal official = OfficialScoreFormula.compile(rule.officialFormula())
+                .apply(points.setScale(4, RoundingMode.HALF_UP));
+        return new Score(correct, incorrect, blank, points, sections, official);
     }
 
     private SectionScore scoreRange(List<String> responses, List<String> key, int from, int to,

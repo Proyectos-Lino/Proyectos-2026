@@ -1,6 +1,7 @@
 package com.admision.lector_dbf.importer.service;
 
 import com.admision.lector_dbf.evaluation.model.EvaluationModels.Form;
+import com.admision.lector_dbf.evaluation.model.ScoringModels.SectionConfiguration;
 import com.admision.lector_dbf.evaluation.repository.EvaluationRepository;
 import com.admision.lector_dbf.evaluation.repository.RankingPolicyRepository;
 import com.admision.lector_dbf.evaluation.repository.SectionConfigurationRepository;
@@ -39,10 +40,12 @@ public class DbfPreviewService {
     private final ImportRepository imports;
     private final OmrImportService processor;
     private final OrganizationAccess access;
+    private final ScoringService scoring;
 
     public DbfPreviewService(DbfParser parser, EvaluationRepository evaluations,
                              RankingPolicyRepository policies, SectionConfigurationRepository sections,
-                             ImportRepository imports, OmrImportService processor, OrganizationAccess access) {
+                             ImportRepository imports, OmrImportService processor, OrganizationAccess access,
+                             ScoringService scoring) {
         this.parser = parser;
         this.evaluations = evaluations;
         this.policies = policies;
@@ -50,6 +53,7 @@ public class DbfPreviewService {
         this.imports = imports;
         this.processor = processor;
         this.access = access;
+        this.scoring = scoring;
     }
 
     public Inspection inspect(long organizationId, long evaluationId, MultipartFile identification,
@@ -108,7 +112,8 @@ public class DbfPreviewService {
             general.add("Esta evaluación ya no admite una carga guiada");
         if (!guided && !"EN_PROCESO".equals(evaluation.status()))
             general.add("La evaluación debe estar en proceso para importar sin preparación");
-        if (!guided && evaluations.latestRule(evaluationId).isEmpty())
+        var rule = evaluations.latestRule(evaluationId).orElse(null);
+        if (!guided && rule == null)
             general.add("Configura una regla de calificación antes de importar");
         long policyId = policies.latest(evaluationId).map(policy -> policy.id()).orElse(0L);
         if (policyId == 0) general.add("Configura la política de resultados antes de importar");
@@ -130,12 +135,16 @@ public class DbfPreviewService {
         }
         Map<String, Form> forms = new HashMap<>();
         StringBuilder configuration = new StringBuilder(evaluation.status()).append(':').append(policyId);
-        evaluations.latestRule(evaluationId).ifPresent(rule -> configuration.append(':').append(rule.id()));
+        if (rule != null) configuration.append(':').append(rule.id());
+        Map<Long, SectionConfiguration> sectionsByForm = new HashMap<>();
         for (Form form : evaluations.forms(evaluationId)) {
             forms.put(form.code().toUpperCase(), form);
             configuration.append(':').append(form.id()).append('/').append(form.questions())
                     .append('/').append(form.options()).append('/');
-            sections.latest(form.id()).ifPresent(section -> configuration.append(section.id()));
+            sections.latest(form.id()).ifPresent(section -> {
+                sectionsByForm.put(form.id(), section);
+                configuration.append(section.id());
+            });
         }
         for (KeyRow row : mapped.keys()) {
             Key key = row.value();
@@ -183,6 +192,15 @@ public class DbfPreviewService {
                 issues.add("La hoja tiene menos de " + questions + " respuestas");
             else if (!validAnswers(response.answers(), questions, alternatives, true))
                 issues.add("La hoja contiene opciones no permitidas para el tema");
+            if (issues.isEmpty() && rule != null && rule.officialFormula() != null && key != null) {
+                var section = form == null ? null : sectionsByForm.get(form.id());
+                try {
+                    scoring.score(response.answers().subList(0, questions), key.answers().subList(0, questions),
+                            rule, section == null ? List.of() : section.sections());
+                } catch (ApiException exception) {
+                    issues.add(exception.getMessage());
+                }
+            }
             String decision;
             if (!issues.isEmpty()) { decision = "CORREGIR"; correction++; }
             else if (response.formCode().isBlank() || !response.formCode().equalsIgnoreCase(formCode)) {

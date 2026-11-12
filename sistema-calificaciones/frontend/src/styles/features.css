@@ -132,6 +132,8 @@
 .modal-form__checkbox strong, .modal-form__checkbox small { display: block; }
 .modal-form__checkbox strong { font-size: 12px; }
 .modal-form__checkbox small { margin-top: 3px; color: #72898b; font-size: 11px; line-height: 1.4; }
+.official-formula-fields { display: grid; gap: 12px; margin-top: 16px; }
+.official-formula-fields .muted-copy { margin: 0; }
 .modal-form__actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 29px; padding-top: 19px; border-top: 1px solid #edf1ef; }
 .modal-form__actions .button { min-width: 115px; }
 
