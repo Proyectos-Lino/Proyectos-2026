@@ -1,0 +1,378 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --bg-page: #eef4ff;
+  --bg-surface: rgba(255, 255, 255, 0.92);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-blue: #2563eb;
+  --accent-indigo: #6366f1;
+  --accent-green: #14b8a6;
+  --accent-yellow: #f59e0b;
+  --border: rgba(148, 163, 184, 0.24);
+  --shadow-soft: 0 30px 80px rgba(15, 23, 42, 0.08);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.18), transparent 28%),
+    radial-gradient(circle at 20% 10%, rgba(16, 185, 129, 0.12), transparent 20%),
+    linear-gradient(180deg, #f8fbff 0%, #e2e8ff 100%);
+  color: var(--text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content-area {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  padding: 32px;
+  position: relative;
+}
+
+/* Styled select inputs (minimalista con colores de empresa) */
+.select,
+.select,
+.form-select.select,
+.filter-select.select,
+select.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-height: 44px;
+  background-color: #ffffff;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 16px;
+  padding: 12px 14px;
+  padding-right: 44px;
+  font-size: 14px;
+  color: var(--text-primary);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%232563eb' d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.select:hover,
+.form-select.select:hover,
+.filter-select.select:hover,
+select.select:hover {
+  border-color: rgba(37, 99, 235, 0.32);
+}
+
+.select:focus,
+.form-select.select:focus,
+.filter-select.select:focus,
+select.select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+}
+
+/* Remove default arrow in IE */
+select.select::-ms-expand { display: none; }
+
+.main-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  letter-spacing: -0.03em;
+}
+
+.page-description {
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+.section-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 28px;
+  backdrop-filter: blur(14px);
+}
+
+.section-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.section-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  padding: 0.95rem 1.4rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+  color: white;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 16px 30px rgba(99, 102, 241, 0.18);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 34px rgba(99, 102, 241, 0.22);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  padding: 0.9rem 1.3rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: rgba(99, 102, 241, 0.08);
+  transform: translateY(-1px);
+}
+
+.modal-header .btn-icon .material-icons-outlined {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: inherit;
+  font-size: 22px;
+}
+
+.card-title {
+  margin: 0 0 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-indigo);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+}
+
+@media (max-width: 1024px) {
+  .content-area {
+    margin-left: 0;
+    width: 100%;
+    padding: 24px;
+  }
+}
+
+/* Alternativa para botón Cancelar más sutil */
+.btn-cancel-alt {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px dashed var(--border);
+  padding: 10px 18px;
+  border-radius: 12px;
+  min-height: 44px;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+.btn-cancel-alt:hover {
+  background-color: rgba(15,23,42,0.03);
+  transform: translateY(-1px);
+}
+
+/* Opción: apilar botones verticalmente dentro del footer */
+.modal-footer.stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+.modal-footer.stack button {
+  width: 100%;
+  min-width: unset;
+}
+.modal-footer.stack .btn-primary {
+  margin-top: 12px;
+}
+
+/* CustomSelect styles */
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 360px;
+}
+.custom-select-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: #fff;
+  color: var(--text-primary);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.06);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.custom-select-button:hover {
+  border-color: rgba(37, 99, 235, 0.28);
+}
+.custom-select-button:focus-visible,
+.custom-select-button:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+.custom-select-button.disabled { opacity: 0.6; cursor: not-allowed; }
+.custom-select-label { color: var(--text-primary); }
+.custom-select-chevron { color: var(--primary-blue); margin-left: 8px; }
+.custom-select-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+  z-index: 40;
+  max-height: 300px;
+  overflow: auto;
+  padding: 8px 0;
+}
+.custom-select-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.15s ease;
+}
+.custom-select-option:hover { background: rgba(37, 99, 235, 0.06); }
+.custom-select-option.selected {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+/* --- MEJORAS GLOBALES DE HOVER EN BOTONES --- */
+button:hover,
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-outline:hover,
+.btn-icon:hover,
+.btn-action:hover,
+.btn-action-outline:hover,
+.btn-action-primary:hover,
+.btn-cancel-alt:hover,
+.btn-upload-sm:hover,
+.btn-upload-action:hover,
+.btn-upload-url:hover,
+.btn-delete-action:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Botones principales (fondo azul/indigo/degradado): mantener letra blanca y notoria */
+.btn-primary:hover,
+.btn-action-primary:hover,
+[class*="btn-primary"]:hover {
+  color: #ffffff !important;
+  opacity: 0.95;
+  filter: brightness(1.05);
+}
+
+/* Botones secundarios u outlines (fondo claro): mantener texto oscuro y notorio */
+.btn-secondary:hover,
+.btn-outline:hover,
+.btn-action-outline:hover,
+.btn-cancel-alt:hover,
+.btn-upload-action:hover,
+.btn-upload-url:hover,
+[class*="btn-secondary"]:hover,
+[class*="btn-outline"]:hover {
+  color: var(--text-primary) !important;
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border-color: var(--accent-blue) !important;
+}
+
+/* Botones pequeños o de iconos */
+.btn-small:hover,
+.btn-upload-sm:hover {
+  color: var(--text-primary) !important;
+  background-color: #f1f3f4 !important;
+}
+
+.btn-small.danger:hover,
+.btn-delete-action:hover {
+  color: var(--error-color) !important;
+  background-color: var(--error-bg) !important;
+  border-color: #fad2cf !important;
+}

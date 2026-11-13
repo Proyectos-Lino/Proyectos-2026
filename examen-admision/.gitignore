@@ -1,0 +1,39 @@
+# ─── Metales / IDEs ──────────────────────────────
+.metals/
+.bloop/
+.vscode/
+.idea/
+*.iml
+
+# ─── Credenciales y secretos (NUNCA subir) ───────
+Backend/src/main/resources/application-local.properties
+Backend/src/main/resources/application-*.properties
+!Backend/src/main/resources/application.properties
+
+# ─── Build y dependencias ─────────────────────────
+Backend/target/
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+
+# ─── Frontend misc ────────────────────────────────
+Frontend/.env
+Frontend/.env.local
+Frontend/.env.*.local
+
+# ─── Archivos temporales y de sistema ─────────────
+*.class
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# ─── Archivos de datos / pruebas ──────────────────
+*.zip
+*.pdf
+
+# ─── Variables de entorno con claves reales (NUNCA subir) ───
+.env
+.env.local
+!.env.example
