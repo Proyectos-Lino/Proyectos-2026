@@ -1,0 +1,29 @@
+ADMISSIO - Lanzador de escritorio para Windows
+==============================================
+
+Uso
+---
+1. Copie esta carpeta a su computadora (por ejemplo, al Escritorio).
+2. Haga doble clic en Admissio.exe.
+3. Admissio se abrirá en su propia ventana, como un programa de escritorio.
+
+Requisitos
+----------
+- Windows 10 u 11 (no requiere instalación).
+- Microsoft Edge o Google Chrome (Edge viene incluido en Windows).
+- Conexión con el servidor de Admissio.
+
+Configuración
+-------------
+- servidor.txt: dirección del servidor. Por defecto es la versión publicada
+  (https://admissio.camiluxlym.com/). Cámbiela si usa una instalación propia.
+- Los datos de la ventana (preferencias, carátulas guardadas en el navegador)
+  se conservan en %LOCALAPPDATA%\Admissio\Perfil.
+
+Si Windows muestra "Windows protegió su PC" (SmartScreen), elija
+"Más información" > "Ejecutar de todas formas": el ejecutable no está firmado
+digitalmente, pero su código fuente está en la carpeta codigo-fuente.
+
+Compilar desde el código fuente
+-------------------------------
+Ejecute codigo-fuente\compilar.bat (usa el compilador de C# incluido en Windows).

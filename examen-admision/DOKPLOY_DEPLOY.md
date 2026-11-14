@@ -1,4 +1,4 @@
-# Guía de Despliegue en Dokploy
+# Guía de Despliegue de Admissio en Dokploy
 
 Este proyecto es una aplicación fullstack compuesta por:
 1. **Base de Datos:** PostgreSQL 17 (con las tablas, cursos, categorías y 364 preguntas iniciales).
@@ -20,12 +20,13 @@ Dokploy soporta despliegues de múltiples contenedores usando Docker Compose con
 
 1. En tu panel de Dokploy, ve a tu proyecto y crea un nuevo servicio de tipo **Compose**.
 2. Conecta tu repositorio de GitHub:
-   - **Repository:** `CristinaAstocaza/Creacion_de_examen_de_admision`
+   - **Repository:** `Proyectos-Lino/Proyectos-2026`
    - **Branch:** `main`
-   - **Compose Path:** `docker-compose.yml`
+   - **Compose Path:** `./examen-admision/docker-compose.yml`
 3. Configura las variables de entorno en la pestaña **Environment**:
    ```env
    DB_PASSWORD=tu_contraseña_segura_aqui
+   IMAGENES_ALMACENAMIENTO=local
    CLOUDINARY_CLOUD_NAME=tu_cloud_name
    CLOUDINARY_API_KEY=tu_api_key
    CLOUDINARY_API_SECRET=tu_api_secret
@@ -33,13 +34,15 @@ Dokploy soporta despliegues de múltiples contenedores usando Docker Compose con
    VITE_API_BASE_URL=/api/v1
    ```
 4. Haz clic en **Deploy**.
-   - El contenedor `postgres` se iniciará e importará automáticamente `bd_limpia_con_preguntas.sql` (todas las preguntas, cursos y configuraciones limpias sin historial de exámenes).
-   - El `backend` compilará la app de Spring Boot y configurará Python para los scripts.
-   - El `frontend` compilará la SPA y la servirá con Nginx.
+   - El servicio `admissio-postgres` se iniciará e importará automáticamente `bd_limpia_con_preguntas.sql` (todas las preguntas, cursos y configuraciones limpias sin historial de exámenes).
+   - El servicio `admissio-backend` compilará la app de Spring Boot y configurará Python para los scripts.
+   - El servicio `frontend` compilará la SPA y la servirá con Nginx.
 5. **Asignar tu único dominio público con SSL (Let's Encrypt):**
    - Ve a la pestaña **Domains** en Dokploy.
    - Apunta tu dominio (ej. `tudominio.com`) al servicio `frontend` en el puerto `80`.
-   - ¡Listo! No necesitas exponer el puerto 8080 del backend ni crear un subdominio para la API; Nginx se encarga de servir el frontend y redirigir internamente `/api/` hacia Spring Boot en la misma red privada de Docker.
+   - ¡Listo! No necesitas exponer el puerto 8080 del backend ni crear un subdominio para la API; Nginx se encarga de servir el frontend y redirigir internamente `/api/` hacia Spring Boot (servicio `admissio-backend`) en la misma red privada de Docker.
+
+> Si la base de datos ya existía con otra contraseña, Postgres no la cambia al modificar `DB_PASSWORD`: use la contraseña original o elimine el volumen `postgres_data` (se perderán los datos).
 
 ---
 
@@ -56,8 +59,8 @@ Si prefieres administrar cada servicio por separado:
 ### 2. Backend (Spring Boot)
 1. En Dokploy, crea una **Application** desde GitHub.
 2. **Build Type:** Dockerfile.
-3. **Dockerfile Path:** `Backend/Dockerfile`.
-4. **Context Path:** `Backend`.
+3. **Dockerfile Path:** `examen-admision/Backend/Dockerfile`.
+4. **Context Path:** `examen-admision/Backend`.
 5. En **Environment Variables**, agrega:
    ```env
    SPRING_DATASOURCE_URL=jdbc:postgresql://<host_de_tu_bd_postgres>:5432/bd_examen_admi
@@ -75,8 +78,8 @@ Si prefieres administrar cada servicio por separado:
 ### 3. Frontend (React + Vite)
 1. En Dokploy, crea una nueva **Application** desde GitHub.
 2. **Build Type:** Dockerfile.
-3. **Dockerfile Path:** `Frontend/Dockerfile`.
-4. **Context Path:** `Frontend`.
+3. **Dockerfile Path:** `examen-admision/Frontend/Dockerfile`.
+4. **Context Path:** `examen-admision/Frontend`.
 5. En **Build Arguments** o **Environment Variables**:
    ```env
    VITE_API_BASE_URL=https://api.tudominio.com/api/v1

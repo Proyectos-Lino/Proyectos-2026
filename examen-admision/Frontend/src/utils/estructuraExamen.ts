@@ -1,5 +1,5 @@
 /**
- * Estructura oficial del examen de admisión UNICA 2026-II (Ica, Chincha y Nasca).
+ * Estructura de referencia para la distribución de preguntas por área y modalidad (datos de prueba).
  * Son cantidades RECOMENDADAS: al generar el examen se pueden cambiar libremente.
  *
  * Claves de curso = código del curso en el sistema.

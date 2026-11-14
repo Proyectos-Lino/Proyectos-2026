@@ -46,7 +46,7 @@ class ExamenPdfPruebaTest {
         Examen examen = Examen.builder()
                 .codigo("EX-PRUEBA20")
                 .nombre("Examen de prueba")
-                .nombreUniversidad("Universidad Nacional San Luis Gonzaga")
+                .nombreUniversidad("Universidad de Ejemplo")
                 .tituloExamen("Examen de Admisión 2026-I")
                 .modalidad("Modalidad Ordinario")
                 .colorPortada("#1e3a5f")
