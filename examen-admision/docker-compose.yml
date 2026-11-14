@@ -1,5 +1,5 @@
 services:
-  postgres:
+  admissio-postgres:
     image: postgres:17-alpine
     restart: unless-stopped
     environment:
@@ -15,13 +15,13 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
+  admissio-backend:
     build:
       context: ./Backend
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bd_examen_admi
+      SPRING_DATASOURCE_URL: jdbc:postgresql://admissio-postgres:5432/bd_examen_admi
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-postgres}
       # Imágenes en disco (sin internet). Usa 'cloudinary' para subirlas a la nube.
@@ -34,7 +34,7 @@ services:
     volumes:
       - imagenes_data:/app/uploads
     depends_on:
-      postgres:
+      admissio-postgres:
         condition: service_healthy
 
   frontend:
@@ -47,7 +47,7 @@ services:
     expose:
       - "80"
     depends_on:
-      - backend
+      - admissio-backend
 
 volumes:
   postgres_data:
