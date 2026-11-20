@@ -29,6 +29,7 @@ public class ResultEntry extends BaseEntity {
   private ResultEntryStatus status = ResultEntryStatus.RECORDED;
 
   private String analystObservation;
+  private String matrixConfigurationSnapshot;
 
   @Column(name = "recorded_by")
   private UUID recordedBy;
@@ -73,6 +74,14 @@ public class ResultEntry extends BaseEntity {
     this.analystObservation = analystObservation;
     this.recordedBy = recordedBy;
     this.recordedAt = Instant.now();
+  }
+
+  public String getMatrixConfigurationSnapshot() {
+    return matrixConfigurationSnapshot;
+  }
+
+  public void captureMatrixConfiguration(String snapshot) {
+    if (matrixConfigurationSnapshot == null) matrixConfigurationSnapshot = snapshot;
   }
 
   public UUID getId() {

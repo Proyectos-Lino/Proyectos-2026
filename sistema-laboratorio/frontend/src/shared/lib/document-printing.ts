@@ -1,9 +1,11 @@
 import type {
+  DocumentFormat,
   OrganizationIdentity,
   ServiceOrderDocument,
   WorkOrderDocument,
 } from '../types/domain';
 import { formatDate } from './format';
+import { describeDocumentFormat } from './document-format';
 
 type DocumentField = readonly [label: string, value?: string | number | null];
 
@@ -353,6 +355,7 @@ function pageHeader(
   version: number,
   subtitle: string,
   organization?: OrganizationIdentity,
+  format?: DocumentFormat,
 ): string {
   const institutionalIdentity = [
     organization?.documentLabel,
@@ -380,9 +383,10 @@ function pageHeader(
     <div class="laboratory-band">${escapeHtml(subtitle)}</div>
     <div class="report-band no-break">
       <h1 class="document-title">${escapeHtml(type)} · ${escapeHtml(code)}</h1>
-      <p class="document-meta">Versión ${escapeHtml(version)} · Emitido el ${escapeHtml(
+      <p class="document-meta">Revisión del documento ${escapeHtml(version)} · Emitido el ${escapeHtml(
         formatDate(generatedAt),
       )}</p>
+      ${describeDocumentFormat(format) ? `<p class="document-meta">${escapeHtml(describeDocumentFormat(format))}</p>` : ''}
     </div>`;
 }
 
@@ -467,7 +471,7 @@ export function printServiceOrderDocument(document: ServiceOrderDocument): boole
   const samples = document.samples
     .map((sample) => {
       const quantity =
-        sample.quantity === undefined
+        sample.quantity == null
           ? undefined
           : `${sample.quantity} ${sample.measurementUnitName ?? ''}`.trim();
       const tests = sample.requestedTests
@@ -552,6 +556,7 @@ export function printServiceOrderDocument(document: ServiceOrderDocument): boole
         document.version,
         `${document.laboratoryAreaName} · Gestión comercial y recepción`,
         document.organization,
+        document.organization?.serviceOrderFormat,
       )}
       <section class="section no-break">
         <h2 class="section-heading">Solicitante y datos de informe</h2>
@@ -574,7 +579,7 @@ export function printServiceOrderDocument(document: ServiceOrderDocument): boole
           ['Propuesta técnica', document.technicalProposalNumber],
           [
             'Plazo de desarrollo',
-            document.developmentDays === undefined
+            document.developmentDays == null
               ? undefined
               : `${document.developmentDays} día(s)`,
           ],
@@ -613,6 +618,7 @@ export function printWorkOrderDocument(document: WorkOrderDocument): boolean {
           <header class="sample-header">
             <div>
               <h3 class="sample-title">Muestra técnica ${escapeHtml(sample.laboratoryCode)}</h3>
+              <p class="sample-caption">${escapeHtml([sample.productName, sample.varietyName].filter(Boolean).join(' · '))}</p>
               <p class="sample-caption">${escapeHtml(sample.sampleTypeName)}</p>
             </div>
             <div class="sample-identifier">${escapeHtml(sample.tests.length)} ensayo(s) asignado(s)</div>
@@ -653,11 +659,11 @@ export function printWorkOrderDocument(document: WorkOrderDocument): boolean {
         document.version,
         document.laboratoryAreaName,
         document.organization,
+        document.organization?.workOrderFormat,
       )}
       <section class="section no-break">
         <p class="restricted">Documento técnico restringido. No contiene datos personales ni comerciales del solicitante.</p>
         ${fieldGrid([
-          ['Orden de servicio de referencia', document.serviceOrderCode],
           ['Área técnica', document.laboratoryAreaName],
           ['Responsable técnico', document.responsibleName],
           ['Fecha límite de laboratorio', formatDate(document.laboratoryDueAt)],

@@ -77,7 +77,9 @@ public class OrganizationProfileService {
         profile.accreditationCode(),
         profile.accreditationScope(),
         profile.contacts(),
-        profile.authorizedSigners());
+        profile.authorizedSigners(),
+        profile.serviceOrderFormat(),
+        profile.workOrderFormat());
   }
 
   public OrganizationDtos.OrganizationResponse update(
@@ -252,7 +254,9 @@ public class OrganizationProfileService {
         profile.getReportPrefix(),
         contacts,
         signers,
-        profile.getUpdatedAt());
+        profile.getUpdatedAt(),
+        profile.getServiceOrderFormat(),
+        profile.getWorkOrderFormat());
   }
 
   private OrganizationProfile requiredProfile() {

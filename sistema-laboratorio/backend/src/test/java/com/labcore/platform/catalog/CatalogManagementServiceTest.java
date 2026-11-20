@@ -67,7 +67,8 @@ class CatalogManagementServiceTest {
             1,
             null,
             List.of(field, field),
-            List.of());
+            List.of(),
+            null);
 
     assertThatThrownBy(() -> technicalService().createTemplate(request))
         .isInstanceOf(BusinessRuleViolationException.class)
@@ -111,7 +112,8 @@ class CatalogManagementServiceTest {
             1,
             10,
             List.of(calculated),
-            List.of());
+            List.of(),
+            null);
 
     assertThatThrownBy(() -> technicalService().createTemplate(request))
         .isInstanceOf(BusinessRuleViolationException.class)

@@ -305,6 +305,15 @@ public class MatrixResultService {
       throw new BusinessRuleViolationException(
           "Cada cargador requiere nombre, distancia, diámetro y forma válidos.");
     }
+    if (!template.carrierShapes().isEmpty()
+        && request.columns().stream()
+            .map(ResultDtos.MatrixColumnRequest::shape)
+            .map(this::trimToNull)
+            .filter(Objects::nonNull)
+            .anyMatch(shape -> !template.carrierShapes().contains(shape))) {
+      throw new BusinessRuleViolationException(
+          "La forma del cargador no pertenece a las opciones de la plantilla.");
+    }
     Set<String> categories =
         template.categories().stream()
             .map(TechnicalCatalogDtos.TemplateCategoryResponse::code)

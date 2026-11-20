@@ -1,5 +1,6 @@
 import { request } from '../../../shared/api/http-client';
 import type {
+  DocumentFormat,
   OrganizationBranding,
   OrganizationContact,
   OrganizationProfile,
@@ -22,6 +23,8 @@ export interface UpdateOrganizationInput {
   serviceOrderPrefix: string;
   workOrderPrefix: string;
   reportPrefix: string;
+  serviceOrderFormat?: DocumentFormat;
+  workOrderFormat?: DocumentFormat;
   contacts: Array<Omit<OrganizationContact, 'id' | 'displayOrder'>>;
   authorizedSignerIds: string[];
 }

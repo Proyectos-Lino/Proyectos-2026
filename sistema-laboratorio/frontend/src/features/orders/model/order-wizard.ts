@@ -16,6 +16,7 @@ export interface WizardSampleForm {
   clientKey: string;
   clientIdentification: string;
   producerId: string;
+  producerName: string;
   productId: string;
   varietyId: string;
   productName: string;
@@ -75,6 +76,7 @@ export function emptyWizardSample(sampleTypeId = ''): WizardSampleForm {
     clientKey: createClientKey(),
     clientIdentification: '',
     producerId: '',
+    producerName: '',
     productId: '',
     varietyId: '',
     productName: '',
@@ -128,6 +130,7 @@ function sampleToWizardForm(sample: ServiceOrderSample): WizardSampleForm {
     clientKey: createClientKey(),
     clientIdentification: sample.clientIdentification ?? '',
     producerId: sample.producerId ?? '',
+    producerName: sample.producerName ?? '',
     productId: sample.productId ?? '',
     varietyId: sample.varietyId ?? '',
     productName: sample.productName ?? '',
@@ -195,6 +198,7 @@ export function toOrderSamplesInput(
     sourceSampleId: sample.sourceSampleId,
     clientIdentification: sample.clientIdentification || undefined,
     producerId: sample.producerId || undefined,
+    producerName: sample.producerName.trim() || undefined,
     productId: sample.productId || undefined,
     varietyId: sample.varietyId || undefined,
     productName: sample.productName,

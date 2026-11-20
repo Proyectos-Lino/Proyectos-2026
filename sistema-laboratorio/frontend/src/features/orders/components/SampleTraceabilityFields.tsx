@@ -16,6 +16,7 @@ interface SampleTraceabilityFieldsProps {
   isRemovable: boolean;
   onChange: (field: keyof WizardSampleForm, value: string | boolean) => void;
   onRemove: () => void;
+  onRegisterProducer: () => void;
   producers: Client[];
   sample: WizardSampleForm;
   onCreateProduct: (input: { code: string; name: string }) => Promise<Product>;
@@ -34,6 +35,7 @@ export function SampleTraceabilityFields({
   isRemovable,
   onChange,
   onRemove,
+  onRegisterProducer,
   producers,
   sample,
   onCreateProduct,
@@ -76,14 +78,27 @@ export function SampleTraceabilityFields({
             onChange={(event) => onChange('producerId', event.target.value)}
             value={sample.producerId}
           >
-            <option value="">No especificado</option>
+            <option value="">Escribir nombre / sin vincular</option>
             {producers.map((producer) => (
               <option key={producer.id} value={producer.id}>
                 {producer.legalName} · {producer.documentNumber}
               </option>
             ))}
           </select>
-          <p className="text-xs text-slate-500">Puede ser diferente del solicitante de la orden.</p>
+          <label htmlFor={fieldId('producer-name')}>Nombre del productor o propietario</label>
+          <input
+            id={fieldId('producer-name')}
+            maxLength={220}
+            onChange={(event) => onChange('producerName', event.target.value)}
+            placeholder="Nombre o razón social"
+            value={sample.producerName}
+          />
+          <Button onClick={onRegisterProducer} type="button" variant="secondary">
+            Registrar productor
+          </Button>
+          <p className="text-xs text-slate-500">
+            Puedes escribir el nombre o seleccionar un participante registrado.
+          </p>
         </div>
         <div className="space-y-2">
           <label htmlFor={fieldId('sample-type')}>Tipo de muestra</label>

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -25,7 +26,11 @@ public final class TechnicalCatalogDtos {
   public record SampleTypeRequest(
       @NotBlank @Size(max = 30) String code,
       @NotBlank @Size(max = 120) String name,
-      @NotBlank @Size(max = 20) String laboratoryCodePrefix,
+      @NotBlank
+          @Pattern(
+              regexp = "^[A-Za-z0-9]{1,20}$",
+              message = "La abreviatura debe contener de 1 a 20 letras o números.")
+          String laboratoryCodePrefix,
       @NotNull ResultMode resultMode) {}
 
   public record TestRequest(
@@ -58,7 +63,8 @@ public final class TechnicalCatalogDtos {
   public record TemplateCategoryRequest(
       @NotBlank @Size(max = 50) String code,
       @NotBlank @Size(max = 120) String label,
-      @Min(0) int displayOrder) {}
+      @Min(0) int displayOrder,
+      @Size(max = 500) String legend) {}
 
   public record TemplateRequest(
       @NotNull UUID testDefinitionId,
@@ -73,7 +79,8 @@ public final class TechnicalCatalogDtos {
       @Min(1) int defaultColumns,
       Integer maximumColumns,
       @NotEmpty List<@Valid TemplateFieldRequest> fields,
-      @NotNull List<@Valid TemplateCategoryRequest> categories) {}
+      @NotNull List<@Valid TemplateCategoryRequest> categories,
+      @Size(max = 50) List<@NotBlank @Size(max = 120) String> carrierShapes) {}
 
   public record StatusRequest(@NotNull Boolean active) {}
 
@@ -136,7 +143,8 @@ public final class TechnicalCatalogDtos {
 
   public record FormulaPreviewResponse(List<FormulaPreviewValue> values) {}
 
-  public record TemplateCategoryResponse(UUID id, String code, String label, int displayOrder) {}
+  public record TemplateCategoryResponse(
+      UUID id, String code, String label, int displayOrder, String legend) {}
 
   public record TemplateResponse(
       UUID id,
@@ -156,5 +164,10 @@ public final class TechnicalCatalogDtos {
       boolean active,
       Instant createdAt,
       List<TemplateFieldResponse> fields,
-      List<TemplateCategoryResponse> categories) {}
+      List<TemplateCategoryResponse> categories,
+      List<String> carrierShapes) {
+    public TemplateResponse {
+      carrierShapes = carrierShapes == null ? List.of() : List.copyOf(carrierShapes);
+    }
+  }
 }

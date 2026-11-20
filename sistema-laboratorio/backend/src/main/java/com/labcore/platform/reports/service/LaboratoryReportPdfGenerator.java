@@ -279,6 +279,25 @@ public class LaboratoryReportPdfGenerator {
     table.setSpacingAfter(7);
     document.add(table);
     addMatrixSummary(document, matrix);
+    if (matrix.legends() != null && !matrix.legends().isEmpty()) {
+      PdfPTable legends = new PdfPTable(new float[] {0.8f, 1.4f, 3f});
+      legends.setWidthPercentage(100);
+      legends.setKeepTogether(true);
+      legends.setHeaderRows(1);
+      legends.addCell(tableHeader("Código"));
+      legends.addCell(tableHeader("Categoría"));
+      legends.addCell(tableHeader("Leyenda"));
+      matrix
+          .legends()
+          .forEach(
+              legend -> {
+                legends.addCell(tableBody(legend.code()));
+                legends.addCell(tableBody(legend.label()));
+                legends.addCell(tableBody(safe(legend.legend())));
+              });
+      legends.setSpacingAfter(7);
+      document.add(legends);
+    }
   }
 
   private void addMatrixSummary(Document document, LaboratoryReportDtos.Matrix matrix)

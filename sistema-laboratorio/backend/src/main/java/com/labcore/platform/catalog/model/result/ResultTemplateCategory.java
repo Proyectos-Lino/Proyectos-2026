@@ -20,15 +20,17 @@ public class ResultTemplateCategory extends BaseEntity {
   private String code;
   private String label;
   private int displayOrder;
+  private String legend;
 
   protected ResultTemplateCategory() {}
 
   public ResultTemplateCategory(
-      UUID resultTemplateId, String code, String label, int displayOrder) {
+      UUID resultTemplateId, String code, String label, int displayOrder, String legend) {
     this.resultTemplateId = resultTemplateId;
     this.code = code.trim().toUpperCase(Locale.ROOT);
     this.label = label.trim();
     this.displayOrder = displayOrder;
+    this.legend = legend == null || legend.isBlank() ? null : legend.trim();
   }
 
   public UUID getId() {
@@ -45,6 +47,10 @@ public class ResultTemplateCategory extends BaseEntity {
 
   public String getLabel() {
     return label;
+  }
+
+  public String getLegend() {
+    return legend;
   }
 
   public int getDisplayOrder() {

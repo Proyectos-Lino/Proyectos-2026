@@ -146,7 +146,9 @@ public class ServiceOrderDocumentService {
     return new ServiceOrderDtos.DocumentSample(
         sample.getCommercialSequence(),
         sample.getClientIdentification(),
-        producerName(sample.getProducerId()),
+        sample.getProducerName() != null
+            ? sample.getProducerName()
+            : producerName(sample.getProducerId()),
         producerDocument(sample.getProducerId()),
         sample.getProductName(),
         sample.getVarietyName(),

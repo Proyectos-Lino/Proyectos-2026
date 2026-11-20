@@ -203,6 +203,7 @@ class ServiceOrderServiceTest {
             null,
             java.util.List.of(requestedTest, requestedTest),
             null,
+            null,
             null);
 
     assertThatThrownBy(

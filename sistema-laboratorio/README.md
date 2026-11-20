@@ -215,3 +215,46 @@ No se agregan variables de entorno obligatorias.
   instancia. Crea registros ficticios; no debe usarse sobre datos de trabajo.
   Comprueba permisos, selección de catálogos, devoluciones, versiones,
   resultados escalares, lecturas calculadas, matrices y documentos PDF.
+
+## Identificación técnica, productores y formatos de documentos
+
+Cada muestra permite escribir el nombre de su productor o propietario, elegir
+un participante registrado o registrar uno nuevo desde el mismo asistente.
+El nombre queda guardado en la muestra y se utiliza en los documentos e informes.
+Editar ese nombre conserva los datos del participante en su catálogo.
+
+Las muestras clasificadas técnicamente reciben códigos como `A-1`, `A-2`.
+El correlativo es continuo por abreviatura y se comparte entre tipos con la
+misma abreviatura, con asignación atómica para solicitudes simultáneas.
+Las abreviaturas admiten hasta 20 letras o números. Los códigos históricos
+se conservan y la secuencia continúa desde el mayor número ya reservado.
+La OT mantiene su propio número y muestra producto, variedad y código técnico.
+Su vista, documento, exportación e historial omiten la numeración comercial
+de la OS y de sus muestras. La relación interna permite conservar el flujo.
+
+En Organización se configuran por separado el código del formato, su versión
+y fecha de aprobación para OS y OT, junto con el logo institucional existente.
+Al emitir cada documento se conserva una copia de esa configuración.
+Los cambios posteriores se aplican a los documentos que se generen después.
+La revisión de un documento y la versión de su formato se muestran por separado.
+
+Administración puede configurar categorías, leyendas y formas de cargador
+en Catálogos, Plantillas de resultados, estructura Matriz. También hay un
+acceso desde Yemas y cargadores. Las nuevas plantillas sugieren Recto, Curvo
+e Irregular y permiten editarlos. Una lista vacía mantiene la captura libre
+de formas de las plantillas anteriores. Una lista configurada limita las
+formas permitidas tanto en pantalla como en el backend.
+Las leyendas se muestran durante la evaluación y en el informe de resultados.
+Los parámetros quedan conservados al iniciar la matriz para que las ediciones
+del catálogo se apliquen a las evaluaciones nuevas.
+
+Flyway aplica V25–V28 al actualizar el backend. Completa los nombres de
+productores vinculados, conserva los correlativos históricos, agrega los
+formatos de OS y OT y preserva los parámetros de las matrices existentes.
+Los documentos históricos mantienen la información que se conservó al emitirlos.
+
+La prueba integral `node backend/scripts/verify-laboratory-adjustments.mjs`
+utiliza la misma instancia local y contraseña de pruebas. Verifica productores
+editables, permisos, códigos continuos bajo concurrencia, formatos conservados,
+leyendas, formas permitidas y parámetros históricos de matrices. Guarda sus
+comprobaciones y un informe generado en `tmp/labflow-adjustments-check`.

@@ -1,7 +1,8 @@
 import { Grid3X3, Sprout } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth/hooks/useAuth';
-import { Card, ErrorNotice, PageHeader } from '../../../shared/components/ui';
+import { Button, Card, ErrorNotice, PageHeader } from '../../../shared/components/ui';
 import type { TechnicalResultTask } from '../../../shared/types/domain';
 import { ResultEditorModal } from '../components/ResultEditorModal';
 import { ResultQueueTable } from '../components/ResultQueueTable';
@@ -10,6 +11,7 @@ import { toWorkOrderTest } from '../model/result-task';
 
 export function BudResultsPage() {
   const { hasRole } = useAuth();
+  const navigate = useNavigate();
   const { catalog, error, isLoading, loadQueue, queue } = useResultQueue('BUDS');
   const [selectedTask, setSelectedTask] = useState<TechnicalResultTask | null>(null);
   const selectedDefinition = catalog?.tests.find(
@@ -17,12 +19,19 @@ export function BudResultsPage() {
   );
 
   function refreshQueue() {
-    void loadQueue(0);
+    void loadQueue(queue?.page ?? 0);
   }
 
   return (
     <div className="space-y-7">
       <PageHeader
+        actions={
+          hasRole('ADMIN') ? (
+            <Button onClick={() => navigate('/catalogs?tab=result-templates')} variant="secondary">
+              Configurar plantillas
+            </Button>
+          ) : undefined
+        }
         description="Registra matrices de yemas por cargador, sus características físicas y la clasificación configurable de cada lectura."
         eyebrow="Operación especializada"
         title="Yemas y cargadores"
@@ -63,7 +72,7 @@ export function BudResultsPage() {
             action="RECORD"
             isLoading={isLoading}
             onOpen={setSelectedTask}
-            onPageChange={() => undefined}
+            onPageChange={(page) => void loadQueue(page)}
             queue={queue}
           />
         </div>

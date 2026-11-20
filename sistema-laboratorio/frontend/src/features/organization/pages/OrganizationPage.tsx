@@ -14,6 +14,7 @@ import {
   type UpdateOrganizationInput,
 } from '../api/organization-api';
 import { useOrganization } from '../hooks/useOrganization';
+import { DocumentFormatFields } from '../components/DocumentFormatFields';
 
 const timeZones = ['America/Lima', 'America/Bogota', 'America/Santiago', 'America/Mexico_City'];
 
@@ -35,6 +36,8 @@ function emptyForm(): UpdateOrganizationInput {
     serviceOrderPrefix: 'OS',
     workOrderPrefix: 'OT',
     reportPrefix: 'IR',
+    serviceOrderFormat: {},
+    workOrderFormat: {},
     contacts: [],
     authorizedSignerIds: [],
   };
@@ -58,6 +61,8 @@ function profileToForm(profile: OrganizationProfile): UpdateOrganizationInput {
     serviceOrderPrefix: profile.serviceOrderPrefix,
     workOrderPrefix: profile.workOrderPrefix,
     reportPrefix: profile.reportPrefix,
+    serviceOrderFormat: profile.serviceOrderFormat ?? {},
+    workOrderFormat: profile.workOrderFormat ?? {},
     contacts: profile.contacts.map(({ type, label, value }) => ({ type, label, value })),
     authorizedSignerIds: profile.authorizedSigners.map((signer) => signer.id),
   };
@@ -283,6 +288,23 @@ export function OrganizationPage() {
               value={form.reportPrefix}
             />
           </div>
+        </section>
+
+        <section className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <SectionTitle
+            title="Formatos de órdenes"
+            description="Configura el encabezado de las OS y OT nuevas. Utilizan el logo institucional y conservan la configuración con la que se emiten."
+          />
+          <DocumentFormatFields
+            title="Orden de servicio"
+            value={form.serviceOrderFormat ?? {}}
+            onChange={(value) => updateField('serviceOrderFormat', value)}
+          />
+          <DocumentFormatFields
+            title="Orden de trabajo"
+            value={form.workOrderFormat ?? {}}
+            onChange={(value) => updateField('workOrderFormat', value)}
+          />
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">

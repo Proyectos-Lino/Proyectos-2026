@@ -9,6 +9,7 @@ import com.labcore.platform.orders.ServiceOrderSampleTest;
 import com.labcore.platform.orders.ServiceOrderSampleTestRepository;
 import com.labcore.platform.orders.ServiceOrderService;
 import com.labcore.platform.organization.OrganizationProfileService;
+import com.labcore.platform.results.MatrixTemplateConfiguration;
 import com.labcore.platform.results.ResultEntry;
 import com.labcore.platform.results.ResultEntryRepository;
 import com.labcore.platform.results.ResultEntryStatus;
@@ -255,7 +256,7 @@ public class LaboratoryReportAssembler {
     if (matrix == null) {
       return null;
     }
-    Map<String, String> categoryLabels = categoryLabels(result.getResultTemplateId());
+    Map<String, String> categoryLabels = categoryLabels(result);
     List<LaboratoryReportDtos.MatrixCell> cells =
         matrixCellRepository
             .findByResultMatrixIdOrderByRowIndexAscColumnIndexAsc(matrix.getId())
@@ -283,7 +284,19 @@ public class LaboratoryReportAssembler {
                         column.getShape()))
             .toList(),
         cells,
-        matrixSummary(cells, matrix.getRowCount(), matrix.getColumnCount()));
+        matrixSummary(cells, matrix.getRowCount(), matrix.getColumnCount()),
+        result.getResultTemplateId() == null
+            ? List.of()
+            : MatrixTemplateConfiguration.restore(
+                    technicalCatalogService.getTemplate(result.getResultTemplateId()),
+                    result.getMatrixConfigurationSnapshot())
+                .categories()
+                .stream()
+                .map(
+                    category ->
+                        new LaboratoryReportDtos.MatrixLegend(
+                            category.code(), category.label(), category.legend()))
+                .toList());
   }
 
   private List<LaboratoryReportDtos.MatrixCategorySummary> matrixSummary(
@@ -309,11 +322,15 @@ public class LaboratoryReportAssembler {
         .toList();
   }
 
-  private Map<String, String> categoryLabels(UUID templateId) {
-    if (templateId == null) {
+  private Map<String, String> categoryLabels(ResultEntry result) {
+    if (result.getResultTemplateId() == null) {
       return Map.of();
     }
-    return technicalCatalogService.getTemplate(templateId).categories().stream()
+    return MatrixTemplateConfiguration.restore(
+            technicalCatalogService.getTemplate(result.getResultTemplateId()),
+            result.getMatrixConfigurationSnapshot())
+        .categories()
+        .stream()
         .collect(
             Collectors.toMap(
                 category -> category.code().toUpperCase(Locale.ROOT),

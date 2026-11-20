@@ -1,5 +1,6 @@
 package com.labcore.platform.workorders;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.labcore.platform.orders.ServiceOrderStatus;
 import com.labcore.platform.organization.OrganizationDtos;
 import jakarta.validation.Valid;
@@ -47,13 +48,14 @@ public final class WorkOrderDtos {
       String laboratoryCode,
       UUID technicalSampleTypeId,
       String technicalSampleTypeName,
+      String productName,
+      String varietyName,
       List<WorkOrderTestResponse> tests) {}
 
   public record WorkOrderSummary(
       UUID id,
       String code,
       UUID serviceOrderId,
-      String serviceOrderCode,
       UUID laboratoryAreaId,
       String laboratoryAreaName,
       UUID responsibleId,
@@ -67,7 +69,6 @@ public final class WorkOrderDtos {
       UUID id,
       String code,
       UUID serviceOrderId,
-      String serviceOrderCode,
       UUID laboratoryAreaId,
       String laboratoryAreaName,
       UUID responsibleId,
@@ -140,20 +141,24 @@ public final class WorkOrderDtos {
     }
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public record WorkOrderDocumentResponse(
       UUID id,
       int version,
       Instant generatedAt,
       OrganizationDtos.DocumentIdentity organization,
       String code,
-      String serviceOrderCode,
       String laboratoryAreaName,
       String responsibleName,
       Instant laboratoryDueAt,
       List<DocumentSample> samples) {}
 
   public record DocumentSample(
-      String laboratoryCode, String sampleTypeName, List<DocumentTest> tests) {}
+      String laboratoryCode,
+      String sampleTypeName,
+      String productName,
+      String varietyName,
+      List<DocumentTest> tests) {}
 
   public record DocumentTest(String testName, String methodName, String analystName) {}
 }

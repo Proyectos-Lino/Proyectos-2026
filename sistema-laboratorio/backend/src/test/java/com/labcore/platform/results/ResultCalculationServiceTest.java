@@ -86,7 +86,8 @@ class ResultCalculationServiceTest {
                 2,
                 null,
                 null)),
-        List.of());
+        List.of(),
+        null);
   }
 
   private TechnicalCatalogDtos.TemplateFieldResponse field(

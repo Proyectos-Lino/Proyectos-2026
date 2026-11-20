@@ -86,7 +86,8 @@ public final class ServiceOrderDtos {
       @Size(max = 5000) String observations,
       @NotEmpty List<@Valid RequestedTestRequest> requestedTests,
       UUID productId,
-      UUID varietyId) {}
+      UUID varietyId,
+      @Size(max = 220) String producerName) {}
 
   public record UpdateOrderSamplesRequest(
       @NotEmpty List<@Valid SampleRequest> samples,

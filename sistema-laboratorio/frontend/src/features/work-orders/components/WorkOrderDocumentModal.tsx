@@ -28,6 +28,7 @@ export function WorkOrderDocumentModal({
     >
       <article className="space-y-7 bg-white text-slate-800" id="work-order-document">
         <InstitutionalDocumentHeader
+          format={workOrderDocument.organization?.workOrderFormat}
           code={workOrderDocument.code}
           generatedAt={workOrderDocument.generatedAt}
           organization={workOrderDocument.organization}
@@ -36,15 +37,7 @@ export function WorkOrderDocumentModal({
           version={workOrderDocument.version}
         />
 
-        <section className="grid gap-4 border border-slate-700 p-4 sm:grid-cols-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-              Orden de servicio
-            </p>
-            <p className="mt-1 text-sm font-semibold text-slate-800">
-              {workOrderDocument.serviceOrderCode ?? 'No especificado'}
-            </p>
-          </div>
+        <section className="grid gap-4 border border-slate-700 p-4 sm:grid-cols-2">
           <div>
             <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
               Responsable técnico
@@ -75,6 +68,9 @@ export function WorkOrderDocumentModal({
               >
                 <header className="border-b border-slate-100 pb-3">
                   <h3 className="font-bold text-slate-900">Muestra {sample.laboratoryCode}</h3>
+                  <p className="mt-1 text-sm text-slate-700">
+                    {[sample.productName, sample.varietyName].filter(Boolean).join(' · ')}
+                  </p>
                   <p className="mt-1 text-xs text-slate-500">{sample.sampleTypeName}</p>
                 </header>
                 <div className="mt-4 overflow-x-auto">

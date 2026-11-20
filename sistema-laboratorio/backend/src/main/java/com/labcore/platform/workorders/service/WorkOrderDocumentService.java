@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.labcore.platform.catalog.CatalogService;
 import com.labcore.platform.common.exception.ResourceNotFoundException;
-import com.labcore.platform.orders.ServiceOrder;
-import com.labcore.platform.orders.ServiceOrderRepository;
+import com.labcore.platform.orders.ServiceOrderSample;
+import com.labcore.platform.orders.ServiceOrderSampleRepository;
 import com.labcore.platform.orders.ServiceOrderSampleTest;
 import com.labcore.platform.orders.ServiceOrderSampleTestRepository;
 import com.labcore.platform.organization.OrganizationProfileService;
@@ -28,34 +28,34 @@ public class WorkOrderDocumentService {
   private final WorkOrderSampleRepository sampleRepository;
   private final WorkOrderTestRepository testRepository;
   private final ServiceOrderSampleTestRepository sourceTestRepository;
-  private final ServiceOrderRepository serviceOrderRepository;
   private final WorkOrderDocumentRepository documentRepository;
   private final ApplicationUserRepository userRepository;
   private final CatalogService catalogService;
   private final OrganizationProfileService organizationService;
   private final ObjectMapper objectMapper;
+  private final ServiceOrderSampleRepository sourceSampleRepository;
 
   public WorkOrderDocumentService(
       WorkOrderRepository workOrderRepository,
       WorkOrderSampleRepository sampleRepository,
       WorkOrderTestRepository testRepository,
       ServiceOrderSampleTestRepository sourceTestRepository,
-      ServiceOrderRepository serviceOrderRepository,
       WorkOrderDocumentRepository documentRepository,
       ApplicationUserRepository userRepository,
       CatalogService catalogService,
       OrganizationProfileService organizationService,
-      ObjectMapper objectMapper) {
+      ObjectMapper objectMapper,
+      ServiceOrderSampleRepository sourceSampleRepository) {
     this.workOrderRepository = workOrderRepository;
     this.sampleRepository = sampleRepository;
     this.testRepository = testRepository;
     this.sourceTestRepository = sourceTestRepository;
-    this.serviceOrderRepository = serviceOrderRepository;
     this.documentRepository = documentRepository;
     this.userRepository = userRepository;
     this.catalogService = catalogService;
     this.organizationService = organizationService;
     this.objectMapper = objectMapper;
+    this.sourceSampleRepository = sourceSampleRepository;
   }
 
   public WorkOrderDtos.WorkOrderDocumentResponse generateAtCreation(
@@ -124,13 +124,12 @@ public class WorkOrderDocumentService {
             .stream()
             .collect(Collectors.toMap(ApplicationUser::getId, Function.identity()));
     ApplicationUser responsible = requiredUser(order.getResponsibleId());
-    ServiceOrder sourceOrder =
-        serviceOrderRepository
-            .findById(order.getServiceOrderId())
-            .orElseThrow(
-                () ->
-                    new ResourceNotFoundException(
-                        "la orden de servicio de la orden de trabajo", order.getServiceOrderId()));
+    Map<UUID, ServiceOrderSample> sourceSamples =
+        sourceSampleRepository
+            .findAllById(
+                samples.stream().map(WorkOrderSample::getServiceOrderSampleId).distinct().toList())
+            .stream()
+            .collect(Collectors.toMap(ServiceOrderSample::getId, Function.identity()));
 
     return new WorkOrderDtos.WorkOrderDocumentResponse(
         null,
@@ -138,7 +137,6 @@ public class WorkOrderDocumentService {
         Instant.now(),
         organizationService.documentIdentity(),
         order.getCode(),
-        sourceOrder.getCode(),
         catalogService.getArea(order.getLaboratoryAreaId()).getName(),
         responsible.getFullName(),
         order.getLaboratoryDueAt(),
@@ -148,6 +146,8 @@ public class WorkOrderDocumentService {
                     new WorkOrderDtos.DocumentSample(
                         sample.getLaboratoryCode(),
                         catalogService.getSampleType(sample.getSampleTypeId()).getName(),
+                        sourceSamples.get(sample.getServiceOrderSampleId()).getProductName(),
+                        sourceSamples.get(sample.getServiceOrderSampleId()).getVarietyName(),
                         testsBySample.getOrDefault(sample.getId(), List.of()).stream()
                             .map(
                                 test -> {
@@ -193,19 +193,6 @@ public class WorkOrderDocumentService {
 
   private WorkOrderDtos.WorkOrderDocumentResponse withDocumentMetadata(
       WorkOrderDtos.WorkOrderDocumentResponse snapshot, WorkOrderDocument document) {
-    String serviceOrderCode = snapshot.serviceOrderCode();
-    if (serviceOrderCode == null || serviceOrderCode.isBlank()) {
-      WorkOrder workOrder = getRequired(document.getWorkOrderId());
-      serviceOrderCode =
-          serviceOrderRepository
-              .findById(workOrder.getServiceOrderId())
-              .map(ServiceOrder::getCode)
-              .orElseThrow(
-                  () ->
-                      new ResourceNotFoundException(
-                          "la orden de servicio de la orden de trabajo",
-                          workOrder.getServiceOrderId()));
-    }
     return new WorkOrderDtos.WorkOrderDocumentResponse(
         document.getId(),
         document.getVersion(),
@@ -214,7 +201,6 @@ public class WorkOrderDocumentService {
             ? organizationService.documentIdentity()
             : snapshot.organization(),
         snapshot.code(),
-        serviceOrderCode,
         snapshot.laboratoryAreaName(),
         snapshot.responsibleName(),
         snapshot.laboratoryDueAt(),

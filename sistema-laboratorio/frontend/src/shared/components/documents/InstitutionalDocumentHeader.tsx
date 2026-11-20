@@ -1,7 +1,9 @@
-import type { OrganizationIdentity } from '../../types/domain';
+import type { DocumentFormat, OrganizationIdentity } from '../../types/domain';
 import { formatDate } from '../../lib/format';
+import { describeDocumentFormat } from '../../lib/document-format';
 
 interface InstitutionalDocumentHeaderProps {
+  format?: DocumentFormat;
   code: string;
   generatedAt: string;
   organization?: OrganizationIdentity;
@@ -11,6 +13,7 @@ interface InstitutionalDocumentHeaderProps {
 }
 
 export function InstitutionalDocumentHeader({
+  format,
   code,
   generatedAt,
   organization,
@@ -54,10 +57,14 @@ export function InstitutionalDocumentHeader({
           {title} · {code}
         </h1>
         <p className="mt-1 text-xs text-slate-500">
-          Versión {version} · Emitido el {formatDate(generatedAt)}
+          Revisión del documento {version} · Emitido el {formatDate(generatedAt)}
         </p>
       </div>
+      {describeDocumentFormat(format) ? (
+        <p className="border-x border-b border-slate-700 px-4 py-2 text-center text-xs text-slate-700">
+          {describeDocumentFormat(format)}
+        </p>
+      ) : null}
     </header>
   );
 }
-

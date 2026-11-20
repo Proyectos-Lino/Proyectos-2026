@@ -408,18 +408,12 @@ public class WorkOrderService {
             .distinct()
             .map(catalogService::getArea)
             .collect(Collectors.toMap(LaboratoryArea::getId, Function.identity()));
-    Map<UUID, ServiceOrder> serviceOrderById =
-        serviceOrderRepository
-            .findAllById(workOrders.stream().map(WorkOrder::getServiceOrderId).distinct().toList())
-            .stream()
-            .collect(Collectors.toMap(ServiceOrder::getId, Function.identity()));
     return workOrders.map(
         workOrder ->
             new WorkOrderDtos.WorkOrderSummary(
                 workOrder.getId(),
                 workOrder.getCode(),
                 workOrder.getServiceOrderId(),
-                serviceOrderById.get(workOrder.getServiceOrderId()).getCode(),
                 workOrder.getLaboratoryAreaId(),
                 areaById.get(workOrder.getLaboratoryAreaId()).getName(),
                 workOrder.getResponsibleId(),
@@ -455,7 +449,12 @@ public class WorkOrderService {
             .collect(Collectors.toMap(ApplicationUser::getId, Function.identity()));
     ApplicationUser responsible = requiredUser(workOrder.getResponsibleId());
     ServiceOrder serviceOrder = serviceOrderService.getRequired(workOrder.getServiceOrderId());
-    String serviceOrderCode = serviceOrder.getCode();
+    Map<UUID, ServiceOrderSample> sourceSamples =
+        sourceSampleRepository
+            .findAllById(
+                samples.stream().map(WorkOrderSample::getServiceOrderSampleId).distinct().toList())
+            .stream()
+            .collect(Collectors.toMap(ServiceOrderSample::getId, Function.identity()));
     List<WorkOrderDtos.WorkOrderSampleResponse> responseSamples =
         samples.stream()
             .filter(sample -> testsBySample.containsKey(sample.getId()))
@@ -467,6 +466,12 @@ public class WorkOrderService {
                         sample.getLaboratoryCode(),
                         sample.getSampleTypeId(),
                         catalogService.getSampleType(sample.getSampleTypeId()).getName(),
+                        sourceSamples.containsKey(sample.getServiceOrderSampleId())
+                            ? sourceSamples.get(sample.getServiceOrderSampleId()).getProductName()
+                            : null,
+                        sourceSamples.containsKey(sample.getServiceOrderSampleId())
+                            ? sourceSamples.get(sample.getServiceOrderSampleId()).getVarietyName()
+                            : null,
                         testsBySample.get(sample.getId()).stream()
                             .map(
                                 test -> {
@@ -493,7 +498,6 @@ public class WorkOrderService {
         workOrder.getId(),
         workOrder.getCode(),
         workOrder.getServiceOrderId(),
-        serviceOrderCode,
         workOrder.getLaboratoryAreaId(),
         catalogService.getArea(workOrder.getLaboratoryAreaId()).getName(),
         workOrder.getResponsibleId(),

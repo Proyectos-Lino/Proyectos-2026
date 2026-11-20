@@ -40,6 +40,7 @@ export interface TemplateCategory {
   id?: string;
   code: string;
   label: string;
+  legend?: string;
   displayOrder: number;
 }
 
@@ -76,6 +77,7 @@ export interface ManagedCatalogItem {
   tests?: ServiceTestConfiguration[];
   fields?: TemplateField[];
   categories?: TemplateCategory[];
+  carrierShapes?: string[];
   minimumRepetitions?: number;
   maximumRepetitions?: number;
   defaultRows?: number;

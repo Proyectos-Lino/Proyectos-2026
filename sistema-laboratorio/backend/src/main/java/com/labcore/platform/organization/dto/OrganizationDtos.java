@@ -6,11 +6,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 public final class OrganizationDtos {
   private OrganizationDtos() {}
+
+  public record DocumentFormat(
+      @Size(max = 40) String code, @Size(max = 20) String version, LocalDate approvedOn) {}
 
   public record ContactRequest(
       @NotNull OrganizationContactType type,
@@ -35,7 +39,9 @@ public final class OrganizationDtos {
       @NotBlank @Pattern(regexp = "^[A-Za-z0-9]{1,10}$") String workOrderPrefix,
       @NotBlank @Pattern(regexp = "^[A-Za-z0-9]{1,10}$") String reportPrefix,
       @NotNull List<@Valid ContactRequest> contacts,
-      @NotNull List<UUID> authorizedSignerIds) {}
+      @NotNull List<UUID> authorizedSignerIds,
+      @Valid DocumentFormat serviceOrderFormat,
+      @Valid DocumentFormat workOrderFormat) {}
 
   public record ContactResponse(
       UUID id, OrganizationContactType type, String label, String value, int displayOrder) {}
@@ -69,7 +75,9 @@ public final class OrganizationDtos {
       String reportPrefix,
       List<ContactResponse> contacts,
       List<SignerResponse> authorizedSigners,
-      Instant updatedAt) {}
+      Instant updatedAt,
+      DocumentFormat serviceOrderFormat,
+      DocumentFormat workOrderFormat) {}
 
   public record DocumentIdentity(
       String commercialName,
@@ -85,5 +93,7 @@ public final class OrganizationDtos {
       String accreditationCode,
       String accreditationScope,
       List<ContactResponse> contacts,
-      List<SignerResponse> authorizedSigners) {}
+      List<SignerResponse> authorizedSigners,
+      DocumentFormat serviceOrderFormat,
+      DocumentFormat workOrderFormat) {}
 }

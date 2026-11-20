@@ -12,9 +12,17 @@ export function copyCommonSampleData(
   if (groups.includes('date') && source.sampledAt && (overwrite || !target.sampledAt))
     updated.sampledAt = source.sampledAt;
   if (groups.includes('origin')) {
-    for (const field of ['samplingLocation', 'origin', 'samplerName', 'producerId'] as const) {
+    for (const field of ['samplingLocation', 'origin', 'samplerName'] as const) {
       if (source[field] && (overwrite || !target[field])) updated[field] = source[field];
     }
+  }
+  if (
+    groups.includes('origin') &&
+    (source.producerId || source.producerName) &&
+    (overwrite || !(target.producerId || target.producerName))
+  ) {
+    updated.producerId = source.producerId;
+    updated.producerName = source.producerName;
   }
   if (groups.includes('product') && source.productId && (overwrite || !target.productId)) {
     updated.productId = source.productId;

@@ -40,6 +40,7 @@ export function OrderDocumentModal({ document: orderDocument, onClose }: OrderDo
     >
       <article className="space-y-7 bg-white text-slate-800" id="service-order-document">
         <InstitutionalDocumentHeader
+          format={orderDocument.organization?.serviceOrderFormat}
           code={orderDocument.code}
           generatedAt={orderDocument.generatedAt}
           organization={orderDocument.organization}
@@ -74,7 +75,7 @@ export function OrderDocumentModal({ document: orderDocument, onClose }: OrderDo
             <DocumentItem
               label="Días de desarrollo"
               value={
-                orderDocument.developmentDays === undefined
+                orderDocument.developmentDays == null
                   ? undefined
                   : `${orderDocument.developmentDays} día(s)`
               }
@@ -140,7 +141,7 @@ export function OrderDocumentModal({ document: orderDocument, onClose }: OrderDo
                   <DocumentItem
                     label="Cantidad recibida"
                     value={
-                      sample.quantity === undefined
+                      sample.quantity == null
                         ? undefined
                         : `${sample.quantity} ${sample.measurementUnitName ?? ''}`.trim()
                     }

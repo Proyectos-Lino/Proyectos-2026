@@ -402,6 +402,12 @@ public class ServiceOrderCorrectionImpactService {
                 request.counterSampleInCustody(),
                 trimToNull(request.observations())));
     sample.selectCatalogProduct(request.productId(), request.varietyId());
+    sample.setProducerName(
+        request.producerName() != null
+            ? request.producerName()
+            : request.producerId() == null
+                ? null
+                : clientService.getRequired(request.producerId()).getLegalName());
     request
         .requestedTests()
         .forEach(
@@ -442,6 +448,12 @@ public class ServiceOrderCorrectionImpactService {
         request.counterSampleInCustody(),
         trimToNull(request.observations()));
     sample.selectCatalogProduct(request.productId(), request.varietyId());
+    sample.setProducerName(
+        request.producerName() != null
+            ? request.producerName()
+            : request.producerId() == null
+                ? null
+                : clientService.getRequired(request.producerId()).getLegalName());
   }
 
   private void validateRequests(ServiceOrder order, List<ServiceOrderDtos.SampleRequest> requests) {

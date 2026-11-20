@@ -263,7 +263,9 @@ public class ServiceOrderService {
                         sample.getCommercialSequence(),
                         sample.getClientIdentification(),
                         sample.getProducerId(),
-                        producerName(producers.get(sample.getProducerId())),
+                        sample.getProducerName() != null
+                            ? sample.getProducerName()
+                            : producerName(producers.get(sample.getProducerId())),
                         participantDocument(producers.get(sample.getProducerId())),
                         sample.getProductName(),
                         sample.getVarietyName(),
@@ -636,6 +638,12 @@ public class ServiceOrderService {
             request.counterSampleInCustody(),
             nullableTrim(request.observations()));
     sample.selectCatalogProduct(request.productId(), request.varietyId());
+    sample.setProducerName(
+        request.producerName() != null
+            ? request.producerName()
+            : request.producerId() == null
+                ? null
+                : clientService.getRequired(request.producerId()).getLegalName());
     return sample;
   }
 

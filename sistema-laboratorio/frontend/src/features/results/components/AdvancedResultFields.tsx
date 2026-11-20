@@ -232,6 +232,7 @@ function ResultInput({
 
 function MatrixFields(props: AdvancedResultFieldsProps) {
   const categories = props.template?.categories ?? [];
+  const carrierShapes = props.template?.carrierShapes ?? [];
   const canAddColumn =
     !props.disabled &&
     (!props.template?.maximumColumns || props.matrixColumns.length < props.template.maximumColumns);
@@ -246,6 +247,25 @@ function MatrixFields(props: AdvancedResultFieldsProps) {
 
   return (
     <section className="space-y-4">
+      {categories.length ? (
+        <details className="rounded-xl border border-slate-200 bg-white p-4" open>
+          <summary className="cursor-pointer font-semibold text-slate-900">
+            Leyenda de clasificación
+          </summary>
+          <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+            {categories.map((category) => (
+              <div key={category.code}>
+                <dt className="text-sm font-semibold text-slate-800">
+                  {category.code} · {category.label}
+                </dt>
+                {category.legend ? (
+                  <dd className="mt-1 text-sm text-slate-600">{category.legend}</dd>
+                ) : null}
+              </div>
+            ))}
+          </dl>
+        </details>
+      ) : null}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-start gap-3">
           <span className="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700">
@@ -346,12 +366,33 @@ function MatrixFields(props: AdvancedResultFieldsProps) {
                 onChange={(value) => props.updateMatrixColumn(columnIndex, { carrierLabel: value })}
                 value={column.carrierLabel}
               />
-              <MatrixMetadataInput
-                disabled={props.disabled}
-                label="Forma"
-                onChange={(value) => props.updateMatrixColumn(columnIndex, { shape: value })}
-                value={column.shape}
-              />
+              {carrierShapes.length ? (
+                <label className="space-y-2 text-sm">
+                  <span className="block">Forma</span>
+                  <select
+                    aria-label={`Forma del cargador ${columnIndex + 1}`}
+                    disabled={props.disabled}
+                    value={column.shape}
+                    onChange={(event) =>
+                      props.updateMatrixColumn(columnIndex, { shape: event.target.value })
+                    }
+                  >
+                    <option value="">Seleccionar forma</option>
+                    {carrierShapes.map((shape) => (
+                      <option key={shape} value={shape}>
+                        {shape}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <MatrixMetadataInput
+                  disabled={props.disabled}
+                  label="Forma"
+                  onChange={(value) => props.updateMatrixColumn(columnIndex, { shape: value })}
+                  value={column.shape}
+                />
+              )}
               <MatrixMetadataInput
                 disabled={props.disabled}
                 label="Distancia"

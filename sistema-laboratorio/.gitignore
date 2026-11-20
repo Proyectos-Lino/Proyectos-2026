@@ -17,6 +17,7 @@
 !/backend/scripts/
 /backend/scripts/*
 !/backend/scripts/verify-correction-flow.mjs
+!/backend/scripts/verify-laboratory-adjustments.mjs
 
 /frontend/*
 !/frontend/.gitignore

@@ -19,6 +19,12 @@ export interface OrganizationSigner {
   displayOrder: number;
 }
 
+export interface DocumentFormat {
+  code?: string;
+  version?: string;
+  approvedOn?: string;
+}
+
 export interface OrganizationIdentity {
   commercialName: string;
   legalName: string;
@@ -32,6 +38,8 @@ export interface OrganizationIdentity {
   accreditationName?: string;
   accreditationCode?: string;
   accreditationScope?: string;
+  serviceOrderFormat?: DocumentFormat;
+  workOrderFormat?: DocumentFormat;
   contacts: OrganizationContact[];
   authorizedSigners: OrganizationSigner[];
 }
@@ -375,7 +383,6 @@ export interface WorkOrderSummary {
   id: string;
   code: string;
   serviceOrderId: string;
-  serviceOrderCode: string;
   laboratoryAreaId: string;
   laboratoryAreaName: string;
   responsibleId: string;
@@ -416,6 +423,8 @@ export interface WorkOrderSample {
   laboratoryCode: string;
   technicalSampleTypeId: string;
   technicalSampleTypeName: string;
+  productName?: string;
+  varietyName?: string;
   tests: WorkOrderTest[];
 }
 
@@ -423,7 +432,6 @@ export interface WorkOrderDetail {
   id: string;
   code: string;
   serviceOrderId: string;
-  serviceOrderCode: string;
   laboratoryAreaId: string;
   laboratoryAreaName: string;
   responsibleId: string;
@@ -517,13 +525,14 @@ export interface WorkOrderDocument {
   generatedAt: string;
   organization?: OrganizationIdentity;
   code: string;
-  serviceOrderCode?: string;
   laboratoryAreaName: string;
   responsibleName: string;
   laboratoryDueAt: string;
   samples: Array<{
     laboratoryCode: string;
     sampleTypeName: string;
+    productName?: string;
+    varietyName?: string;
     tests: Array<{
       testName: string;
       methodName: string;
@@ -581,10 +590,12 @@ export interface InitialResultTemplate {
   active: boolean;
   createdAt: string;
   fields: ResultTemplateField[];
+  carrierShapes: string[];
   categories: Array<{
     id: string;
     code: string;
     label: string;
+    legend?: string;
     displayOrder: number;
   }>;
 }

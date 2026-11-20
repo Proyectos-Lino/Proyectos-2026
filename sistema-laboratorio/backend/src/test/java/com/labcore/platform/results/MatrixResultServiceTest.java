@@ -198,6 +198,42 @@ class MatrixResultServiceTest {
     verify(changeRepository, never()).save(any());
   }
 
+  @Test
+  void rejectsUnconfiguredCarrierShapeBeforeSavingPartialData() {
+    var original = template();
+    var configured =
+        new TechnicalCatalogDtos.TemplateResponse(
+            original.id(),
+            original.testDefinitionId(),
+            original.testDefinitionName(),
+            original.sampleTypeId(),
+            original.sampleTypeName(),
+            original.name(),
+            original.description(),
+            original.resultMode(),
+            original.minimumRepetitions(),
+            original.maximumRepetitions(),
+            original.defaultRows(),
+            original.maximumRows(),
+            original.defaultColumns(),
+            original.maximumColumns(),
+            original.active(),
+            original.createdAt(),
+            original.fields(),
+            original.categories(),
+            List.of("Recto"));
+    var entry =
+        new ResultEntry(
+            UUID.randomUUID(), UUID.randomUUID(), ResultMode.MATRIX, null, UUID.randomUUID());
+    assertThatThrownBy(
+            () ->
+                service()
+                    .saveDraft(entry, request("A"), configured, null, UUID.randomUUID(), "ANALYST"))
+        .isInstanceOf(BusinessRuleViolationException.class)
+        .hasMessage("La forma del cargador no pertenece a las opciones de la plantilla.");
+    verify(matrixRepository, never()).save(any());
+  }
+
   private ResultDtos.MatrixRequest request(String category) {
     return new ResultDtos.MatrixRequest(
         1,
@@ -266,9 +302,10 @@ class MatrixResultServiceTest {
                 null)),
         List.of(
             new TechnicalCatalogDtos.TemplateCategoryResponse(
-                UUID.randomUUID(), "A", "Categoría A", 1),
+                UUID.randomUUID(), "A", "Categoría A", 1, null),
             new TechnicalCatalogDtos.TemplateCategoryResponse(
-                UUID.randomUUID(), "B", "Categoría B", 2)));
+                UUID.randomUUID(), "B", "Categoría B", 2, null)),
+        null);
   }
 
   private MatrixResultService service() {

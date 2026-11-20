@@ -29,6 +29,12 @@ public class OrganizationProfile extends BaseEntity {
   private String serviceOrderPrefix;
   private String workOrderPrefix;
   private String reportPrefix;
+  private String serviceOrderFormatCode;
+  private String serviceOrderFormatVersion;
+  private java.time.LocalDate serviceOrderFormatApprovedOn;
+  private String workOrderFormatCode;
+  private String workOrderFormatVersion;
+  private java.time.LocalDate workOrderFormatApprovedOn;
 
   protected OrganizationProfile() {}
 
@@ -100,6 +106,16 @@ public class OrganizationProfile extends BaseEntity {
     return reportPrefix;
   }
 
+  public OrganizationDtos.DocumentFormat getServiceOrderFormat() {
+    return new OrganizationDtos.DocumentFormat(
+        serviceOrderFormatCode, serviceOrderFormatVersion, serviceOrderFormatApprovedOn);
+  }
+
+  public OrganizationDtos.DocumentFormat getWorkOrderFormat() {
+    return new OrganizationDtos.DocumentFormat(
+        workOrderFormatCode, workOrderFormatVersion, workOrderFormatApprovedOn);
+  }
+
   public void update(OrganizationDtos.OrganizationRequest request) {
     commercialName = request.commercialName().trim();
     legalName = request.legalName().trim();
@@ -117,6 +133,16 @@ public class OrganizationProfile extends BaseEntity {
     serviceOrderPrefix = normalizePrefix(request.serviceOrderPrefix());
     workOrderPrefix = normalizePrefix(request.workOrderPrefix());
     reportPrefix = normalizePrefix(request.reportPrefix());
+    if (request.serviceOrderFormat() != null) {
+      serviceOrderFormatCode = trimToNull(request.serviceOrderFormat().code());
+      serviceOrderFormatVersion = trimToNull(request.serviceOrderFormat().version());
+      serviceOrderFormatApprovedOn = request.serviceOrderFormat().approvedOn();
+    }
+    if (request.workOrderFormat() != null) {
+      workOrderFormatCode = trimToNull(request.workOrderFormat().code());
+      workOrderFormatVersion = trimToNull(request.workOrderFormat().version());
+      workOrderFormatApprovedOn = request.workOrderFormat().approvedOn();
+    }
   }
 
   private String normalizePrefix(String value) {

@@ -115,7 +115,10 @@ public final class LaboratoryReportDtos {
       int columnCount,
       List<MatrixColumn> columns,
       List<MatrixCell> cells,
-      List<MatrixCategorySummary> categorySummary) {}
+      List<MatrixCategorySummary> categorySummary,
+      List<MatrixLegend> legends) {}
+
+  public record MatrixLegend(String code, String label, String legend) {}
 
   public record MatrixCategorySummary(String category, long count, BigDecimal percentage) {}
 

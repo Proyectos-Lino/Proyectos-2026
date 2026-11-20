@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type ReactNode } from 'react';
 
 interface ModalProps {
   children: ReactNode;
@@ -18,6 +18,8 @@ export function Modal({
   panelClassName = 'max-w-3xl',
   title,
 }: ModalProps) {
+  const titleId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!isOpen) {
       return undefined;
@@ -25,9 +27,9 @@ export function Modal({
 
     const previousOverflow = document.body.style.overflow;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
+      if (event.key !== 'Escape' || event.defaultPrevented) return;
+      const dialogs = document.querySelectorAll('[role="dialog"][aria-modal="true"]');
+      if (dialogs.item(dialogs.length - 1) === dialogRef.current) onClose();
     };
 
     document.body.style.overflow = 'hidden';
@@ -45,7 +47,8 @@ export function Modal({
 
   return (
     <div
-      aria-labelledby="modal-title"
+      ref={dialogRef}
+      aria-labelledby={titleId}
       aria-modal="true"
       className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-slate-950/45 p-4 backdrop-blur-sm"
       role="dialog"
@@ -61,7 +64,7 @@ export function Modal({
       >
         <header className="flex items-start justify-between gap-4 border-b border-slate-100 px-6 py-5">
           <div>
-            <h2 className="text-lg font-bold tracking-tight text-slate-950" id="modal-title">
+            <h2 className="text-lg font-bold tracking-tight text-slate-950" id={titleId}>
               {title}
             </h2>
             {description ? <p className="mt-1 text-sm text-slate-500">{description}</p> : null}

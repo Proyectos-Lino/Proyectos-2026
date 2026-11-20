@@ -76,6 +76,7 @@ export function OrderWizardModal({
   const [step, setStep] = useState(1);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [isQuickClientOpen, setIsQuickClientOpen] = useState(false);
+  const [quickProducerSampleKey, setQuickProducerSampleKey] = useState<string | null>(null);
   const isEditingSamples = Boolean(editingOrder);
   const isCorrection = editingOrder?.status === 'COMMERCIAL_CORRECTION';
   const [correctionImpact, setCorrectionImpact] = useState<CorrectionImpact | null>(null);
@@ -91,6 +92,7 @@ export function OrderWizardModal({
     setActiveSampleIndex(0);
     setValidationError(null);
     setCorrectionImpact(null);
+    setQuickProducerSampleKey(null);
     onClose();
   }
 
@@ -105,7 +107,17 @@ export function OrderWizardModal({
     updateForm((current) => ({
       ...current,
       samples: current.samples.map((sample, sampleIndex) =>
-        sampleIndex === index ? ({ ...sample, [field]: value } as WizardSampleForm) : sample,
+        sampleIndex === index
+          ? field === 'producerId'
+            ? {
+                ...sample,
+                producerId: String(value),
+                producerName:
+                  producers.find((producer) => producer.id === value)?.legalName ??
+                  sample.producerName,
+              }
+            : ({ ...sample, [field]: value } as WizardSampleForm)
+          : sample,
       ),
     }));
   }
@@ -344,6 +356,20 @@ export function OrderWizardModal({
     }
   }
 
+  async function saveQuickProducer(input: CreateClientInput) {
+    const producer = await onCreateClient(input);
+    if (!producer) return false;
+    updateForm((current) => ({
+      ...current,
+      samples: current.samples.map((sample) =>
+        sample.clientKey === quickProducerSampleKey
+          ? { ...sample, producerId: producer.id, producerName: producer.legalName }
+          : sample,
+      ),
+    }));
+    return true;
+  }
+
   async function saveQuickClient(input: CreateClientInput) {
     const client = await onCreateClient(input);
     if (client) {
@@ -514,6 +540,7 @@ export function OrderWizardModal({
                     key={sample.clientKey}
                     onChange={(field, value) => updateSample(index, field, value)}
                     onRemove={() => removeSample(index)}
+                    onRegisterProducer={() => setQuickProducerSampleKey(sample.clientKey)}
                     onCreateProduct={createProduct}
                     onCreateVariety={createVariety}
                     onSelectProduct={(id, name) => selectProduct(index, id, name)}
@@ -623,6 +650,19 @@ export function OrderWizardModal({
           </ModalFooter>
         </form>
       </Modal>
+      {quickProducerSampleKey ? (
+        <ClientFormModal
+          allowedParticipantTypes={['PRODUCER', 'BOTH']}
+          client={null}
+          initialName={
+            form.samples.find((sample) => sample.clientKey === quickProducerSampleKey)?.producerName
+          }
+          isOpen
+          isSaving={isCreatingClient}
+          onClose={() => setQuickProducerSampleKey(null)}
+          onSubmit={async (_clientId, input) => saveQuickProducer(input)}
+        />
+      ) : null}
       <ClientFormModal
         allowedParticipantTypes={['CLIENT', 'BOTH']}
         client={null}

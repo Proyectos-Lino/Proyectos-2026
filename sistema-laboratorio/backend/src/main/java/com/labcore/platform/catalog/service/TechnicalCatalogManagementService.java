@@ -354,7 +354,11 @@ public class TechnicalCatalogManagementService {
     for (TechnicalCatalogDtos.TemplateCategoryRequest category : categories) {
       templateCategoryRepository.save(
           new ResultTemplateCategory(
-              templateId, category.code(), category.label(), category.displayOrder()));
+              templateId,
+              category.code(),
+              category.label(),
+              category.displayOrder(),
+              category.legend()));
     }
   }
 
@@ -370,6 +374,11 @@ public class TechnicalCatalogManagementService {
         request.maximumRows(),
         request.defaultColumns(),
         request.maximumColumns());
+    if (request.resultMode() != ResultMode.MATRIX) {
+      template.replaceCarrierShapes(List.of());
+    } else if (request.carrierShapes() != null) {
+      template.replaceCarrierShapes(request.carrierShapes().stream().map(String::trim).toList());
+    }
   }
 
   private void validateTemplateFields(
@@ -513,6 +522,26 @@ public class TechnicalCatalogManagementService {
         request.defaultColumns(),
         request.maximumColumns(),
         "El máximo de columnas no puede ser menor que las columnas iniciales.");
+    if (request.carrierShapes() != null) {
+      Set<String> shapes = new HashSet<>();
+      if (request.carrierShapes().size() > 50) {
+        throw new BusinessRuleViolationException(
+            "Solo se admiten hasta 50 formas de cargador por plantilla.");
+      }
+      for (String shape : request.carrierShapes()) {
+        if (shape == null
+            || shape.isBlank()
+            || shape.trim().length() > 120
+            || !shapes.add(shape.trim().toUpperCase(java.util.Locale.ROOT))) {
+          throw new BusinessRuleViolationException(
+              "Las formas de cargador requieren nombres únicos de hasta 120 caracteres.");
+        }
+      }
+      if (request.resultMode() != ResultMode.MATRIX && !request.carrierShapes().isEmpty()) {
+        throw new BusinessRuleViolationException(
+            "Las formas de cargador solo pueden configurarse en plantillas matriciales.");
+      }
+    }
     Set<String> categoryCodes = new HashSet<>();
     for (TechnicalCatalogDtos.TemplateCategoryRequest category : request.categories()) {
       if (!categoryCodes.add(normalizeCode(category.code()))) {
@@ -715,8 +744,10 @@ public class TechnicalCatalogManagementService {
                         category.getId(),
                         category.getCode(),
                         category.getLabel(),
-                        category.getDisplayOrder()))
-            .toList());
+                        category.getDisplayOrder(),
+                        category.getLegend()))
+            .toList(),
+        template.getCarrierShapes());
   }
 
   private BusinessRuleViolationException duplicateCode(String resource, String code) {

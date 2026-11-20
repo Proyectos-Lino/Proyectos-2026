@@ -70,7 +70,9 @@ class OrganizationProfileServiceTest {
             "DOC",
             "IR",
             valid.contacts(),
-            valid.authorizedSignerIds());
+            valid.authorizedSignerIds(),
+            null,
+            null);
 
     assertThatThrownBy(() -> service().update(repeated, "admin@test"))
         .isInstanceOf(BusinessRuleViolationException.class)
@@ -96,7 +98,9 @@ class OrganizationProfileServiceTest {
         "OT",
         "IR",
         List.of(),
-        List.of());
+        List.of(),
+        null,
+        null);
   }
 
   private OrganizationProfileService service() {

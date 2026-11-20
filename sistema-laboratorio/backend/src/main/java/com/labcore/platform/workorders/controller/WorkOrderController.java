@@ -93,14 +93,7 @@ public class WorkOrderController {
       Authentication authentication) {
     CsvFile csv =
         new CsvFile()
-            .row(
-                "Orden de trabajo",
-                "Orden de servicio",
-                "Área",
-                "Responsable",
-                "Fecha límite",
-                "Estado",
-                "Muestras");
+            .row("Orden de trabajo", "Área", "Responsable", "Fecha límite", "Estado", "Muestras");
     service
         .getPage(
             search,
@@ -116,7 +109,6 @@ public class WorkOrderController {
             order ->
                 csv.row(
                     order.code(),
-                    order.serviceOrderCode(),
                     order.laboratoryAreaName(),
                     order.responsibleName(),
                     order.laboratoryDueAt(),

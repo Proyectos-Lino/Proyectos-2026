@@ -105,6 +105,7 @@ class ResultTemplateValueValidatorTest {
                 2,
                 null,
                 null)),
-        List.of());
+        List.of(),
+        null);
   }
 }

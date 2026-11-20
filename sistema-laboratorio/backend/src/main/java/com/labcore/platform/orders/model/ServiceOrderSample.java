@@ -21,6 +21,7 @@ public class ServiceOrderSample extends BaseEntity {
   private int commercialSequence;
   private String clientIdentification;
   private UUID producerId;
+  private String producerName;
   private UUID productId;
   private UUID varietyId;
   private String productName;
@@ -121,6 +122,14 @@ public class ServiceOrderSample extends BaseEntity {
 
   public UUID getProducerId() {
     return producerId;
+  }
+
+  public String getProducerName() {
+    return producerName;
+  }
+
+  public void setProducerName(String producerName) {
+    this.producerName = producerName == null || producerName.isBlank() ? null : producerName.trim();
   }
 
   public String getProductName() {

@@ -1,4 +1,4 @@
-import { Calculator, CheckCircle2, Plus, Trash2 } from 'lucide-react';
+import { Calculator, CheckCircle2, Plus } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { Button, Modal, ModalFooter } from '../../../shared/components/ui';
 import { getErrorMessage } from '../../../shared/lib/errors';
@@ -15,6 +15,7 @@ import type {
 import { previewTemplateFormulas } from '../api/catalog-management-api';
 import { catalogLabels } from '../model/catalog-labels';
 import { TemplateFieldEditor } from './TemplateFieldEditor';
+import { MatrixClassificationEditor } from './MatrixClassificationEditor';
 
 interface CatalogFormModalProps {
   catalog: CatalogSnapshot | null;
@@ -29,6 +30,7 @@ interface CatalogFormModalProps {
 interface CatalogFormState {
   code: string;
   categories: TemplateCategory[];
+  carrierShapes: string[];
   defaultColumns: number;
   defaultRows: number;
   description: string;
@@ -69,6 +71,7 @@ function createInitialForm(kind: CatalogKind, item: ManagedCatalogItem | null): 
   return {
     code: item?.code ?? '',
     categories: item?.categories ?? [],
+    carrierShapes: item ? (item.carrierShapes ?? []) : ['Recto', 'Curvo', 'Irregular'],
     defaultColumns: item?.defaultColumns ?? 1,
     defaultRows: item?.defaultRows ?? 1,
     description: item?.description ?? '',
@@ -145,6 +148,10 @@ function payloadFor(kind: CatalogKind, form: CatalogFormState): CatalogPayload {
       };
     case 'result-templates':
       return {
+        carrierShapes:
+          form.resultMode === 'MATRIX'
+            ? form.carrierShapes.map((shape) => shape.trim()).filter(Boolean)
+            : [],
         categories:
           form.resultMode === 'MATRIX'
             ? form.categories.map((category, index) => ({
@@ -258,36 +265,6 @@ export function CatalogFormModal({
     setForm((current) => ({
       ...current,
       fields: current.fields.filter((_, fieldIndex) => fieldIndex !== index),
-    }));
-  }
-
-  function addCategory() {
-    setForm((current) => ({
-      ...current,
-      categories: [
-        ...current.categories,
-        {
-          code: `CAT_${current.categories.length + 1}`,
-          label: `Categoría ${current.categories.length + 1}`,
-          displayOrder: current.categories.length + 1,
-        },
-      ],
-    }));
-  }
-
-  function updateCategory(index: number, changes: Partial<TemplateCategory>) {
-    setForm((current) => ({
-      ...current,
-      categories: current.categories.map((category, categoryIndex) =>
-        categoryIndex === index ? { ...category, ...changes } : category,
-      ),
-    }));
-  }
-
-  function removeCategory(index: number) {
-    setForm((current) => ({
-      ...current,
-      categories: current.categories.filter((_, categoryIndex) => categoryIndex !== index),
     }));
   }
 
@@ -406,6 +383,7 @@ export function CatalogFormModal({
               <label htmlFor="catalog-prefix">Prefijo de código</label>
               <input
                 id="catalog-prefix"
+                pattern="[A-Za-z0-9]{1,20}"
                 maxLength={20}
                 onChange={(event) => updateField('laboratoryCodePrefix', event.target.value)}
                 required
@@ -697,49 +675,12 @@ export function CatalogFormModal({
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-between gap-3 border-t border-emerald-200 pt-4">
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Categorías de clasificación</h3>
-                    <p className="mt-1 text-xs text-slate-600">
-                      Define las opciones que podrá seleccionar el analista en cada yema.
-                    </p>
-                  </div>
-                  <Button onClick={addCategory} type="button" variant="secondary">
-                    <Plus size={15} />
-                    Categoría
-                  </Button>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {form.categories.map((category, index) => (
-                    <div
-                      className="grid grid-cols-[1fr_1.5fr_auto] gap-2 rounded-xl border border-emerald-200 bg-white p-3"
-                      key={category.id ?? index}
-                    >
-                      <input
-                        aria-label="Código de categoría"
-                        onChange={(event) => updateCategory(index, { code: event.target.value })}
-                        placeholder="Código"
-                        required
-                        value={category.code}
-                      />
-                      <input
-                        aria-label="Nombre de categoría"
-                        onChange={(event) => updateCategory(index, { label: event.target.value })}
-                        placeholder="Nombre"
-                        required
-                        value={category.label}
-                      />
-                      <Button
-                        aria-label="Eliminar categoría"
-                        onClick={() => removeCategory(index)}
-                        type="button"
-                        variant="ghost"
-                      >
-                        <Trash2 size={16} />
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                <MatrixClassificationEditor
+                  categories={form.categories}
+                  carrierShapes={form.carrierShapes}
+                  onChangeCategories={(categories) => updateField('categories', categories)}
+                  onChangeShapes={(shapes) => updateField('carrierShapes', shapes)}
+                />
               </section>
             ) : null}
             <section className="space-y-3 md:col-span-2">

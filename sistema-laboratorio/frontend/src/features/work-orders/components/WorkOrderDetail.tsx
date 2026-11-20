@@ -99,15 +99,7 @@ export function WorkOrderDetail({
         </header>
 
         <div className="space-y-5 p-5">
-          <section className="grid gap-4 rounded-xl bg-slate-50 p-4 sm:grid-cols-3">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                Orden de servicio
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-800">
-                {workOrder.serviceOrderCode}
-              </p>
-            </div>
+          <section className="grid gap-4 rounded-xl bg-slate-50 p-4 sm:grid-cols-2">
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
                 Responsable técnico
@@ -200,6 +192,9 @@ export function WorkOrderDetail({
                   <div>
                     <p className="font-semibold text-slate-800">
                       Código interno: {sample.laboratoryCode}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      {[sample.productName, sample.varietyName].filter(Boolean).join(' · ')}
                     </p>
                     <p className="mt-1 text-xs text-slate-500">
                       Clasificación técnica: {sample.technicalSampleTypeName}

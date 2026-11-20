@@ -56,7 +56,7 @@ export function WorkOrderFilters({ catalog, initialValues, onApply }: WorkOrderF
           onChange={(event) =>
             setFilters((current) => ({ ...current, search: event.target.value }))
           }
-          placeholder="Código de OT u OS"
+          placeholder="Código de orden de trabajo"
           value={filters.search}
         />
       </div>

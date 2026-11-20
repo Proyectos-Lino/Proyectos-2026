@@ -33,7 +33,9 @@ class LaboratoryReportPdfGeneratorTest {
                 "LAB-001",
                 "Alcance de prueba",
                 List.of(),
-                List.of()),
+                List.of(),
+                null,
+                null),
             "OS-2026-0001",
             "Productor de prueba",
             "RUC 20123456789",
@@ -125,7 +127,8 @@ class LaboratoryReportPdfGeneratorTest {
                                     new LaboratoryReportDtos.MatrixCategorySummary(
                                         "Categoría dos", 1, new BigDecimal("25")),
                                     new LaboratoryReportDtos.MatrixCategorySummary(
-                                        "Categoría tres", 2, new BigDecimal("50")))))))));
+                                        "Categoría tres", 2, new BigDecimal("50"))),
+                                List.of()))))));
 
     byte[] pdf =
         new LaboratoryReportPdfGenerator()

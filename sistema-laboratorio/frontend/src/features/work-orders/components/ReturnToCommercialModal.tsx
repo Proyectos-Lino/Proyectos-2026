@@ -35,7 +35,7 @@ export function ReturnToCommercialModal({
       description="Las órdenes de trabajo se conservarán y quedarán pausadas hasta que la corrección sea revisada."
       isOpen={workOrder !== null}
       onClose={close}
-      title={`Devolver ${workOrder?.serviceOrderCode ?? ''} a comercial`}
+      title={`Devolver solicitud de ${workOrder?.code ?? ''} a comercial`}
     >
       <form onSubmit={submit}>
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">

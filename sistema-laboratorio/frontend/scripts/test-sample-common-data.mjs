@@ -55,3 +55,29 @@ test('replaces only explicitly selected groups and keeps product and variety tog
   assert.equal(result.sampledAt, sourceSample.sampledAt);
   assert.equal(result.origin, 'Lima');
 });
+
+test('copies producer identity and editable name together while preserving a freely entered owner', () => {
+  const source = { producerId: 'producer-id', producerName: 'Fundo Santa Elena' };
+  const independent = { producerId: '', producerName: 'Propietario eventual' };
+  assert.deepEqual(copyCommonSampleData(source, independent, ['origin'], false), independent);
+  const empty = copyCommonSampleData(
+    source,
+    { producerId: '', producerName: '' },
+    ['origin'],
+    false,
+  );
+  assert.equal(empty.producerId, source.producerId);
+  assert.equal(empty.producerName, source.producerName);
+});
+
+test('replaces a linked producer with an independent owner when explicitly requested', () => {
+  const source = { producerId: '', producerName: 'Fundo independiente' };
+  const result = copyCommonSampleData(
+    source,
+    { producerId: 'old-id', producerName: 'Anterior' },
+    ['origin'],
+    true,
+  );
+  assert.equal(result.producerId, '');
+  assert.equal(result.producerName, 'Fundo independiente');
+});

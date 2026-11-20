@@ -95,6 +95,7 @@ public class ResultService {
     TechnicalCatalogDtos.TemplateResponse template = requiredMatrixTemplate(workOrderTest);
     ResultEntry entry =
         new ResultEntry(workOrderTestId, template.id(), ResultMode.MATRIX, null, actor.getId());
+    entry.captureMatrixConfiguration(MatrixTemplateConfiguration.serialize(template));
     entry.markDraft();
     entry = entryRepository.save(entry);
     matrixResultService.start(
@@ -126,8 +127,7 @@ public class ResultService {
       throw new BusinessRuleViolationException(
           "Solo una evaluación matricial en curso admite guardados parciales.");
     }
-    TechnicalCatalogDtos.TemplateResponse template =
-        technicalCatalogService.getTemplate(entry.getResultTemplateId());
+    TechnicalCatalogDtos.TemplateResponse template = templateFor(entry);
     matrixResultService.saveDraft(
         entry,
         request.matrix(),
@@ -162,7 +162,7 @@ public class ResultService {
     ResultEntry entry = entryRepository.findByWorkOrderTestId(workOrderTestId).orElse(null);
     TechnicalCatalogDtos.TemplateResponse template =
         entry != null && entry.getResultTemplateId() != null
-            ? technicalCatalogService.getTemplate(entry.getResultTemplateId())
+            ? templateFor(entry)
             : findTemplate(workOrderTest, sourceTest.getTestDefinitionId());
     boolean isDraftCompletion = entry != null && entry.getStatus() == ResultEntryStatus.DRAFT;
     boolean isCorrection = entry != null && !isDraftCompletion;
@@ -183,6 +183,9 @@ public class ResultService {
                   resultMode,
                   trimToNull(request.analystObservation()),
                   actor.getId()));
+    }
+    if (entry.getResultMode() == ResultMode.MATRIX && template != null) {
+      entry.captureMatrixConfiguration(MatrixTemplateConfiguration.serialize(template));
     }
     String observation = trimToNull(request.analystObservation());
     int targetRevision = isCorrection ? entry.getResultRevision() + 1 : entry.getResultRevision();
@@ -370,7 +373,7 @@ public class ResultService {
     TechnicalCatalogDtos.TemplateResponse template =
         entry.getResultTemplateId() == null
             ? findTemplate(workOrderTest, context.sourceTest().getTestDefinitionId())
-            : technicalCatalogService.getTemplate(entry.getResultTemplateId());
+            : templateFor(entry);
     boolean changed;
     if (entry.getResultMode() == ResultMode.MATRIX) {
       if (template == null || request.matrix() == null) {
@@ -446,7 +449,7 @@ public class ResultService {
     ensureCanView(actor, workOrderTest);
     ResultEntry existingEntry = entryRepository.findByWorkOrderTestId(workOrderTestId).orElse(null);
     if (existingEntry != null && existingEntry.getResultTemplateId() != null) {
-      return technicalCatalogService.getTemplate(existingEntry.getResultTemplateId());
+      return templateFor(existingEntry);
     }
     ServiceOrderSampleTest sourceTest =
         sourceTestRepository
@@ -478,11 +481,15 @@ public class ResultService {
     return calculationService.preview(template, request.values());
   }
 
+  private TechnicalCatalogDtos.TemplateResponse templateFor(ResultEntry entry) {
+    return MatrixTemplateConfiguration.restore(
+        technicalCatalogService.getTemplate(entry.getResultTemplateId()),
+        entry.getMatrixConfigurationSnapshot());
+  }
+
   private ResultDtos.ResultResponse toResponse(ResultEntry entry) {
     TechnicalCatalogDtos.TemplateResponse template =
-        entry.getResultTemplateId() == null
-            ? null
-            : technicalCatalogService.getTemplate(entry.getResultTemplateId());
+        entry.getResultTemplateId() == null ? null : templateFor(entry);
     List<ResultValue> storedValues =
         valueRepository.findByResultEntryIdOrderByPositionAsc(entry.getId());
     List<ResultDtos.ValueResponse> values =

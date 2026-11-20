@@ -6,6 +6,7 @@ import type { CreateClientInput } from '../api/clients-api';
 
 interface ClientFormModalProps {
   allowedParticipantTypes?: ParticipantType[];
+  initialName?: string;
   isOpen: boolean;
   isSaving: boolean;
   client: Client | null;
@@ -34,6 +35,7 @@ const participantTypeOptions: Array<{ value: ParticipantType; label: string }> =
 
 export function ClientFormModal({
   allowedParticipantTypes,
+  initialName,
   client,
   isOpen,
   isSaving,
@@ -56,7 +58,11 @@ export function ClientFormModal({
           contactName: client.contactName ?? '',
           phone: client.phone ?? '',
         }
-      : initialForm,
+      : {
+          ...initialForm,
+          legalName: initialName ?? '',
+          participantType: visibleParticipantTypes[0]?.value ?? 'CLIENT',
+        },
   );
 
   function closeModal() {

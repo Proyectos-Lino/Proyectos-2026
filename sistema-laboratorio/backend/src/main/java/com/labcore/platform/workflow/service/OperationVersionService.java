@@ -2,6 +2,7 @@ package com.labcore.platform.workflow;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.labcore.platform.security.ApplicationUserRepository;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -81,6 +82,10 @@ public class OperationVersionService {
         .map(
             version -> {
               try {
+                var snapshot = mapper.readTree(version.getSnapshotContent());
+                if (type == OperationType.WORK_ORDER && snapshot.isObject()) {
+                  ((ObjectNode) snapshot).remove("serviceOrderCode");
+                }
                 return new OperationVersionDtos.Version(
                     version.getId(),
                     version.getRevision(),
@@ -89,7 +94,7 @@ public class OperationVersionService {
                     version.getPerformedBy(),
                     version.getPerformedByRole(),
                     version.getCapturedAt(),
-                    mapper.readTree(version.getSnapshotContent()));
+                    snapshot);
               } catch (JsonProcessingException exception) {
                 throw new IllegalStateException(
                     "No se pudo leer la versión conservada.", exception);

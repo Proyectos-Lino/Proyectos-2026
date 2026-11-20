@@ -34,6 +34,14 @@ public class ResultTemplate extends BaseEntity {
   private Integer maximumColumns;
   private boolean active = true;
 
+  @jakarta.persistence.ElementCollection
+  @jakarta.persistence.CollectionTable(
+      name = "result_template_carrier_shape",
+      joinColumns = @jakarta.persistence.JoinColumn(name = "result_template_id"))
+  @jakarta.persistence.OrderColumn(name = "display_order")
+  @Column(name = "name", length = 120)
+  private java.util.List<String> carrierShapes = new java.util.ArrayList<>();
+
   protected ResultTemplate() {}
 
   public ResultTemplate(
@@ -93,6 +101,15 @@ public class ResultTemplate extends BaseEntity {
 
   public Integer getMaximumColumns() {
     return maximumColumns;
+  }
+
+  public java.util.List<String> getCarrierShapes() {
+    return java.util.List.copyOf(carrierShapes);
+  }
+
+  public void replaceCarrierShapes(java.util.List<String> shapes) {
+    carrierShapes.clear();
+    carrierShapes.addAll(shapes);
   }
 
   public boolean isActive() {
